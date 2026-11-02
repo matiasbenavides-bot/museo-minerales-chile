@@ -2,9 +2,15 @@
    MUSEO DE MINERALES — renderizador
    Lee data/museo.js y construye el DOM. NO contiene texto de especies.
 
+   DOS VISTAS EN EL MISMO ARCHIVO:
+     · portada (index.html)        → ficha BÁSICA (campos con basico:true, 12)
+     · archivo (<especie>.html con data-vista="archivo") → los 36 campos
+       + versión directa + fuentes + transparencia
+
    CONTRATO C2: cada fila de la ficha debe traer `fuente` y `estado`.
                 Si falta, se marca el error en pantalla (no se inventa nada).
    CONTRATO C4: el relato se pinta literal, verso por verso. No se toca.
+   CONTRATO C6: ningún campo se borra; lo no básico se va al archivo.
    ========================================================================== */
 (function () {
   'use strict';
@@ -24,28 +30,30 @@
       .replace(/"/g, '&quot;');
   }
 
+  var VISTA = document.body.getAttribute('data-vista') || 'portada';
+
   /* ---------------------------------------------------------------- pieza */
   var pieza = DATA.especies[0];
 
-  /* acento por especie: pinta las variables CSS del documento */
   if (pieza.acento) {
     document.documentElement.style.setProperty('--acento', pieza.acento);
   }
 
-  /* --------------------------------------------------------------- cifras */
+  /* ------------------------------------------------------------- conteos */
   var verificados = pieza.ficha.filter(function (f) { return f.estado === 'verificado'; }).length;
   var pendientes  = pieza.ficha.filter(function (f) { return f.estado === 'pendiente'; }).length;
-  var fuentes = (pieza.directa && pieza.directa.fuentes) ? pieza.directa.fuentes.length : 0;
+  var basicos     = pieza.ficha.filter(function (f) { return f.basico; });
+  var fuentes     = (pieza.directa && pieza.directa.fuentes) ? pieza.directa.fuentes.length : 0;
 
-  var cifras = [
-    { n: DATA.especies.length, u: DATA.especies.length === 1 ? 'especie' : 'especies', l: 'En exhibición' },
-    { n: verificados,          u: 'de ' + pieza.ficha.length,                      l: 'Datos verificados' },
-    { n: pendientes,           u: 'declarados',                                    l: 'Datos pendientes' },
-    { n: fuentes,              u: 'citadas',                                       l: 'Fuentes primarias' }
-  ];
-
+  /* --------------------------------------------------------------- cifras */
   var heroCifras = $('#heroCifras');
   if (heroCifras) {
+    var cifras = [
+      { n: DATA.especies.length, u: DATA.especies.length === 1 ? 'especie' : 'especies', l: 'En exhibición' },
+      { n: verificados,          u: 'de ' + pieza.ficha.length,                      l: 'Datos verificados' },
+      { n: pendientes,           u: 'declarados',                                    l: 'Datos pendientes' },
+      { n: fuentes,              u: 'citadas',                                       l: 'Fuentes primarias' }
+    ];
     heroCifras.innerHTML = cifras.map(function (c) {
       return '<div><dt>' + esc(c.l) + '</dt><dd>' + esc(c.n) +
              ' <span>' + esc(c.u) + '</span></dd></div>';
@@ -55,7 +63,7 @@
   /* ----------------------------------------------------------------- sala */
   var salaLista = $('#salaLista');
   if (salaLista) {
-    salaLista.innerHTML = DATA.especies.map(function (e, i) {
+    salaLista.innerHTML = DATA.especies.map(function (e) {
       return '' +
         '<li class="pieza-card" style="--acento:' + esc(e.acento || '#2fbf71') + '">' +
           '<div class="pieza-card__vitrina">' + cristal(e.acento) + '</div>' +
@@ -68,7 +76,7 @@
               '<span><b>' + esc(e.ficha.length) + '</b> campos documentados</span>' +
               '<span><b>' + esc((e.pendientes || []).length) + '</b> pendientes declarados</span>' +
             '</div>' +
-            '<a class="pieza-card__ir" href="#vitrina">Ver la pieza →</a>' +
+            '<a class="pieza-card__ir" href="' + esc(e.id) + '.html">Abrir el archivo →</a>' +
           '</div>' +
         '</li>';
     }).join('');
@@ -86,13 +94,12 @@
       '<dl class="pieza__datos">' +
         '<div><dt>Estatus</dt><dd>' + esc(d.estatus || 'Ver ficha') + '</dd></div>' +
         '<div><dt>Descripción</dt><dd>' + esc(d.descripcion || '') + '</dd></div>' +
-        '<div style="grid-column:1/-1"><dt>Localidad tipo</dt><dd>' + esc(d.localidad || '') + '</dd></div>' +
+        '<div class="pieza__datos--ancho"><dt>Localidad tipo</dt><dd>' + esc(d.localidad || '') + '</dd></div>' +
       '</dl>';
   }
 
-  /* --------------------------------------------------------- ficha tabla */
-  var tabla = $('#tablaFicha');
-  var filasHTML = pieza.ficha.map(function (f, i) {
+  /* --------------------------------------------------------- filas ficha */
+  function filaHTML(f) {
     var faltaContrato = !f.fuente || !f.estado;
     var pend = f.estado === 'pendiente';
     var clase = 'fila' + (pend ? ' is-pendiente' : '') + (faltaContrato ? ' is-error' : '');
@@ -113,11 +120,17 @@
         '<div class="fila__fuente">' + esc(f.fuente || 'SIN FUENTE') + '<br>' + marca + '</div>' +
         (f.nota && f.nota !== '—' ? '<div class="fila__nota">' + esc(f.nota) + '</div>' : '') +
       '</div>';
-  }).join('');
+  }
 
-  if (tabla) tabla.innerHTML = filasHTML;
+  /* PORTADA → solo los campos básicos */
+  var tablaBasica = $('#tablaBasica');
+  if (tablaBasica) tablaBasica.innerHTML = basicos.map(filaHTML).join('');
 
-  /* contadores del filtro */
+  /* ARCHIVO → los 36 campos */
+  var tablaFicha = $('#tablaFicha');
+  if (tablaFicha) tablaFicha.innerHTML = pieza.ficha.map(filaHTML).join('');
+
+  /* contadores + filtro (solo existen en el archivo) */
   var chips = $$('#filtro .chip');
   if (chips.length) {
     chips[0].querySelector('b').textContent = pieza.ficha.length;
@@ -185,22 +198,21 @@
   /* ------------------------------------------------------------- helpers */
   function titulo(s) {
     s = String(s || '');
-    if (s === s.toUpperCase()) {
-      return s.charAt(0) + s.slice(1).toLowerCase();
-    }
+    if (s === s.toUpperCase()) return s.charAt(0) + s.slice(1).toLowerCase();
     return s;
   }
 
   /* cristal dibujado: forma abstracta, NO un mineral figurativo */
   function cristal(acento) {
     var c = acento || '#2fbf71';
+    var id = 'g' + c.replace('#', '');
     return '' +
       '<svg viewBox="0 0 100 100" aria-hidden="true">' +
-        '<defs><linearGradient id="g' + c.replace('#', '') + '" x1="0" y1="0" x2="0" y2="1">' +
+        '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="0" y2="1">' +
           '<stop offset="0%" stop-color="' + c + '" stop-opacity=".95"/>' +
           '<stop offset="100%" stop-color="' + c + '" stop-opacity=".25"/>' +
         '</linearGradient></defs>' +
-        '<polygon points="50,6 78,30 70,84 30,84 22,30" fill="url(#g' + c.replace('#', '') + ')"/>' +
+        '<polygon points="50,6 78,30 70,84 30,84 22,30" fill="url(#' + id + ')"/>' +
         '<polygon points="50,6 62,32 50,78 38,32" fill="' + c + '" opacity=".45"/>' +
         '<polygon points="50,6 78,30 70,84 30,84 22,30" fill="none" stroke="' + c + '" stroke-width="1.4" opacity=".85"/>' +
       '</svg>';
@@ -233,8 +245,10 @@
 
   /* expone para verificación */
   window.MUSEO_RENDER = {
+    vista: VISTA,
     especies: DATA.especies.length,
     campos: pieza.ficha.length,
+    basicos: basicos.length,
     verificados: verificados,
     pendientes: pendientes,
     versos: (pieza.relato ? pieza.relato.versos.length : 0),

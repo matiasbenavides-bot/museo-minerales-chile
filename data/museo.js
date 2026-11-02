@@ -1,15 +1,3 @@
-/* ============================================================================
-   MUSEO DE MINERALES DESCUBIERTOS EN CHILE
-   FUENTE ÚNICA DE DATOS — ningún texto de especie vive en el HTML.
-
-   CONTRATO C2 (master 3 del libro): cada fila de la ficha lleva
-   `fuente` y `estado` OBLIGATORIOS. El render falla visible si faltan.
-   CONTRATO C4: el `relato` es del dueño y se copia LITERAL. No se edita.
-
-   Para agregar una especie: se agrega un objeto a `especies`.
-   No se toca el HTML ni el CSS.
-============================================================================ */
-
 const MUSEO = {
   "museo": {
     "nombre": "Museo de Minerales Descubiertos en Chile",
@@ -35,252 +23,288 @@ const MUSEO = {
           "valor": "Atacamite",
           "fuente": "IMA Master List 2026-09, p. 17, col. Name",
           "estado": "verificado",
-          "nota": "Nombre vigente de la especie."
+          "nota": "Nombre vigente de la especie.",
+          "basico": true
         },
         {
           "campo": "Nombre en español",
           "valor": "Atacamita",
           "fuente": "Uso corriente en castellano",
           "estado": "verificado",
-          "nota": "Misma especie que Atacamite (IMA). No es un nombre comercial ni varietal."
+          "nota": "Misma especie que Atacamite (IMA). No es un nombre comercial ni varietal.",
+          "basico": true
         },
         {
           "campo": "Fórmula química",
           "valor": "Cu2Cl(OH)3",
           "fuente": "IMA Master List 2026-09, p. 17, col. Fórmula",
           "estado": "verificado",
-          "nota": "Fórmula ideal aprobada por la CNMNC."
+          "nota": "Fórmula ideal aprobada por la CNMNC.",
+          "basico": true
         },
         {
           "campo": "Estatus IMA",
           "valor": "Grandfathered (G) — vigente",
           "fuente": "IMA Master List 2026-09, p. 17, col. Status",
           "estado": "verificado",
-          "nota": "Descrita antes de la constitución de la CNMNC; valida por consenso historico."
+          "nota": "Descrita antes de la constitución de la CNMNC; valida por consenso historico.",
+          "basico": true
         },
         {
           "campo": "Año de descripción original",
           "valor": "1797",
           "fuente": "IMA Master List 2026-09, p. 17, col. IMA No./Year",
           "estado": "verificado",
-          "nota": "Referencia de la descripción original en la misma fila: Handbuch der Naturgeschichte, Dieterich, Goettingen (1797), 655."
+          "nota": "Referencia de la descripción original en la misma fila: Handbuch der Naturgeschichte, Dieterich, Goettingen (1797), 655.",
+          "basico": true
         },
         {
           "campo": "Año del nombre",
           "valor": "1802",
           "fuente": "Mindat, campo Name (secundaria)",
           "estado": "pendiente",
-          "nota": "Falta confirmar en fuente primaria. Mindat no es dogmatica."
+          "nota": "Falta confirmar en fuente primaria. Mindat no es dogmatica.",
+          "basico": false
         },
         {
           "campo": "Autor del nombre",
           "valor": "Dmitri de Gallitzin",
           "fuente": "Mindat, campo Name (secundaria)",
           "estado": "pendiente",
-          "nota": "Grafía citada literal de la fuente. La equivalencia con Golitsyn / Galitzin esta por verificar."
+          "nota": "Grafía citada literal de la fuente. La equivalencia con Golitsyn / Galitzin esta por verificar.",
+          "basico": false
         },
         {
           "campo": "Localidad tipo (amplia)",
           "valor": "Desierto de Atacama, Chile",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Distribution",
           "estado": "verificado",
-          "nota": "El IMA asigna Country = Chile a esta especie."
+          "nota": "El IMA asigna Country = Chile a esta especie.",
+          "basico": true
         },
         {
           "campo": "Localidad tipo (exacta)",
           "valor": "No definida por la fuente",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Distribution; Handbook of Mineralogy (MSA), ficha Atacamite, Name",
           "estado": "verificado",
-          "nota": "La fuente declara literalmente «originally from an undefined locality in the Atacama Desert». No es un hueco del libro: la fuente dice que no se definio."
+          "nota": "La fuente declara literalmente «originally from an undefined locality in the Atacama Desert». No es un hueco del libro: la fuente dice que no se definio.",
+          "basico": false
         },
         {
           "campo": "Sistema cristalino",
           "valor": "Ortorrómbico",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Crystal Data",
           "estado": "verificado",
-          "nota": "Clase bipiramidal rómbica."
+          "nota": "Clase bipiramidal rómbica.",
+          "basico": true
         },
         {
           "campo": "Grupo puntual",
           "valor": "2/m2/m2/m (mmm)",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Point Group",
           "estado": "verificado",
-          "nota": "Notacion completa y su abreviatura."
+          "nota": "Notacion completa y su abreviatura.",
+          "basico": false
         },
         {
           "campo": "Grupo espacial",
           "valor": "Pnam",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Cell Data, Space Group",
           "estado": "verificado",
-          "nota": "—"
+          "nota": "—",
+          "basico": false
         },
         {
           "campo": "Parámetros de celda",
           "valor": "a 6,030(2) · b 9,120(2) · c 6,865(2) A · Z = 4",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Cell Data",
           "estado": "verificado",
-          "nota": "Incertidumbre entre parentesis tal como la declara la fuente."
+          "nota": "Incertidumbre entre parentesis tal como la declara la fuente.",
+          "basico": false
         },
         {
           "campo": "Hábito",
           "valor": "Cristales delgados hasta 10 cm, prismáticos [001], estriados paralelos a [001]; tabulares perpendiculares a {010} o pseudo-octaedricos con {110} y {011}. Fibroso, granular, compacto, masivo.",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Crystal Data",
           "estado": "verificado",
-          "nota": "Descripción completa de la fuente, no resumida a una palabra."
+          "nota": "Descripción completa de la fuente, no resumida a una palabra.",
+          "basico": true
         },
         {
           "campo": "Maclado",
           "valor": "Plano {110}, plano de composicion {110}, raro; alrededor de [544] más común. Contacto y penetracion.",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Crystal Data, Twinning",
           "estado": "verificado",
-          "nota": "Produce dobletes, tripletes y grupos complejos."
+          "nota": "Produce dobletes, tripletes y grupos complejos.",
+          "basico": false
         },
         {
           "campo": "Dureza (Mohs)",
           "valor": "3 – 3,5",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Physical Properties",
           "estado": "verificado",
-          "nota": "Se raya con la una y con moneda de cobre; no raya el vidrio."
+          "nota": "Se raya con la una y con moneda de cobre; no raya el vidrio.",
+          "basico": true
         },
         {
           "campo": "Densidad",
           "valor": "3,745 – 3,776 g/cm3 (medida) · 3,756 (calculada)",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Physical Properties",
           "estado": "verificado",
-          "nota": "Rango medido y valor calculado, declarados por separado."
+          "nota": "Rango medido y valor calculado, declarados por separado.",
+          "basico": true
         },
         {
           "campo": "Exfoliación",
           "valor": "{010} perfecta; {101} regular",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Physical Properties",
           "estado": "verificado",
-          "nota": "Índices de Miller tal como los da la fuente."
+          "nota": "Índices de Miller tal como los da la fuente.",
+          "basico": false
         },
         {
           "campo": "Fractura",
           "valor": "Concoidea",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Physical Properties",
           "estado": "verificado",
-          "nota": "Superficie de rotura curva, sin planos."
+          "nota": "Superficie de rotura curva, sin planos.",
+          "basico": false
         },
         {
           "campo": "Tenacidad",
           "valor": "Frágil",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Physical Properties",
           "estado": "verificado",
-          "nota": "Se rompe antes de deformarse."
+          "nota": "Se rompe antes de deformarse.",
+          "basico": false
         },
         {
           "campo": "Color",
           "valor": "Verde brillante; verde esmeralda oscuro a verde negruzco",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Optical Properties",
           "estado": "verificado",
-          "nota": "Tonalidades de verde en luz transmitida."
+          "nota": "Tonalidades de verde en luz transmitida.",
+          "basico": false
         },
         {
           "campo": "Raya",
           "valor": "Verde manzana",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Optical Properties",
           "estado": "verificado",
-          "nota": "Color del polvo sobre placa sin esmaltar."
+          "nota": "Color del polvo sobre placa sin esmaltar.",
+          "basico": false
         },
         {
           "campo": "Brillo",
           "valor": "Adamantino a vitreo",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Optical Properties",
           "estado": "verificado",
-          "nota": "—"
+          "nota": "—",
+          "basico": true
         },
         {
           "campo": "Transparencia",
           "valor": "Transparente a translúcido",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Optical Properties",
           "estado": "verificado",
-          "nota": "—"
+          "nota": "—",
+          "basico": false
         },
         {
           "campo": "Clase óptica",
           "valor": "Biaxica negativa (–)",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Optical Properties",
           "estado": "verificado",
-          "nota": "—"
+          "nota": "—",
+          "basico": false
         },
         {
           "campo": "Índices de refracción",
           "valor": "alpha 1,831 · beta 1,861 · gamma 1,880",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Optical Properties",
           "estado": "verificado",
-          "nota": "2V medida no determinada por la fuente; 2V calculada = 74 grados 56 minutos."
+          "nota": "2V medida no determinada por la fuente; 2V calculada = 74 grados 56 minutos.",
+          "basico": false
         },
         {
           "campo": "Pleocroísmo",
           "valor": "X verde pálido · Y verde amarillo · Z verde hierba",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Optical Properties",
           "estado": "verificado",
-          "nota": "Orientacion X = b; Y = a; Z = c. Dispersión r < v, fuerte."
+          "nota": "Orientacion X = b; Y = a; Z = c. Dispersión r < v, fuerte.",
+          "basico": false
         },
         {
           "campo": "Contexto geológico",
           "valor": "Producto de oxidacion de otros minerales de cobre, especialmente en condiciones aridas y salinas; en depositos fumarolicos; producto de meteorizacion de sulfuros en depositos submarinos de fumadores negros; alteracion de objetos de bronce y cobre de la antiguedad.",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Occurrence",
           "estado": "verificado",
-          "nota": "Texto completo de la fuente."
+          "nota": "Texto completo de la fuente.",
+          "basico": true
         },
         {
           "campo": "Asociaciones",
           "valor": "Cuprita, brochantita, linarita, caledonita, malaquita, crisocola, paratacamita, botallackita.",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Association",
           "estado": "verificado",
-          "nota": "—"
+          "nota": "—",
+          "basico": false
         },
         {
           "campo": "Polimorfos",
           "valor": "Botallackita, clinoatacamita, paratacamita",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Polymorphism & Series",
           "estado": "verificado",
-          "nota": "Polimorfa con las tres."
+          "nota": "Polimorfa con las tres.",
+          "basico": false
         },
         {
           "campo": "Localidades chilenas",
           "valor": "Copiapo, Carrizal, Tierra Amarilla y Remolinos (Atacama); Collahurasi (Tarapaca); mineral de mena en Chuquicamata (Antofagasta).",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Distribution",
           "estado": "verificado",
-          "nota": "Grafía de los topónimos tal como la da la fuente."
+          "nota": "Grafía de los topónimos tal como la da la fuente.",
+          "basico": false
         },
         {
           "campo": "Material tipo",
           "valor": "Harvard University, Cambridge, Massachusetts, USA, 110816",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Type Material",
           "estado": "verificado",
-          "nota": "Numero de catálogo del ejemplar tipo."
+          "nota": "Numero de catálogo del ejemplar tipo.",
+          "basico": false
         },
         {
           "campo": "Referencia de la descripción original",
           "valor": "Handbuch der Naturgeschichte. Dieterich, Goettingen (1797), 655",
           "fuente": "IMA Master List 2026-09, p. 17, col. Reference",
           "estado": "verificado",
-          "nota": "Cita que el IMA asocia a la especie."
+          "nota": "Cita que el IMA asocia a la especie.",
+          "basico": false
         },
         {
           "campo": "Referencia estructural",
           "valor": "Acta Crystallographica C42 (1986), 1277",
           "fuente": "IMA Master List 2026-09, p. 17, col. Reference; Handbook of Mineralogy (MSA), ficha Atacamite, References",
           "estado": "verificado",
-          "nota": "Parise & Hyde (1986), estructura de la atacamita y su relacion con la espinela."
+          "nota": "Parise & Hyde (1986), estructura de la atacamita y su relacion con la espinela.",
+          "basico": false
         },
         {
           "campo": "Fluorescencia",
           "valor": "No documentada",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite (no la declara)",
           "estado": "pendiente",
-          "nota": "La fuente no la trae; no se deduce de la química."
+          "nota": "La fuente no la trae; no se deduce de la química.",
+          "basico": false
         },
         {
           "campo": "Solubilidad",
           "valor": "No documentada",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite (no la declara)",
           "estado": "pendiente",
-          "nota": "La fuente no la trae; no se deduce de la química."
+          "nota": "La fuente no la trae; no se deduce de la química.",
+          "basico": false
         }
       ],
       "relato": {

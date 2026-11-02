@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Atacamita — Archivo completo · Museo de Minerales Descubiertos en Chile</title>
+<meta name="description" content="Archivo completo de la atacamita: 36 campos con fuente y estado por dato, versión directa del proceso, cita textual, fuentes y nota de transparencia.">
+<meta name="theme-color" content="#07080a">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body class="pagina-archivo" data-vista="archivo">
+
+<a class="saltar" href="#ficha">Ir a la ficha</a>
+
+<!-- ============================================================ NAV -->
+<header class="barra">
+  <div class="barra__in">
+    <a class="marca" href="index.html">
+      <span class="marca__sigilo" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="30" height="30">
+          <polygon points="50,4 88,26 88,74 50,96 12,74 12,26"
+                   fill="none" stroke="currentColor" stroke-width="4"/>
+          <polygon points="50,22 74,36 74,64 50,78 26,64 26,36"
+                   fill="currentColor" opacity=".22"/>
+        </svg>
+      </span>
+      <span class="marca__txt">
+        <strong>Museo de Minerales</strong>
+        <em>Descubiertos en Chile</em>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Secciones del archivo">
+      <a href="index.html">← Volver a la sala</a>
+      <a href="#ficha">Ficha técnica</a>
+      <a href="#directa">Versión directa</a>
+      <a href="#fuentes">Fuentes</a>
+      <a href="#transparencia">Transparencia</a>
+    </nav>
+
+    <button class="navbtn" id="navbtn" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+      <span class="oculto">Menú</span>
+    </button>
+  </div>
+  <div class="barra__prog"><i id="prog"></i></div>
+</header>
+
+<main>
+
+  <!-- ====================================================== ENCABEZADO -->
+  <section class="archivo-cab">
+    <div class="archivo-cab__in">
+      <a class="volver" href="index.html">← Volver a la sala</a>
+      <p class="eyebrow"><span class="punto"></span> Archivo completo · no es la vitrina</p>
+
+      <header class="pieza" id="piezaCabecera"><!-- js --></header>
+
+      <p class="archivo-cab__aviso">
+        Esta página es el <strong>archivo</strong>, no la vitrina: acá está todo, con la fuente
+        de cada dato y su estado. Si viniste a ver la pieza, <a href="index.html#vitrina">vuelve
+        a la sala</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================================== FICHA -->
+  <section class="bloque" id="ficha">
+    <div class="bloque__in">
+      <div class="vitrina" id="vitrinaFicha">
+        <div class="vitrina__barra">
+          <h3 class="vitrina__h3">Ficha técnica de la especie — los 36 campos</h3>
+          <p class="vitrina__nota">
+            Cada dato declara su fuente y su estado por separado.
+            <strong>«Verificado» no es una fuente</strong>: dice si el dato resiste la cita que
+            aparece al lado.
+          </p>
+          <div class="filtro" id="filtro">
+            <button class="chip is-activo" data-f="todos">Todos <b>0</b></button>
+            <button class="chip" data-f="verificado">Verificados <b>0</b></button>
+            <button class="chip chip--alerta" data-f="pendiente">Pendientes <b>0</b></button>
+          </div>
+        </div>
+
+        <div class="tabla" id="tablaFicha" role="table" aria-label="Ficha técnica completa de la especie">
+          <!-- js: 36 campos -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== DIRECTA -->
+  <section class="bloque" id="directa">
+    <div class="bloque__in bloque__in--angosto">
+      <p class="eyebrow"><span class="punto"></span> El mismo proceso, sin metáfora</p>
+      <h2 class="bloque__h2" id="directaIntro"><!-- js --></h2>
+      <div class="directa" id="directaCaja"><!-- js --></div>
+
+      <figure class="cita" id="citaCaja"><!-- js --></figure>
+    </div>
+  </section>
+
+  <!-- ====================================================== FUENTES -->
+  <section class="bloque" id="fuentes">
+    <div class="bloque__in bloque__in--angosto">
+      <p class="eyebrow"><span class="punto"></span> Aparato documental</p>
+      <h2 class="bloque__h2">Fuentes de esta sección</h2>
+      <ol class="fuentes" id="fuentesCaja"><!-- js --></ol>
+    </div>
+  </section>
+
+  <!-- ================================================ TRANSPARENCIA -->
+  <section class="bloque" id="transparencia">
+    <div class="bloque__in bloque__in--angosto">
+      <p class="eyebrow"><span class="punto"></span> Lo que este museo no hace</p>
+      <h2 class="bloque__h2">Nota de transparencia</h2>
+      <div class="transp" id="transpCaja"><!-- js --></div>
+    </div>
+  </section>
+
+  <!-- ================================================= VOLVER A LA SALA -->
+  <section class="bloque bloque--volver">
+    <div class="bloque__in">
+      <div class="archivo-cta archivo-cta--volver">
+        <span>
+          <strong>Volver a la sala</strong>
+          <em>La vitrina con lo esencial y el relato del libro.</em>
+        </span>
+        <a class="btn btn--lleno" href="index.html#vitrina">Volver al museo</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie__in">
+    <div class="pie__marca">
+      <strong>Museo de Minerales Descubiertos en Chile</strong>
+      <span>Serie Patrimonio Mineral de Chile · Volumen I</span>
+    </div>
+    <nav class="pie__nav" aria-label="Pie">
+      <a href="index.html">La sala</a>
+      <a href="#ficha">Ficha técnica</a>
+      <a href="#fuentes">Fuentes</a>
+      <a href="#transparencia">Transparencia</a>
+    </nav>
+    <p class="pie__nota">
+      Museo virtual. No es un catálogo de venta. Ningún dato de este sitio se publica sin
+      declarar de dónde sale, y lo que no se ha podido confirmar se muestra como pendiente.
+    </p>
+  </div>
+</footer>
+
+<noscript>
+  <p style="padding:2rem;color:#e8eaed;background:#07080a;text-align:center">
+    Este museo necesita JavaScript para mostrar las fichas.
+  </p>
+</noscript>
+
+<script src="data/museo.js"></script>
+<script src="js/museo.js"></script>
+</body>
+</html>
