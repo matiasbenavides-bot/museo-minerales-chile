@@ -14,7 +14,7 @@ const MUSEO = {
       "acento": "#2fbf71",
       "encabezado": {
         "estatus": "Grandfathered — anterior a la CNMNC, vigente",
-        "descripcion": "Descrita en 1797 (IMA Master List 2026-09)  ·  Nombrada en 1802 por Dmitri de Gallitzin (Mindat, sin confirmar)  ·  Grandfathered",
+        "descripcion": "Descrita en 1797 (IMA Master List 2026-09)  ·  Nombrada en 1802 por Dmitri Alekséievich Golitsyn (Gallitzin 1802; Chester 1896)  ·  Grandfathered",
         "localidad": "Desierto de Atacama, Chile — localidad exacta no definida por la fuente"
       },
       "ficha": [
@@ -61,17 +61,17 @@ const MUSEO = {
         {
           "campo": "Año del nombre",
           "valor": "1802",
-          "fuente": "Mindat, campo Name (secundaria)",
-          "estado": "pendiente",
-          "nota": "Falta confirmar en fuente primaria. Mindat no es dogmatica.",
+          "fuente": "Gallitzin (1802), Recueil de noms appropriés en minéralogie, obra que asigna el nombre; confirmada en Chester (1896), A Dictionary of the Names of Minerals, p. 24",
+          "estado": "verificado",
+          "nota": "La obra se publicó en Brunswick. Algunas bibliografías fechan la primera edición en 1801 (el propio Chester escribe 1801), pero el registro bibliográfico de la obra asigna 1802. Se declara la discrepancia en lugar de elegir en silencio.",
           "basico": false
         },
         {
           "campo": "Autor del nombre",
-          "valor": "Dmitri de Gallitzin",
-          "fuente": "Mindat, campo Name (secundaria)",
-          "estado": "pendiente",
-          "nota": "Grafía citada literal de la fuente. La equivalencia con Golitsyn / Galitzin esta por verificar.",
+          "valor": "Dmitri Alekséievich Golitsyn (1734-1803)",
+          "fuente": "Chester (1896), A Dictionary of the Names of Minerals, p. 24, que lo nombra como autor del nombre; biografía del príncipe Golitsyn, mineralogista ruso",
+          "estado": "verificado",
+          "nota": "Grafías en las fuentes: Gallitzin (la que él mismo usaba en la última década del siglo XVIII), Gallizin, Golitsyn. Chester escribe «D. de Galittzen». Todas designan al mismo autor; la forma castellanizada se da completa en el valor.",
           "basico": false
         },
         {
@@ -376,8 +376,6 @@ const MUSEO = {
         "Donde el relato usa imágenes —las entrañas, el ataque, las lágrimas—, esas imágenes son la voz del libro. La afirmación técnica es la de la ficha, y su fuente esta al lado."
       ],
       "pendientes": [
-        "Año del nombre",
-        "Autor del nombre",
         "Fluorescencia",
         "Solubilidad"
       ]
