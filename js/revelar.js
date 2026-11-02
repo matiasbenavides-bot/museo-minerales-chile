@@ -100,23 +100,33 @@
     }
   }
 
-  /* red de seguridad 1: barrido al scrollear (throttled) */
-  var tick = false;
+  /* red de seguridad 1: barrido en cada scroll, directo (sin rAF: no se pierde ninguno) */
+  window.addEventListener('scroll', barrerVisibles, { passive: true });
+
+  /* red de seguridad 2: al detenerse el scroll, un barrido garantizado */
+  var quieto = null;
   window.addEventListener('scroll', function () {
-    if (tick) return;
-    tick = true;
-    requestAnimationFrame(function () { barrerVisibles(); tick = false; });
+    clearTimeout(quieto);
+    quieto = setTimeout(barrerVisibles, 120);
   }, { passive: true });
 
-  /* red de seguridad 2: al llegar al fondo, no puede quedar nada oculto */
+  /* red de seguridad 3: al llegar al fondo, NADA puede quedar oculto */
   window.addEventListener('scroll', function () {
     var h = document.documentElement;
-    if (h.scrollTop + h.clientHeight >= h.scrollHeight - 40) barrerVisibles();
+    if (h.scrollTop + h.clientHeight >= h.scrollHeight - 40) {
+      document.querySelectorAll('[data-rev]:not(.rev-ya)').forEach(function (el) {
+        el.classList.add('rev-ya');
+        obs.unobserve(el);
+      });
+    }
   }, { passive: true });
 
-  /* red de seguridad 3: barridos periódicos durante los primeros 8 s */
+  /* red de seguridad 4: barridos periódicos los primeros 10 s */
   var n = 0;
-  var iv = setInterval(function () { barrerVisibles(); if (++n > 16) clearInterval(iv); }, 500);
+  var iv = setInterval(function () { barrerVisibles(); if (++n > 20) clearInterval(iv); }, 500);
+
+  /* red de seguridad 5: al terminar la intro, barrido inmediato */
+  window.addEventListener('load', function () { setTimeout(barrerVisibles, 100); });
 
   window.REVELAR = {
     activo: !reduce,
