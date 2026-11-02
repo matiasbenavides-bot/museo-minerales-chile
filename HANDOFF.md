@@ -1,6 +1,6 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
-**Última actualización:** 2026-11-02 (36/36 · contadores fuera · verso 9 corregido)
+**Última actualización:** 2026-11-02 · **2 especies publicadas** (Atacamita + Copiapite)
 **Estado:** PUBLICADO y estable. **Ficha 1 cerrada en el libro y sincronizada en la web.**
 
 ---
@@ -38,11 +38,26 @@ bibliográfico de la obra y un tratado alemán de nomenclatura dan **1802**. Pro
 ## Estado numérico actual (medido, no de memoria)
 
 ```
-especie          1 (Atacamita)
-campos           36   ·  12 básicos (portada)  ·  24 en el archivo
-verificados      36
+especies         2  → Atacamita + Copiapite
+campos           36 por especie  ·  12 básicos  ·  24 en el archivo
+verificados      36/36 en las dos
 pendientes        0
+
+paginas: index.html (sala, 2 cards) · atacamita.html · copiapite.html
 ```
+
+## 🔴 DEC-009 — orden fijo: el índice del libro
+
+Las fichas se hacen **en el orden del índice** (por año de descubrimiento), no eligiendo la
+más vistosa. Después de Atacamita (#1) va **Copiapite (#2, 1833)**. El dueño lo pidió así:
+*«seguir siempre el orden del libro»*.
+
+## 🔴 DEC-011 — el bug de `especies[0]`
+
+`js/museo.js` tenía `var pieza = DATA.especies[0];` **fijo**. Con una especie andaba; con dos,
+`copiapite.html` habría mostrado la Atacamita. Ahora se resuelve por el **slug del archivo**.
+Verificación que lo detecta: en `copiapite.html` el relato tiene **2 versos** (no 14) y el
+acento es `#e8b33c` (no `#2fbf71`).
 
 ## 🔴 DEC-008 — la portada es la sala de cards
 
