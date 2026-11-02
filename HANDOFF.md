@@ -1,6 +1,6 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
-**Última actualización:** 2026-11-02
+**Última actualización:** 2026-11-02 (verso 9 corregido, DEC-004)
 **Estado:** PUBLICADO y estable. **Ficha 1 cerrada en el libro y sincronizada en la web.**
 
 ---
@@ -12,6 +12,7 @@
 | 1 | Se verificaron los 36 campos de la ficha contra fuente primaria | **58/58 comprobaciones literales OK** |
 | 2 | Se buscó la fuente del año/autor del nombre | **Encontrada** (no era Mindat) |
 | 3 | Museo actualizado y republicado | commit `5d36907` |
+| 4 | **El dueño corrigió el relato**: el verso 9 NO es pregunta | commit `c67b686` |
 
 ### 🔴 Los dos datos que se cerraron
 
@@ -40,6 +41,24 @@ campos           36   ·  12 básicos (portada)  ·  24 en el archivo
 verificados      34
 pendientes        2   → Fluorescencia y Solubilidad
 ```
+
+## 🔴 DEC-004 — el verso 9 no es pregunta
+
+El agente había convertido una frase **afirmativa** del dueño en interrogativa
+(`cual` → `¿Cuál …?`), con tilde y mayúscula. Eso es **cambio de sentido**, no puntuación.
+El dueño eligió su texto literal:
+
+```
+cual desierto chileno le da la píldora mágica de sales en su «cuerpo».
+```
+
+Sincronizado en `.docx` + `data/museo.js` + Pages. Verificado en la URL en vivo: 14 versos,
+0 apariciones de `¿` en toda la página.
+
+**Regla permanente:** no se agrega `¿ ?` ni tildes diacríticas que cambien una afirmación en
+pregunta. Se avisa como cambio de sentido y se pide confirmación.
+
+---
 
 **Los 2 pendientes NO son deuda:** el Handbook of Mineralogy no las declara y no se deducen
 de la fórmula. Verificado por búsqueda literal: las palabras `fluorescen` y `solubil` no
