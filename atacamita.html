@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Atacamita — Archivo completo · Museo de Minerales Descubiertos en Chile</title>
+<title>Atacamita — Museo de Minerales Descubiertos en Chile</title>
 <meta name="description" content="Archivo completo de la atacamita: 36 campos con fuente y estado por dato, versión directa del proceso, cita textual, fuentes y nota de transparencia.">
 <meta name="theme-color" content="#07080a">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -79,15 +79,41 @@
   <section class="archivo-cab">
     <div class="archivo-cab__in">
       <a class="volver" href="index.html" data-rev="suave">← Volver a la sala</a>
-      <p class="eyebrow" data-rev="suave"><span class="punto"></span> Archivo completo · no es la vitrina</p>
+      <p class="eyebrow" data-rev="suave"><span class="punto"></span> Atacamita · ficha y relato</p>
 
       <header class="pieza" id="piezaCabecera" data-rev><!-- js --></header>
 
       <p class="archivo-cab__aviso" data-rev="suave">
-        Esta página es el <strong>archivo</strong>, no la vitrina: acá está todo, con la fuente
-        de cada dato y su estado. Si viniste a ver la pieza, <a href="index.html#vitrina">vuelve
-        a la sala</a>.
+        Esta página es <strong>la pieza completa</strong>: lo esencial arriba, el relato del
+        libro y después el archivo de los 36 campos, con la fuente y el estado de cada dato.
+        <a href="index.html">Volver a la sala</a>.
       </p>
+    </div>
+  </section>
+
+  <!-- ======================================================== VITRINA -->
+  <section class="bloque bloque--vitrina" id="vitrina">
+    <div class="bloque__in">
+      <div class="vitrina" id="vitrinaFicha" data-rev>
+        <div class="vitrina__barra">
+          <h3 class="vitrina__h3">Lo esencial de la pieza</h3>
+          <p class="vitrina__nota">
+            Lo que un visitante necesita para saber qué está mirando. Abajo, el
+            <strong>archivo completo</strong> con los 36 campos y la fuente de cada uno.
+          </p>
+        </div>
+
+        <div class="tabla" id="tablaBasica" role="table" aria-label="Ficha básica de la especie">
+          <!-- js: 12 campos -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================= RELATO -->
+  <section class="bloque bloque--relato" id="relato">
+    <div class="bloque__in bloque__in--angosto" data-rev>
+      <div class="relato" id="relatoCaja"><!-- js --></div>
     </div>
   </section>
 
@@ -146,9 +172,9 @@
       <div class="archivo-cta archivo-cta--volver">
         <span>
           <strong>Volver a la sala</strong>
-          <em>La vitrina con lo esencial y el relato del libro.</em>
+          <em>La sala con todas las piezas expuestas.</em>
         </span>
-        <a class="btn btn--lleno" href="index.html#vitrina">Volver al museo</a>
+        <a class="btn btn--lleno" href="index.html#sala">Volver al museo</a>
       </div>
     </div>
   </section>
