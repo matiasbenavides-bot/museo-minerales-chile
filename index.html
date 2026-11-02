@@ -15,6 +15,28 @@
 </head>
 <body>
 
+<!-- ============================================================= INTRO -->
+<!-- Pantalla negra con el nombre del museo, ~2,5 s. Saltable con clic, tecla o
+     rueda. No se repite en la misma sesión. Si el JS falla, se retira sola
+     igual porque lleva un <noscript> que la oculta. -->
+<div id="intro" role="status" aria-label="Cargando el museo">
+  <div class="intro__in">
+    <div class="intro__sigilo" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <polygon points="50,4 88,26 88,74 50,96 12,74 12,26"
+                 fill="none" stroke="currentColor" stroke-width="3.5"/>
+        <polygon points="50,22 74,36 74,64 50,78 26,64 26,36"
+                 fill="currentColor" opacity=".28"/>
+      </svg>
+    </div>
+    <p class="intro__nombre">Museo de Minerales<br>Descubiertos en Chile</p>
+    <p class="intro__sub">Serie Patrimonio Mineral</p>
+    <div class="intro__barra"><i></i></div>
+    <p class="intro__pista">Toca para entrar</p>
+  </div>
+</div>
+<noscript><style>#intro{display:none !important}</style></noscript>
+
 <a class="saltar" href="#vitrina">Ir a la pieza</a>
 
 <!-- ============================================================ NAV -->
@@ -85,9 +107,9 @@
   <section class="bloque bloque--vitrina" id="vitrina">
     <div class="bloque__in">
 
-      <header class="pieza" id="piezaCabecera"><!-- js --></header>
+      <header class="pieza" id="piezaCabecera" data-rev><!-- js --></header>
 
-      <div class="vitrina" id="vitrinaFicha">
+      <div class="vitrina" id="vitrinaFicha" data-rev>
         <div class="vitrina__barra">
           <h3 class="vitrina__h3">Lo esencial de la pieza</h3>
           <p class="vitrina__nota">
@@ -113,8 +135,7 @@
 
   <!-- ====================================================== RELATO -->
   <section class="bloque bloque--relato" id="relato">
-    <div class="bloque__in bloque__in--angosto">
-      <p class="eyebrow"><span class="punto"></span> La voz del libro</p>
+    <div class="bloque__in bloque__in--angosto" data-rev>
       <div class="relato" id="relatoCaja"><!-- js --></div>
     </div>
   </section>
@@ -122,17 +143,17 @@
   <!-- ======================================================== SALA -->
   <section class="bloque" id="sala">
     <div class="bloque__in">
-      <p class="eyebrow"><span class="punto"></span> Lo que hay expuesto</p>
-      <h2 class="bloque__h2">Una sala, no un catálogo</h2>
+      <p class="eyebrow" data-rev><span class="punto"></span> Lo que hay expuesto</p>
+      <h2 class="bloque__h2" data-rev>Una sala, no un catálogo</h2>
 
-      <p class="bloque__intro">
+      <p class="bloque__intro" data-rev>
         El museo crece al ritmo de la investigación: <strong>solo se expone lo que tiene texto
         terminado</strong>. No hay salas vacías ni fichas a medio escribir.
       </p>
 
       <ul class="sala" id="salaLista"><!-- js --></ul>
 
-      <aside class="aviso">
+      <aside class="aviso" data-rev>
         <h3 class="aviso__h3">Por qué no están las otras</h3>
         <p>
           Chile tiene <strong>144 especies minerales</strong> descritas por primera vez en su
@@ -173,5 +194,6 @@
 <script src="data/museo.js"></script>
 <script src="js/museo.js"></script>
 <script src="js/futuro.js"></script>
+<script src="js/revelar.js"></script>
 </body>
 </html>

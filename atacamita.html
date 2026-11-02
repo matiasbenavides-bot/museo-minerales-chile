@@ -15,6 +15,28 @@
 </head>
 <body class="pagina-archivo" data-vista="archivo">
 
+<!-- ============================================================= INTRO -->
+<!-- Pantalla negra con el nombre del museo, ~2,5 s. Saltable con clic, tecla o
+     rueda. No se repite en la misma sesión. Si el JS falla, se retira sola
+     igual porque lleva un <noscript> que la oculta. -->
+<div id="intro" role="status" aria-label="Cargando el museo">
+  <div class="intro__in">
+    <div class="intro__sigilo" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <polygon points="50,4 88,26 88,74 50,96 12,74 12,26"
+                 fill="none" stroke="currentColor" stroke-width="3.5"/>
+        <polygon points="50,22 74,36 74,64 50,78 26,64 26,36"
+                 fill="currentColor" opacity=".28"/>
+      </svg>
+    </div>
+    <p class="intro__nombre">Museo de Minerales<br>Descubiertos en Chile</p>
+    <p class="intro__sub">Serie Patrimonio Mineral</p>
+    <div class="intro__barra"><i></i></div>
+    <p class="intro__pista">Toca para entrar</p>
+  </div>
+</div>
+<noscript><style>#intro{display:none !important}</style></noscript>
+
 <a class="saltar" href="#ficha">Ir a la ficha</a>
 
 <!-- ============================================================ NAV -->
@@ -56,12 +78,12 @@
   <!-- ====================================================== ENCABEZADO -->
   <section class="archivo-cab">
     <div class="archivo-cab__in">
-      <a class="volver" href="index.html">← Volver a la sala</a>
-      <p class="eyebrow"><span class="punto"></span> Archivo completo · no es la vitrina</p>
+      <a class="volver" href="index.html" data-rev="suave">← Volver a la sala</a>
+      <p class="eyebrow" data-rev="suave"><span class="punto"></span> Archivo completo · no es la vitrina</p>
 
-      <header class="pieza" id="piezaCabecera"><!-- js --></header>
+      <header class="pieza" id="piezaCabecera" data-rev><!-- js --></header>
 
-      <p class="archivo-cab__aviso">
+      <p class="archivo-cab__aviso" data-rev="suave">
         Esta página es el <strong>archivo</strong>, no la vitrina: acá está todo, con la fuente
         de cada dato y su estado. Si viniste a ver la pieza, <a href="index.html#vitrina">vuelve
         a la sala</a>.
@@ -72,7 +94,7 @@
   <!-- ========================================================== FICHA -->
   <section class="bloque" id="ficha">
     <div class="bloque__in">
-      <div class="vitrina" id="vitrinaFicha">
+      <div class="vitrina" id="vitrinaFicha" data-rev>
         <div class="vitrina__barra">
           <h3 class="vitrina__h3">Ficha técnica de la especie — los 36 campos</h3>
           <p class="vitrina__nota">
@@ -96,8 +118,7 @@
 
   <!-- ====================================================== DIRECTA -->
   <section class="bloque" id="directa">
-    <div class="bloque__in bloque__in--angosto">
-      <p class="eyebrow"><span class="punto"></span> El mismo proceso, sin metáfora</p>
+    <div class="bloque__in bloque__in--angosto" data-rev>
       <h2 class="bloque__h2" id="directaIntro"><!-- js --></h2>
       <div class="directa" id="directaCaja"><!-- js --></div>
 
@@ -107,8 +128,7 @@
 
   <!-- ====================================================== FUENTES -->
   <section class="bloque" id="fuentes">
-    <div class="bloque__in bloque__in--angosto">
-      <p class="eyebrow"><span class="punto"></span> Aparato documental</p>
+    <div class="bloque__in bloque__in--angosto" data-rev>
       <h2 class="bloque__h2">Fuentes de esta sección</h2>
       <ol class="fuentes" id="fuentesCaja"><!-- js --></ol>
     </div>
@@ -116,8 +136,7 @@
 
   <!-- ================================================ TRANSPARENCIA -->
   <section class="bloque" id="transparencia">
-    <div class="bloque__in bloque__in--angosto">
-      <p class="eyebrow"><span class="punto"></span> Lo que este museo no hace</p>
+    <div class="bloque__in bloque__in--angosto" data-rev>
       <h2 class="bloque__h2">Nota de transparencia</h2>
       <div class="transp" id="transpCaja"><!-- js --></div>
     </div>
@@ -165,5 +184,6 @@
 
 <script src="data/museo.js"></script>
 <script src="js/museo.js"></script>
+<script src="js/revelar.js"></script>
 </body>
 </html>

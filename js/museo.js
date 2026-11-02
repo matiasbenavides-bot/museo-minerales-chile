@@ -130,6 +130,11 @@
   var tablaFicha = $('#tablaFicha');
   if (tablaFicha) tablaFicha.innerHTML = pieza.ficha.map(filaHTML).join('');
 
+  /* revelado progresivo de las filas: se marcan DESPUÉS de pintarlas */
+  $$('#tablaBasica .fila, #tablaFicha .fila').forEach(function (f) {
+    f.setAttribute('data-rev', 'suave');
+  });
+
   /* contadores + filtro (solo existen en el archivo) */
   var chips = $$('#filtro .chip');
   if (chips.length) {
@@ -155,7 +160,9 @@
     relatoCaja.innerHTML = '' +
       '<h3 class="relato__titulo">' + esc(pieza.relato.titulo) + '</h3>' +
       '<div class="relato__versos">' +
-        pieza.relato.versos.map(function (v) { return '<p>' + esc(v) + '</p>'; }).join('') +
+        pieza.relato.versos.map(function (v) {
+          return '<p data-rev="verso">' + esc(v) + '</p>';
+        }).join('') +
       '</div>';
   }
 
@@ -166,7 +173,7 @@
   var directaCaja = $('#directaCaja');
   if (directaCaja && pieza.directa) {
     directaCaja.innerHTML = pieza.directa.bloques.map(function (b) {
-      return '<div class="directa__bloque">' +
+      return '<div class="directa__bloque" data-rev="suave">' +
                '<p class="directa__txt">' + esc(b.texto) + '</p>' +
                '<span class="directa__respaldo">' + esc(b.respaldo) + '</span>' +
              '</div>';
@@ -185,14 +192,14 @@
   var fuentesCaja = $('#fuentesCaja');
   if (fuentesCaja && pieza.directa) {
     fuentesCaja.innerHTML = (pieza.directa.fuentes || [])
-      .map(function (f) { return '<li>' + esc(f) + '</li>'; }).join('');
+      .map(function (f) { return '<li data-rev="suave">' + esc(f) + '</li>'; }).join('');
   }
 
   /* -------------------------------------------------------- transparencia */
   var transpCaja = $('#transpCaja');
   if (transpCaja) {
     transpCaja.innerHTML = (pieza.transparencia || [])
-      .map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('');
+      .map(function (t) { return '<p data-rev="suave">' + esc(t) + '</p>'; }).join('');
   }
 
   /* ------------------------------------------------------------- helpers */

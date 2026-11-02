@@ -587,3 +587,92 @@ b{ font-weight:650; }
   border:1px solid var(--borde); border-radius:var(--r);
   background:linear-gradient(100deg, rgba(47,191,113,.06), transparent 70%);
 }
+
+/* ================================================================== INTRO */
+/* Pantalla negra con el nombre del museo mientras carga (~2,5 s). Saltable. */
+#intro{
+  position:fixed; inset:0; z-index:9999;
+  background:var(--negro);
+  display:grid; place-items:center;
+  cursor:pointer;
+  transition:opacity .7s ease, visibility .7s;
+}
+#intro.is-fuera{ opacity:0; visibility:hidden; pointer-events:none; }
+
+/* si la intro está activa, el documento no scrollea */
+html.intro-activa, html.intro-activa body{ overflow:hidden; }
+
+.intro__in{ text-align:center; padding:2rem; max-width:90vw; }
+
+.intro__sigilo{
+  width:64px; height:64px; margin:0 auto 1.6rem; color:var(--acento);
+  filter:drop-shadow(0 0 22px rgba(47,191,113,.65));
+  animation:introPulso 2.4s ease-in-out infinite;
+}
+.intro__sigilo svg{ display:block; width:100%; height:100%; }
+
+@keyframes introPulso{
+  0%,100%{ transform:scale(1); opacity:.85; }
+  50%    { transform:scale(1.07); opacity:1; }
+}
+
+.intro__nombre{
+  font-size:clamp(1.15rem, 3.4vw, 1.7rem);
+  font-weight:650; letter-spacing:-.015em; color:var(--t1);
+  line-height:1.35; margin:0 0 .35rem;
+  animation:introSube .9s ease-out both;
+}
+.intro__sub{
+  font-size:.72rem; letter-spacing:.3em; text-transform:uppercase;
+  color:var(--t3); font-weight:600; margin:0 0 1.9rem;
+  animation:introSube .9s ease-out .12s both;
+}
+@keyframes introSube{
+  from{ opacity:0; transform:translateY(10px); }
+  to  { opacity:1; transform:translateY(0); }
+}
+
+/* barra de carga: no miente, la página ya está cargada; es la intro la que corre */
+.intro__barra{
+  width:min(240px, 62vw); height:2px; margin:0 auto;
+  background:var(--borde-2); border-radius:2px; overflow:hidden;
+}
+.intro__barra i{
+  display:block; height:100%; width:0%;
+  background:linear-gradient(90deg, var(--acento-deep), var(--acento), var(--acento-2));
+  box-shadow:0 0 14px rgba(47,191,113,.9);
+  animation:introCarga 2.4s cubic-bezier(.3,.7,.3,1) forwards;
+}
+@keyframes introCarga{
+  from{ width:0%; } to{ width:100%; }
+}
+
+.intro__pista{
+  margin-top:1.3rem; font-size:.66rem; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--t3); opacity:.55;
+  animation:introSube .9s ease-out .5s both;
+}
+
+/* ============================================ REVELADO PROGRESIVO */
+/* REGLA: si este CSS se aplica, el contenido YA EXISTE. Solo se oculta para
+   revelarlo. Con prefers-reduced-motion o sin JS, nunca se oculta nada. */
+@media (prefers-reduced-motion: no-preference){
+  [data-rev]{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .85s cubic-bezier(.22,.7,.3,1),
+               transform .85s cubic-bezier(.22,.7,.3,1);
+    will-change:opacity, transform;
+  }
+  [data-rev].rev-ya{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* variantes sutiles: el relato sube menos, las filas de ficha apenas */
+[data-rev="suave"]{ transform:translateY(9px); }
+[data-rev="verso"]{ transform:translateY(12px); }
+
+/* el hero nunca se revela por scroll: ya está a la vista al cargar */
+.hero__in{ opacity:1; transform:none; }
