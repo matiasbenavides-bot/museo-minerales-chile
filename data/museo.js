@@ -318,7 +318,7 @@ const MUSEO = {
           "siendo atacados por primera vez con el oxígeno",
           "y limitados rastros de agua que deja el árido desierto.",
           "El desierto…",
-          "¿Cuál desierto chileno le da la píldora mágica de sales en su «cuerpo»?",
+          "cual desierto chileno le da la píldora mágica de sales en su «cuerpo».",
           "En este momento, la exposición de este árido desierto seca cada rastro de agua de este ser,",
           "causando una gran cristalización de este.",
           "Sobreviviendo, uniéndose fuertemente entre las grietas,",
