@@ -32,8 +32,17 @@
 
   var VISTA = document.body.getAttribute('data-vista') || 'portada';
 
-  /* ---------------------------------------------------------------- pieza */
-  var pieza = DATA.especies[0];
+  /* ---------------------------------------------------------------- pieza
+     La pagina de una especie se identifica por el nombre del archivo:
+       atacamita.html  ->  id "atacamita"
+       copiapite.html  ->  id "copiapite"
+     Antes era DATA.especies[0] fijo, lo que servia con una sola especie y
+     habria mostrado SIEMPRE la primera al agregar la segunda. */
+  var SLUG = (location.pathname.split('/').pop() || '')
+    .replace(/\.html?$/i, '')
+    .toLowerCase();
+  var pieza = DATA.especies.filter(function (e) { return e.id === SLUG; })[0]
+           || DATA.especies[0];
 
   if (pieza.acento) {
     document.documentElement.style.setProperty('--acento', pieza.acento);
