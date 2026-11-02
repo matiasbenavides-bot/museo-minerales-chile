@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Museo de Minerales Descubiertos en Chile</title>
+<meta name="description" content="Museo virtual de las especies minerales descritas por primera vez en Chile. Cada dato declara su fuente; lo que no se sabe, se dice.">
+<meta name="theme-color" content="#07080a">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<a class="saltar" href="#sala">Ir a la sala</a>
+
+<!-- ============================================================ NAV -->
+<header class="barra">
+  <div class="barra__in">
+    <a class="marca" href="#inicio">
+      <span class="marca__sigilo" aria-hidden="true">
+        <svg viewBox="0 0 100 100" width="30" height="30">
+          <polygon points="50,4 88,26 88,74 50,96 12,74 12,26"
+                   fill="none" stroke="currentColor" stroke-width="4"/>
+          <polygon points="50,22 74,36 74,64 50,78 26,64 26,36"
+                   fill="currentColor" opacity=".22"/>
+        </svg>
+      </span>
+      <span class="marca__txt">
+        <strong>Museo de Minerales</strong>
+        <em>Descubiertos en Chile</em>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Secciones del museo">
+      <a href="#sala">La sala</a>
+      <a href="#vitrina">La pieza</a>
+      <a href="#relato">Relato</a>
+      <a href="#fuentes">Fuentes</a>
+      <a href="#transparencia">Transparencia</a>
+    </nav>
+
+    <button class="navbtn" id="navbtn" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+      <span class="oculto">Menú</span>
+    </button>
+  </div>
+  <div class="barra__prog"><i id="prog"></i></div>
+</header>
+
+<main>
+
+  <!-- ======================================================== HERO -->
+  <section class="hero" id="inicio">
+    <canvas class="hero__canvas" id="vitrinaViva" aria-hidden="true"></canvas>
+    <div class="hero__velo" aria-hidden="true"></div>
+
+    <div class="hero__in">
+      <p class="eyebrow"><span class="punto"></span> Serie Patrimonio Mineral de Chile</p>
+
+      <h1 class="hero__h1">
+        Museo de Minerales<br>
+        <span class="hero__h1b">Descubiertos en Chile</span>
+      </h1>
+
+      <p class="hero__bajada">
+        Las especies que el mundo conoció por primera vez en suelo chileno.
+        Acá no se exhibe una piedra: se exhibe lo que se sabe de ella, con la fuente al lado.
+      </p>
+
+      <div class="hero__cta">
+        <a class="btn btn--lleno" href="#vitrina">Entrar a la sala</a>
+        <a class="btn btn--linea" href="#sala">Qué hay expuesto</a>
+      </div>
+
+      <dl class="hero__cifras" id="heroCifras"><!-- js --></dl>
+    </div>
+
+    <p class="hero__baja" aria-hidden="true">Desplázate para recorrer la sala</p>
+  </section>
+
+  <!-- ======================================================== SALA -->
+  <section class="bloque" id="sala">
+    <div class="bloque__in">
+      <p class="eyebrow"><span class="punto"></span> Lo que hay expuesto</p>
+      <h2 class="bloque__h2">Una sala, no un catálogo</h2>
+
+      <p class="bloque__intro">
+        El museo crece al ritmo de la investigación: <strong>solo se expone lo que tiene texto
+        terminado</strong>. No hay salas vacías ni fichas a medio escribir. Por eso hoy la
+        colección es pequeña, y cada pieza que entra está completa.
+      </p>
+
+      <ul class="sala" id="salaLista"><!-- js --></ul>
+
+      <aside class="aviso">
+        <h3 class="aviso__h3">Por qué no están las otras</h3>
+        <p>
+          Chile tiene <strong>144 especies minerales</strong> descritas por primera vez en su
+          territorio. Exhibirlas todas exige, para cada una, verificar cada dato en su fuente
+          y escribir su relato. Ese trabajo está en curso y se publica pieza por pieza.
+          Una ficha sin fuente no entra al museo.
+        </p>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===================================================== VITRINA -->
+  <section class="bloque bloque--vitrina" id="vitrina">
+    <div class="bloque__in">
+
+      <header class="pieza" id="piezaCabecera"><!-- js --></header>
+
+      <div class="vitrina" id="vitrinaFicha">
+        <div class="vitrina__barra">
+          <h3 class="vitrina__h3">Ficha técnica de la especie</h3>
+          <p class="vitrina__nota">
+            Cada dato declara su fuente y su estado por separado.
+            <strong>«Verificado» no es una fuente</strong>: dice si el dato resiste la cita que
+            aparece al lado.
+          </p>
+          <div class="filtro" id="filtro">
+            <button class="chip is-activo" data-f="todos">Todos <b>0</b></button>
+            <button class="chip" data-f="verificado">Verificados <b>0</b></button>
+            <button class="chip chip--alerta" data-f="pendiente">Pendientes <b>0</b></button>
+          </div>
+        </div>
+
+        <div class="tabla" id="tablaFicha" role="table" aria-label="Ficha técnica de la especie">
+          <!-- js: filas -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== RELATO -->
+  <section class="bloque bloque--relato" id="relato">
+    <div class="bloque__in bloque__in--angosto">
+      <p class="eyebrow"><span class="punto"></span> La voz del libro</p>
+      <div class="relato" id="relatoCaja"><!-- js --></div>
+    </div>
+  </section>
+
+  <!-- ====================================================== DIRECTA -->
+  <section class="bloque" id="directa">
+    <div class="bloque__in bloque__in--angosto">
+      <p class="eyebrow"><span class="punto"></span> El mismo proceso, sin metáfora</p>
+      <h2 class="bloque__h2" id="directaIntro"><!-- js --></h2>
+      <div class="directa" id="directaCaja"><!-- js --></div>
+
+      <figure class="cita" id="citaCaja"><!-- js --></figure>
+    </div>
+  </section>
+
+  <!-- ====================================================== FUENTES -->
+  <section class="bloque" id="fuentes">
+    <div class="bloque__in bloque__in--angosto">
+      <p class="eyebrow"><span class="punto"></span> Aparato documental</p>
+      <h2 class="bloque__h2">Fuentes de esta sección</h2>
+      <ol class="fuentes" id="fuentesCaja"><!-- js --></ol>
+    </div>
+  </section>
+
+  <!-- ================================================ TRANSPARENCIA -->
+  <section class="bloque" id="transparencia">
+    <div class="bloque__in bloque__in--angosto">
+      <p class="eyebrow"><span class="punto"></span> Lo que este museo no hace</p>
+      <h2 class="bloque__h2">Nota de transparencia</h2>
+      <div class="transp" id="transpCaja"><!-- js --></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pie">
+  <div class="pie__in">
+    <div class="pie__marca">
+      <strong>Museo de Minerales Descubiertos en Chile</strong>
+      <span>Serie Patrimonio Mineral de Chile · Volumen I</span>
+    </div>
+    <nav class="pie__nav" aria-label="Pie">
+      <a href="#sala">La sala</a>
+      <a href="#vitrina">La pieza</a>
+      <a href="#fuentes">Fuentes</a>
+      <a href="#transparencia">Transparencia</a>
+    </nav>
+    <p class="pie__nota">
+      Museo virtual. No es un catálogo de venta. Ningún dato de este sitio se publica sin
+      declarar de dónde sale, y lo que no se ha podido confirmar se muestra como pendiente.
+    </p>
+  </div>
+</footer>
+
+<noscript>
+  <p style="padding:2rem;color:#e8eaed;background:#07080a;text-align:center">
+    Este museo necesita JavaScript para mostrar las fichas.
+  </p>
+</noscript>
+
+<script src="data/museo.js"></script>
+<script src="js/museo.js"></script>
+<script src="js/futuro.js"></script>
+</body>
+</html>
