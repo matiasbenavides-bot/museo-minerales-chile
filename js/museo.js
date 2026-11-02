@@ -45,20 +45,8 @@
   var basicos     = pieza.ficha.filter(function (f) { return f.basico; });
   var fuentes     = (pieza.directa && pieza.directa.fuentes) ? pieza.directa.fuentes.length : 0;
 
-  /* --------------------------------------------------------------- cifras */
-  var heroCifras = $('#heroCifras');
-  if (heroCifras) {
-    var cifras = [
-      { n: DATA.especies.length, u: DATA.especies.length === 1 ? 'especie' : 'especies', l: 'En exhibición' },
-      { n: verificados,          u: 'de ' + pieza.ficha.length,                      l: 'Datos verificados' },
-      { n: pendientes,           u: 'declarados',                                    l: 'Datos pendientes' },
-      { n: fuentes,              u: 'citadas',                                       l: 'Fuentes primarias' }
-    ];
-    heroCifras.innerHTML = cifras.map(function (c) {
-      return '<div><dt>' + esc(c.l) + '</dt><dd>' + esc(c.n) +
-             ' <span>' + esc(c.u) + '</span></dd></div>';
-    }).join('');
-  }
+  /* Las cifras de portada (Datos verificados / Datos pendientes) se retiraron
+     por DEC-007 (2026-11-02): el estado se lee en cada dato, no en un contador. */
 
   /* ----------------------------------------------------------------- sala */
   var salaLista = $('#salaLista');
@@ -74,7 +62,7 @@
             '<p class="pieza-card__desc">' + esc(e.encabezado && e.encabezado.descripcion || '') + '</p>' +
             '<div class="pieza-card__meta">' +
               '<span><b>' + esc(e.ficha.length) + '</b> campos documentados</span>' +
-              '<span><b>' + esc((e.pendientes || []).length) + '</b> pendientes declarados</span>' +
+              '<span><b>' + esc((e.directa && e.directa.fuentes ? e.directa.fuentes.length : 0)) + '</b> fuentes citadas</span>' +
             '</div>' +
             '<a class="pieza-card__ir" href="' + esc(e.id) + '.html">Abrir el archivo →</a>' +
           '</div>' +
@@ -135,12 +123,16 @@
     f.setAttribute('data-rev', 'suave');
   });
 
-  /* contadores + filtro (solo existen en el archivo) */
+  /* contadores + filtro (solo existen en el archivo).
+     DEC-007: los contadores Verificados/Pendientes se retiraron de la vista;
+     queda un unico chip con el total. Se escribe por data-f en vez de por
+     indice para que anadir o quitar chips no rompa el render. */
   var chips = $$('#filtro .chip');
   if (chips.length) {
-    chips[0].querySelector('b').textContent = pieza.ficha.length;
-    chips[1].querySelector('b').textContent = verificados;
-    chips[2].querySelector('b').textContent = pendientes;
+    chips.forEach(function (c) {
+      var b = c.querySelector('b');
+      if (b) b.textContent = pieza.ficha.length;
+    });
 
     chips.forEach(function (c) {
       c.addEventListener('click', function () {

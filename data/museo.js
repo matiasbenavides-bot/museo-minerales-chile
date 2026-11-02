@@ -14,7 +14,7 @@ const MUSEO = {
       "acento": "#2fbf71",
       "encabezado": {
         "estatus": "Grandfathered — anterior a la CNMNC, vigente",
-        "descripcion": "Descrita en 1797 (IMA Master List 2026-09)  ·  Nombrada en 1802 por Dmitri Alekséievich Golitsyn (Gallitzin 1802; Chester 1896)  ·  Grandfathered",
+        "descripcion": "Descrita en 1797 (IMA Master List 2026-09)  ·  Nombrada en 1802 por Blumenbach y recogida por Dmitri Alekséievich Golitsyn  ·  Grandfathered",
         "localidad": "Desierto de Atacama, Chile — localidad exacta no definida por la fuente"
       },
       "ficha": [
@@ -59,19 +59,19 @@ const MUSEO = {
           "basico": true
         },
         {
-          "campo": "Año del nombre",
           "valor": "1802",
-          "fuente": "Gallitzin (1802), Recueil de noms appropriés en minéralogie, obra que asigna el nombre; confirmada en Chester (1896), A Dictionary of the Names of Minerals, p. 24",
+          "fuente": "Blumenbach (1802), Handbuch der Naturgeschichte, p. 653; Gallitzin (1802), Recueil de noms appropriés en minéralogie",
           "estado": "verificado",
-          "nota": "La obra se publicó en Brunswick. Algunas bibliografías fechan la primera edición en 1801 (el propio Chester escribe 1801), pero el registro bibliográfico de la obra asigna 1802. Se declara la discrepancia en lugar de elegir en silencio.",
+          "nota": "Dos fuentes primarias del mismo año nombran la especie: Blumenbach declara haber puesto el nombre en 1802; Gallitzin lo usa en su recueil del mismo año. Se declaran ambas en lugar de elegir una. Chester (1896) fecha la obra de Gallitzin en 1801, discrepancia que se conserva.",
+          "campo": "Año del nombre",
           "basico": false
         },
         {
-          "campo": "Autor del nombre",
-          "valor": "Dmitri Alekséievich Golitsyn (1734-1803)",
-          "fuente": "Chester (1896), A Dictionary of the Names of Minerals, p. 24, que lo nombra como autor del nombre; biografía del príncipe Golitsyn, mineralogista ruso",
+          "valor": "Nombre acuñado por Johann Friedrich Blumenbach (1802) y recogido por Dmitri Alekséievich Golitsyn en su Recueil (1802)",
+          "fuente": "Blumenbach (1802), Handbuch der Naturgeschichte, p. 653; Gallitzin (1802), Recueil de noms appropriés en minéralogie; Chester (1896), A Dictionary of the Names of Minerals, p. 24",
           "estado": "verificado",
-          "nota": "Grafías en las fuentes: Gallitzin (la que él mismo usaba en la última década del siglo XVIII), Gallizin, Golitsyn. Chester escribe «D. de Galittzen». Todas designan al mismo autor; la forma castellanizada se da completa en el valor.",
+          "nota": "Las fuentes primarias no coinciden en a quién atribuir el nombre. Blumenbach escribe en primera persona que él lo puso; Chester (1896) y el uso del nombre en el recueil de Gallitzin lo atribuyen a Gallitzin. Se declaran ambas autorías y su relación, sin elegir bando. Grafías de Gallitzin en las fuentes: Gallitzin, Gallizin, Golitsyn, Galittzen.",
+          "campo": "Autor del nombre",
           "basico": false
         },
         {
@@ -291,19 +291,19 @@ const MUSEO = {
           "basico": false
         },
         {
+          "valor": "No fluorescente",
+          "fuente": "Webmineral, ficha Atacamite, campo Luminescence",
+          "estado": "verificado",
+          "nota": "La fuente declara «Non-fluorescent». El Handbook of Mineralogy no lo trata; por eso se consultó una segunda fuente de propiedades físicas.",
           "campo": "Fluorescencia",
-          "valor": "No documentada",
-          "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite (no la declara)",
-          "estado": "pendiente",
-          "nota": "La fuente no la trae; no se deduce de la química.",
           "basico": false
         },
         {
+          "valor": "Soluble en amoníaco fuerte; escasa o nula efervescencia con HCl",
+          "fuente": "Collins (1871), A Handbook to the Mineralogy of Cornwall and Devon, capítulo descriptivo",
+          "estado": "verificado",
+          "nota": "Texto de la fuente: «little or no effervescence with HCl… ready solubility in strong ammonia». Es el criterio que la separa de la malquita. El Handbook of Mineralogy no la declara.",
           "campo": "Solubilidad",
-          "valor": "No documentada",
-          "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite (no la declara)",
-          "estado": "pendiente",
-          "nota": "La fuente no la trae; no se deduce de la química.",
           "basico": false
         }
       ],
@@ -365,7 +365,10 @@ const MUSEO = {
         "fuentes": [
           "Handbook of Mineralogy (Mineralogical Society of America), ficha Atacamite, (c)2001-2005 Mineral Data Publishing, versión 1.",
           "Reich, M., Palacios, C., Parada, M. A., Fehn, U., Cameron, E. M., Leybourne, M. I. y Zúñiga, A. (2008). Atacamite formation by deep saline waters in copper deposits from the Atacama Desert, Chile: evidence from fluid inclusions, groundwater geochemistry, TEM, and 36Cl data. Mineralium Deposita, 43, 665-676. DOI 10.1007/s00126-008-0184-4.",
-          "La versión directa expone el proceso con redacción propia a partir de las dos fuentes citadas; no reproduce su texto, salvo la cita entre comillas, que se atribuye en el mismo párrafo y se traduce al lado."
+          "La versión directa expone el proceso con redacción propia a partir de las dos fuentes citadas; no reproduce su texto, salvo la cita entre comillas, que se atribuye en el mismo párrafo y se traduce al lado.",
+          "Blumenbach, J. F. (1802). Handbuch der Naturgeschichte (6.ª ed.). Dieterich.",
+          "Collins, J. H. (1871). A Handbook to the Mineralogy of Cornwall and Devon. Heard and Sons; Longmans, Green, Reader, and Dyer.",
+          "Webmineral. (s.f.). Atacamite mineral data [ficha de propiedades físicas]."
         ]
       },
       "transparencia": [
@@ -375,10 +378,7 @@ const MUSEO = {
         "La localidad tipo exacta no es un dato que falte: la fuente declara que la especie fue descrita a partir de una ocurrencia no definida en el desierto de Atacama. Eso es lo que dice, y asi se cita.",
         "Donde el relato usa imágenes —las entrañas, el ataque, las lágrimas—, esas imágenes son la voz del libro. La afirmación técnica es la de la ficha, y su fuente esta al lado."
       ],
-      "pendientes": [
-        "Fluorescencia",
-        "Solubilidad"
-      ]
+      "pendientes": []
     }
   ]
 };
