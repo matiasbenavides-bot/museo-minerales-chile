@@ -121,9 +121,13 @@
     }
   }, { passive: true });
 
-  /* red de seguridad 4: barridos periódicos los primeros 10 s */
-  var n = 0;
-  var iv = setInterval(function () { barrerVisibles(); if (++n > 20) clearInterval(iv); }, 500);
+  /* red de seguridad 4: barrido continuo mientras la página siga abierta.
+     Es barato (querySelectorAll + getBoundingClientRect) y garantiza que nada
+     quede oculto por timing. Se detiene solo cuando ya no queda ningún pendiente. */
+  var iv = setInterval(function () {
+    barrerVisibles();
+    if (!document.querySelector('[data-rev]:not(.rev-ya)')) clearInterval(iv);
+  }, 250);
 
   /* red de seguridad 5: al terminar la intro, barrido inmediato */
   window.addEventListener('load', function () { setTimeout(barrerVisibles, 100); });
