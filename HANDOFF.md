@@ -1,18 +1,49 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
-**Fecha de cierre:** 2026-11-01
-**Estado:** PUBLICADO y estable. Nada a medias.
+**Última actualización:** 2026-11-02
+**Estado:** PUBLICADO y estable. **Ficha 1 cerrada en el libro y sincronizada en la web.**
 
 ---
 
-## Lo que pasó en esta sesión (en orden)
+## Lo último que pasó (2026-11-02)
 
 | # | Qué | Resultado |
 |---|---|---|
-| 1 | El dueño ordenó **«ELIMINAR TODO»** GeoNativo | Ejecutado y verificado: URL 404, repo GitHub borrado, local borrado. Sobrevive solo `geonativo-entregables/` (MD5 intacto) |
-| 2 | Giro de rumbo: **museo virtual**, no comercial | Museo creado, publicado |
-| 3 | Corrección: **sobrecarga de información** | Partido en portada (12 campos) + archivo (36) |
-| 4 | Pedido: **intro negra + revelado progresivo** | Implementado con 2 bugs detectados y corregidos |
+| 1 | Se verificaron los 36 campos de la ficha contra fuente primaria | **58/58 comprobaciones literales OK** |
+| 2 | Se buscó la fuente del año/autor del nombre | **Encontrada** (no era Mindat) |
+| 3 | Museo actualizado y republicado | commit `5d36907` |
+
+### 🔴 Los dos datos que se cerraron
+
+Se creía que sólo Mindat los tenía (fuente secundaria, además con 403). **Estaban en
+literatura mineralógica del siglo XIX digitalizada en Internet Archive.** La búsqueda que
+funcionó fue `"Gallitzin" + "atacamite"` en texto completo, no `atacamite` a secas.
+
+| Dato | Valor | Fuente primaria |
+|---|---|---|
+| Año del nombre | **1802** | Gallitzin, *Recueil de noms appropriés en minéralogie* (1802); confirmado en Chester (1896), *A Dictionary of the Names of Minerals*, p. 24 |
+| Autor del nombre | **Dmitri Alekséievich Golitsyn (1734-1803)** | Chester (1896), p. 24 — índice de autores: `GALLITZIN, D. M → Atacamite` |
+
+**Discrepancia declarada, no resuelta en silencio:** Chester escribe **1801**, el registro
+bibliográfico de la obra y un tratado alemán de nomenclatura dan **1802**. Probablemente la
+1.ª edición es de 1801 y la 2.ª corregida de 1802. El documento lo dice así.
+
+**Grafías del autor** (todas la misma persona): Gallitzin · Gallizin · Golitsyn · «Galittzen».
+
+---
+
+## Estado numérico actual (medido, no de memoria)
+
+```
+especie          1 (Atacamita)
+campos           36   ·  12 básicos (portada)  ·  24 en el archivo
+verificados      34
+pendientes        2   → Fluorescencia y Solubilidad
+```
+
+**Los 2 pendientes NO son deuda:** el Handbook of Mineralogy no las declara y no se deducen
+de la fórmula. Verificado por búsqueda literal: las palabras `fluorescen` y `solubil` no
+aparecen en el PDF de la ficha.
 
 ---
 
@@ -23,66 +54,59 @@ Portada:  https://matiasbenavides-bot.github.io/museo-minerales-chile/
 Archivo:  https://matiasbenavides-bot.github.io/museo-minerales-chile/atacamita.html
 Repo:     matiasbenavides-bot/museo-minerales-chile  (rama main, Pages desde /)
 Local:    /mnt/c/dev/museo-minerales-chile
-Último commit: 0bf0f25
 ```
 
 ---
 
-## Dónde está cada cosa (skills)
+## Cómo verificar que todo sigue bien
 
-Las tres skills minerales vivieron separadas; ahora quedan ordenadas:
+```bash
+cd /mnt/c/dev/museo-minerales-chile
 
+# 1. sintaxis
+node --check data/museo.js && node --check js/museo.js
+
+# 2. 🔴 que los datos REALMENTE carguen (node --check NO atrapa la perdida de `= MUSEO;`)
+node -e "global.window={};eval(require('fs').readFileSync('data/museo.js','utf8'));
+console.log('especies:',window.MUSEO.especies.length,
+            'campos:',window.MUSEO.especies[0].ficha.length,
+            'verificados:',window.MUSEO.especies[0].ficha.filter(f=>f.estado==='verificado').length)"
+# esperado: especies: 1 campos: 36 verificados: 34
+
+# 3. en vivo
+curl -s -o /dev/null -w "%{http_code}\n" https://matiasbenavides-bot.github.io/museo-minerales-chile/
 ```
-~/.hermes/skills/projects/
-├── libro-minerales-chile/      ← el libro (donde nace el texto)
-└── museo-minerales-chile/      ← el museo (publica lo aprobado)  [MOVIDA AQUÍ HOY]
-
-~/.hermes/skills/software-development/
-└── geonativo/                  ← ELIMINADO, solo memoria histórica
-```
-
-**Cargar:**
-- «el libro», fichas, fuentes, Word → `libro-minerales-chile`
-- «el museo», vitrina, publicar en web → `museo-minerales-chile`
-- «GeoNativo», precios, vender → `geonativo` **solo como archivo, no reconstruir**
 
 ---
 
-## Arquitectura del museo (resumen operativo)
+## Pitfalls confirmados en esta sesión
 
-```
-index.html        portada: hero + vitrina (12 campos) + relato + sala
-atacamita.html    archivo: 36 campos + filtro + versión directa + fuentes + transparencia
-data/museo.js     FUENTE ÚNICA. Cada campo lleva basico:true|false
-js/museo.js       renderizador de las dos vistas (detecta body[data-vista])
-js/futuro.js      Vitrina viva (canvas) — solo portada
-js/revelar.js     intro + revelado progresivo
-css/main.css      negro + --acento por especie
-```
-
-**Contratos duros:** C1 ningún texto en el HTML · C2 cada campo con fuente+estado · C3 lo
-pendiente se marca, no se esconde · C4 el relato va literal · C5 reduced-motion apaga todo ·
-C6 lo no básico se archiva, nunca se borra.
+- **`#tablaFicha` NO contiene `<tr>`: son `div.fila`.** Un medidor que busca `tr` reporta
+  **0 filas** y parece que la página está vacía. Es el mismo falso positivo de siempre:
+  **un cero se investiga antes de reportarlo.**
+- **El puerto 8899 lo tenía tomado otra sesión** sirviendo el museo paleontológico. Se midió
+  la página equivocada. Usar un puerto propio (8917) y comprobar el `<title>` antes de medir.
+- **`MUSEO_RENDER`** expone `{vista, especies, campos, basicos, verificados, pendientes,
+  versos, bloques, fuentes}`. Es la verificación más rápida de que el render ocurrió.
+- **Contrato C4 verificado**: 14/14 versos del relato idénticos al `.docx`.
 
 ---
 
 ## Para seguir: el paso siguiente real
 
-**Agregar la 2ª especie.** Pero eso **no depende del museo**: depende del libro, que tiene
-**1 ficha de 144**. La secuencia es:
+**Agregar la 2ª especie.** Sigue dependiendo del libro (**1 ficha de 144**).
 
 ```
 1. Escribir y aprobar la ficha en el libro (skill libro-minerales-chile)
-2. Extraerla:  museo-minerales-chile/scripts/extraer-especie-docx.py <libro.docx>
+2. Extraerla:  scripts/extraer-especie-docx.py <libro.docx>
 3. Revisar los conteos que imprime el script (si no cuadran, NO integrar)
 4. Marcar basico:true en los 12 campos de portada
 5. Agregar el objeto a MUSEO.especies en data/museo.js
-6. Verificar con `node -e` que window.MUSEO.especies existe  ← NO basta node --check
+6. Verificar con node -e que window.MUSEO.especies existe
 7. Medir las dos vistas a 6 anchos y publicar
 ```
 
-⚠️ **Nunca escribir texto nuevo para llenar una sala.** Si la ficha no está aprobada, esa
-sala no existe. Es la misma regla del libro: el agente no escribe el relato.
+⚠️ **Nunca escribir texto nuevo para llenar una sala.**
 
 ---
 
@@ -94,41 +118,8 @@ sala no existe. Es la misma regla del libro: el agente no escribe el relato.
 | Fotos de piezas | Decisión: el museo hoy no exhibe imágenes |
 | Dominio propio | El dueño rechaza costo mensual |
 
----
-
 ## Riesgos abiertos
 
-- **R1** — El nombre `matiasbenavides-bot/geonativo` quedó **libre** en GitHub. Cualquiera puede tomarlo. Si se quiere de vuelta, hay que reclamarlo.
-- **R2** — El archivo `atacamita.html` mide ~10.000 px. Si al dueño le parece largo, se puede paginar por bloques (físicas / ópticas / referencias).
-- **R3** — La intro dura 2,5 s. El dueño no confirmó si le parece bien; quedó revisando.
-
----
-
-## Cómo verificar que todo sigue bien (comando único)
-
-```bash
-# sintaxis
-cd /mnt/c/dev/museo-minerales-chile
-node --check data/museo.js && node --check js/museo.js \
-  && node --check js/futuro.js && node --check js/revelar.js
-
-# que los datos realmente cargan (esto atrapa el bug del window.MUSEO)
-node -e "global.window={};eval(require('fs').readFileSync('data/museo.js','utf8'));
-console.log('especies:',window.MUSEO.especies.length,
-            'campos:',window.MUSEO.especies[0].ficha.length,
-            'basicos:',window.MUSEO.especies[0].ficha.filter(f=>f.basico).length)"
-# esperado: especies: 1 campos: 36 basicos: 12
-
-# en vivo
-curl -s -o /dev/null -w "%{http_code}\n" https://matiasbenavides-bot.github.io/museo-minerales-chile/
-```
-
----
-
-## Herramientas que funcionaron en este proyecto
-
-- **Chromium para medir:** `~/.cache/ms-playwright/chromium-1248/chrome-linux64/chrome` con `puppeteer-core` (instalado en `/tmp/node_modules`). **Chrome/Edge de Windows NO funciona desde WSL** (ECONNREFUSED).
-- **Leer el .docx del libro:** `/tmp/docxv/bin/python` (venv con `uv`, `python-docx` + `pillow`).
-- **Generar favicons:** PIL, hexágono facetado en `#2fbf71`.
-
-⚠️ Esas dos rutas viven en `/tmp`: **si WSL se reinició, hay que recrearlas**.
+- **R1** — `matiasbenavides-bot/geonativo` quedó libre en GitHub.
+- **R2** — `atacamita.html` mide ~10.000 px. Si molesta, paginar por bloques.
+- **R3** — La intro dura 2,5 s; el dueño no confirmó si le parece bien.
