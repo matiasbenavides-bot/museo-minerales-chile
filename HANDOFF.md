@@ -44,6 +44,26 @@ verificados      36
 pendientes        0
 ```
 
+## 🔴 DEC-008 — la portada es la sala de cards
+
+El dueño: *«en vez de dos partes separadas explicando lo mismo, el museo lleva a la pagina
+atacamita a traves de unas cards, asi con todos»*. Opción **A**.
+
+La portada duplicaba la ficha (1.705 px) y el relato (1.137 px) que ya estaban en la pieza,
+y tenía **cuatro** enlaces al mismo destino. Ahora:
+
+| | Antes | Ahora |
+|---|---|---|
+| `index.html` | 4.840 px | **2.024 px** (hero + card + aviso) |
+| `atacamita.html` | 36 campos | **12 + 14 versos + 36 campos** |
+
+**Regla:** la card es el único camino a la pieza. Con 144 especies la portada crece en cards,
+nunca en fichas. Agregar una especie **no toca HTML**.
+
+⚠️ Al mover secciones se rompieron **6 enlaces muertos** (`#vitrina`, `#relato`) en nav, hero,
+saltar, cabecera y pie. Ya corregidos; verificar con
+`grep -n "#vitrina\|#relato" index.html atacamita.html`.
+
 ## 🔴 DEC-005 — el autor del nombre tiene DOS autorías (no elegir bando)
 
 La investigación encontró **fuentes primarias que se contradicen**:
