@@ -1,6 +1,6 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
-**Última actualización:** 2026-11-02 (verso 9 corregido, DEC-004)
+**Última actualización:** 2026-11-02 (36/36 · contadores fuera · verso 9 corregido)
 **Estado:** PUBLICADO y estable. **Ficha 1 cerrada en el libro y sincronizada en la web.**
 
 ---
@@ -13,6 +13,8 @@
 | 2 | Se buscó la fuente del año/autor del nombre | **Encontrada** (no era Mindat) |
 | 3 | Museo actualizado y republicado | commit `5d36907` |
 | 4 | **El dueño corrigió el relato**: el verso 9 NO es pregunta | commit `c67b686` |
+| 5 | **Ficha al 36/36**: fluorescencia, solubilidad y autoría doble | commit `932f9d9` |
+| 6 | **Contadores fuera** (opción A): el estado se lee en cada dato | commit `932f9d9` |
 
 ### 🔴 Los dos datos que se cerraron
 
@@ -38,9 +40,45 @@ bibliográfico de la obra y un tratado alemán de nomenclatura dan **1802**. Pro
 ```
 especie          1 (Atacamita)
 campos           36   ·  12 básicos (portada)  ·  24 en el archivo
-verificados      34
-pendientes        2   → Fluorescencia y Solubilidad
+verificados      36
+pendientes        0
 ```
+
+## 🔴 DEC-005 — el autor del nombre tiene DOS autorías (no elegir bando)
+
+La investigación encontró **fuentes primarias que se contradicen**:
+
+| Fuente | Dice |
+|---|---|
+| **Blumenbach, Handbuch der Naturgeschichte (1802), p. 653** | Él lo nombró: «Ich habe diesem… Kupfer-Erz… hier diesen [Nahmen]… gelegt». Reporta que Dombey la trajo en 1788 |
+| **Collins (1871)**, Handbook to the Mineralogy of Cornwall and Devon | «named by Blumenbach… in 1805» |
+| **Chester (1896), p. 24** | «D. de Galittzen, 1801, Gall. Rec.» |
+
+El dueño resolvió declarar **las dos**: nombre acuñado por Blumenbach (1802) y recogido
+por Golitsyn en su *Recueil* (1802). **No se elige bando.** Si una sesión futura encuentra el
+dato «limpio» en un solo autor, es porque se perdió esta nota.
+
+## 🔴 DEC-006 — dos datos se cerraron fuera del Handbook
+
+El Handbook of Mineralogy **no trata** fluorescencia ni solubilidad (verificado: las palabras
+`fluorescen` y `solubil` no aparecen en el PDF). Se buscaron en otras fuentes:
+
+- **Fluorescencia** → Webmineral: **«Non-fluorescent»**.
+- **Solubilidad** → Collins (1871): **soluble en amoníaco fuerte**, escasa o nula efervescencia
+  con HCl (es el criterio que la separa de la malaquita).
+
+## 🔴 DEC-007 — contadores fuera, marca por fila conservada
+
+El dueño: *«todavia dice datos pendientes y datos verificados, eso esta de mas»*. Opción **A**:
+
+- **FUERA:** cifras de portada (`heroCifras`), contador de la tarjeta de sala, chips
+  Verificados/Pendientes del archivo.
+- **DENTRO (contrato C3):** la marca `.marca-estado` de **cada uno de los 36 datos**.
+
+Un contador repetido era ruido; esconder el estado de un dato sería mentir. Son cosas distintas.
+
+⚠️ **Pitfall:** el bloque de filtros accedía a `chips[1]` y `chips[2]` por índice. Al dejar un
+solo chip reventaba. Ahora se escribe por `data-f`, no por posición.
 
 ## 🔴 DEC-004 — el verso 9 no es pregunta
 
@@ -90,7 +128,7 @@ node -e "global.window={};eval(require('fs').readFileSync('data/museo.js','utf8'
 console.log('especies:',window.MUSEO.especies.length,
             'campos:',window.MUSEO.especies[0].ficha.length,
             'verificados:',window.MUSEO.especies[0].ficha.filter(f=>f.estado==='verificado').length)"
-# esperado: especies: 1 campos: 36 verificados: 34
+# esperado: especies: 1 campos: 36 verificados: 36
 
 # 3. en vivo
 curl -s -o /dev/null -w "%{http_code}\n" https://matiasbenavides-bot.github.io/museo-minerales-chile/
