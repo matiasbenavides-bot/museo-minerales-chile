@@ -1,7 +1,28 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
 **Última actualización:** 2026-11-08 · **2 especies publicadas** (Atacamita + Copiapite)
-**Estado:** PUBLICADO y estable. **Capa visual V1/V2/V4 en producción.**
+**Estado:** PUBLICADO y estable. **Capa visual V1/V2/V4 en producción · DEC-013 aplicada.**
+
+---
+
+## ✅ DEC-013 — fuera el sello «verificado» (2026-11-08)
+
+El dueño: *«ese icono de verificado estorba, si ya sale la fuente oficial»*. **Correcto:** el
+sello iba pegado a su propia fuente y se repetía **48 veces por página** (12 básicos + 36 del
+archivo), sin aportar nada cuando las dos especies están 36/36.
+
+| | Estado |
+|---|---|
+| `.marca-estado--ok` (verificados) | **FUERA** |
+| `.marca-estado--pend` (pendientes) | **SE MANTIENE** (contrato C3, afinado) |
+| `data-estado` por fila + `MUSEO_RENDER.verificados` | **SE MANTIENE** (auditable) |
+
+**`data/museo.js` no se tocó.** Probado con un pendiente sintético: la marca ámbar
+(`rgb(226,149,75)` + texto «pendiente») sigue apareciendo cuando un campo no tiene respaldo.
+
+⚠️ **Cuidado al medir:** un `grep -i verificado` encuentra también texto legítimo del libro
+(*«Verificado» no es una fuente…*, *Los 36 campos tienen fuente declarada y estado verificado*).
+Se cuenta por nodo (`.marca-estado--ok`), no por palabra.
 
 ---
 
