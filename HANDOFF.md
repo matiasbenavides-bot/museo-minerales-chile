@@ -1,7 +1,66 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
-**Última actualización:** 2026-11-02 · **2 especies publicadas** (Atacamita + Copiapite)
-**Estado:** PUBLICADO y estable. **Ficha 1 cerrada en el libro y sincronizada en la web.**
+**Última actualización:** 2026-11-08 · **2 especies publicadas** (Atacamita + Copiapite)
+**Estado:** PUBLICADO y estable. **Capa visual V1/V2/V4 en producción.**
+
+---
+
+## 🔴 Lo último (2026-11-08) — V1 + V2 + V4: salir del «fondo negro»
+
+El dueño: *«primero mejoremos toda la interactividad y la estética visual. no nos quedemos
+solo con fondo negro»* → y luego *«por ahora no tengamos imágenes»*. Se hizo **sin una sola
+imagen**: el museo pasó de negro plano a sala en penumbra usando luz, grilla y navegación.
+
+| # | Qué | Archivo | Medición |
+|---|---|---|---|
+| **V2** | La sala deja de ser **barras de 1180 px apiladas** y pasa a **grilla de vitrinas** `auto-fit minmax(320px)` | `css/main.css` `.sala` / `.pieza-card` | 1 col a ≤520 px · **2 col desde 768 px** · cards de 322 px a 1440 → 581 px |
+| **V1** | **Foco de luz** que sigue al cursor sobre toda la sala | `js/foco.js` (nuevo) + `body::after` | `--foco-x/y` siguen al puntero, `opacity 1`; **0** con `prefers-reduced-motion` |
+| **V4** | La barra lista **todas las piezas** desde `data/museo.js`, no sólo «La Atacamita» | `#navPiezas` + `js/museo.js` | `["Atacamita","Copiapite"]`, `aria-current` en la pieza activa |
+
+**`data/museo.js` NO se tocó.** Cero cambios en datos, textos o relatos (72 campos intactos).
+
+### Reglas que quedaron fijas
+
+- **El hover NO usa `transform` ni `scale`** (regla del dueño). La vitrina se enciende con
+  **luz y borde**: `--acento` sube en `::after` (opacidad 0→1) y el borde se mezcla con el acento.
+- **El foco sólo se activa con puntero fino.** En táctil, un halo seguiría al último toque y
+  parecería un defecto congelado. `js/foco.js` lo comprueba con `(pointer: fine)`.
+- **La nav de piezas se genera desde los datos**, no escrita a mano: la 3.ª especie entra
+  sin tocar HTML (misma filosofía que DEC-008 con las cards).
+
+### 🔴 Dos defectos que se atraparon ANTES de publicar
+
+1. **`git commit -am` NO agrega archivos nuevos.** El primer commit referenciaba
+   `js/foco.js` desde las 3 páginas pero **no lo incluía**. Publicado, habría sido un **404**
+   y el foco habría dejado de existir en silencio. Corregido en `392d0fc`; ahora se verifica
+   `curl` del archivo en vivo (`js/foco.js -> 200`).
+2. **El texto para lector de pantalla salía partido:** «Abrir el archivo → de Atacamita».
+   El nombre va **dentro** del texto del enlace, no en un `span` aparte.
+
+### Pitfalls de medición nuevos (headless miente)
+
+- **Chromium headless reporta `(pointer: fine)` y `(hover: hover)` como `false`.** Sin
+  `--blink-settings=primaryPointerType=4,availablePointerTypes=4,primaryHoverType=2,availableHoverTypes=2`
+  el foco y el `:hover` **nunca se activan** y el medidor da FALLA sobre código correcto.
+- **Medir la caja en el mismo frame del `scrollIntoView` da un punto que ya no existe.**
+  Primero se desplaza, se espera (~600 ms), y **después** se lee `getBoundingClientRect`.
+- **`auto-fit` deja pistas sobrantes:** con 2 cards a 1440 px hay 3 pistas. Contar
+  `gridTemplateColumns.split(' ').length` da 3; el número real es `min(pistas, cards)`.
+- **Los versos del relato son `p[data-rev="verso"]`**, no `.verso` ni `.relato__verso`.
+  Un selector inventado devuelve **0** y parece página vacía.
+
+---
+
+## Lo que sigue pendiente en lo visual (aprobado, NO hecho)
+
+| # | Qué | Estado |
+|---|---|---|
+| **V3** | **Cristal propio por especie**: hoy Atacamita y Copiapite dibujan **el MISMO SVG**. Cada uno necesita su hábito real (atacamita prismático; copiapite tabular escamoso) | pendiente |
+| **V5** | **Paralaje del cristal** con el ratón en la página de la pieza (sin librerías ni 3D) | pendiente |
+
+⚠️ La tentación es usar fotos. **El dueño dijo que no por ahora.** Todo se construye con SVG,
+CSS y canvas.
+
 
 ---
 
