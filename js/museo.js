@@ -87,26 +87,46 @@
   /* ----------------------------------------------------------------- sala */
   var salaLista = $('#salaLista');
   if (salaLista) {
+    /* DEC-019 (2026-11-09) — la card dice qué ES el mineral, no cómo se archivó.
+       El dueño: «siento que en las cards es texto irrelevante». Tenía razón:
+       antes mostraba el rótulo «Localidad tipo Chile», el acta de procedencia
+       («Descrita en 1797 (IMA Master List…) · Nombrada en 1802 por…») y dos
+       contadores internos. Nada de eso ayuda a mirar la pieza.
+
+       Ahora: nombre, fórmula, y tres datos que sí describen el mineral —
+       color, dureza y cómo cristaliza. Todos salen de la propia ficha; si un
+       campo no existe, simplemente no se pinta (no se inventa). */
+    function dato(e, campo) {
+      var f = e.ficha.filter(function (x) { return x.campo === campo; })[0];
+      return f ? f.valor : '';
+    }
+    /* El color llega como lista larga («Verde brillante; verde esmeralda…»).
+       En la card se usa el primero: es el que el visitante nombra al verlo. */
+    function colorCorto(e) {
+      var c = dato(e, 'Color');
+      if (!c) return '';
+      return c.split(';')[0].split(',')[0].trim();
+    }
+
     salaLista.innerHTML = DATA.especies.map(function (e) {
+      var color = colorCorto(e);
+      var dureza = dato(e, 'Dureza (Mohs)');
+      var sistema = dato(e, 'Sistema cristalino');
+
+      var datos = '';
+      if (color)   datos += '<div><dt>Color</dt><dd>' + esc(color) + '</dd></div>';
+      if (dureza)  datos += '<div><dt>Dureza</dt><dd>' + esc(dureza) + '</dd></div>';
+      if (sistema) datos += '<div><dt>Cristal</dt><dd>' + esc(sistema) + '</dd></div>';
+
       return '' +
         '<li class="pieza-card" style="--acento:' + esc(e.acento || '#2fbf71') + '">' +
           '<div class="pieza-card__vitrina">' + cristal(e.acento) + '</div>' +
-          '<div>' +
-            '<span class="pieza-card__tipo">' + esc(e.linea || 'Especie') + '</span>' +
+          '<div class="pieza-card__cuerpo">' +
             '<h3 class="pieza-card__h3">' + esc(titulo(e.nombre)) + '</h3>' +
             '<span class="pieza-card__formula">' + esc(e.formula) + '</span>' +
-            '<p class="pieza-card__desc">' + esc(e.encabezado && e.encabezado.descripcion || '') + '</p>' +
-            '<div class="pieza-card__meta">' +
-              '<span><b>' + esc(e.ficha.length) + '</b> campos documentados</span>' +
-              '<span><b>' + esc((e.directa && e.directa.fuentes ? e.directa.fuentes.length : 0)) + '</b> fuentes citadas</span>' +
-            '</div>' +
-            /* La card entera es el camino a la pieza (DEC-008), pero el enlace
-               real sigue siendo este: sin JS y con teclado funciona igual.
-               V4: el nombre va DENTRO del texto del enlace (no en un span
-               aparte) para que el lector de pantalla diga «Abrir el archivo
-               de Atacamita» y no una frase partida. */
-            '<a class="pieza-card__ir" href="' + esc(e.id) + '.html">Abrir el archivo de ' +
-              esc(titulo(e.nombre)) + ' →</a>' +
+            (datos ? '<dl class="pieza-card__datos">' + datos + '</dl>' : '') +
+            '<a class="pieza-card__ir" href="' + esc(e.id) + '.html">' +
+              'Abrir el archivo de ' + esc(titulo(e.nombre)) + ' →</a>' +
           '</div>' +
         '</li>';
     }).join('');

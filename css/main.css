@@ -350,23 +350,36 @@ html.foco-vivo body::after{ opacity:1; }
 .pieza-card:hover .pieza-card__vitrina svg{
   filter:drop-shadow(0 0 34px color-mix(in srgb, var(--acento) 85%, transparent));
 }
-.pieza-card__tipo{
-  font-size:.68rem; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--acento-2); font-weight:700; margin-bottom:.5rem; display:block;
+/* DEC-019 (2026-11-09) — cuerpo de la card.
+   Se fue el rótulo de arriba, el acta de procedencia y los contadores internos.
+   Queda: nombre · fórmula · tres datos del mineral en fila. Menos texto, más pieza. */
+.pieza-card__cuerpo{ display:flex; flex-direction:column; }
+.pieza-card__h3{
+  font-size:1.62rem; margin-bottom:.2rem; letter-spacing:-.02em;
 }
-.pieza-card__h3{ font-size:1.5rem; margin-bottom:.15rem; }
 .pieza-card__formula{
-  font-family:var(--mono); font-size:.86rem; color:var(--t3); margin-bottom:.9rem; display:block;
+  font-family:var(--mono); font-size:.84rem; color:var(--t3);
+  margin-bottom:1.15rem; display:block;
 }
-.pieza-card__desc{ color:var(--t2); font-size:.94rem; margin-bottom:1.1rem; }
-.pieza-card__meta{
-  display:flex; gap:1.5rem; flex-wrap:wrap; font-size:.8rem; color:var(--t3);
-  padding-top:1rem; border-top:1px solid var(--borde);
+/* los tres datos: etiqueta arriba en versalitas, valor abajo */
+.pieza-card__datos{
+  display:flex; flex-wrap:wrap; gap:.35rem 1.6rem;
+  margin:0 0 1.15rem; padding:.9rem 0 0;
+  border-top:1px solid var(--borde);
 }
-.pieza-card__meta b{ color:var(--t1); font-weight:600; }
+.pieza-card__datos > div{ min-width:0; }
+.pieza-card__datos dt{
+  font-size:.6rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--t3); font-weight:700; margin-bottom:.15rem;
+}
+.pieza-card__datos dd{
+  margin:0; font-size:.92rem; color:var(--t1); line-height:1.3;
+  /* el color del mineral toma el acento de la pieza: es el dato que se mira */
+}
+.pieza-card__datos > div:first-child dd{ color:var(--acento-2); font-weight:600; }
 .pieza-card__ir{
   color:var(--acento-2); font-weight:650; font-size:.85rem;
-  display:inline-flex; align-items:center; gap:.35rem; margin-top:1rem;
+  display:inline-flex; align-items:center; gap:.35rem; margin-top:auto;
 }
 
 /* Relato aún sin escribir (Fibroferrite, ficha 3).
