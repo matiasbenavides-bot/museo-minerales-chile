@@ -1,7 +1,24 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
 **Última actualización:** 2026-11-08 · **3 especies publicadas** (Atacamita + Copiapite + Fibroferrite)
-**Estado:** PUBLICADO y estable. Capa visual V1/V2/V4 · DEC-013 · DEC-015 · **Ficha 3 en libro y museo.**
+**Estado:** PUBLICADO y estable. Capa visual V1/V2/V4 · DEC-013 · DEC-015 · **DEC-016 (colores)** · Ficha 3 en libro y museo.
+
+## 🎨 DEC-016 — colores por especie (2026-11-08)
+
+Fibroferrite pasó a **blanco amarillento `#f2e6c8`** (pedido del dueño). Elegido midiendo:
+**8,41:1** contra el fondo, **7,94:1** tinta sobre acento.
+
+**Defecto encontrado de paso:** `--acento-2` estaba **fijo en verde** y el render sólo escribía
+`--acento`, así que Copiapite y Fibroferrite mostraban **rótulos verdes**. Ahora la gama completa
+(`--acento-2`, `--acento-deep`, `--acento-tinta`) se **deriva del acento** en `js/museo.js`, y
+`--acento-tinta` se calcula por **luminancia WCAG** para que el botón lleno sea legible con
+cualquier acento.
+
+| Especie | Acento |
+|---|---|
+| Atacamita | `#2fbf71` verde |
+| Copiapite | `#e8b33c` dorado |
+| Fibroferrite | `#f2e6c8` blanco amarillento |
 
 ---
 
