@@ -1,7 +1,60 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
-**Última actualización:** 2026-11-08 · **2 especies publicadas** (Atacamita + Copiapite)
-**Estado:** PUBLICADO y estable. **Capa visual V1/V2/V4 en producción · DEC-013 aplicada.**
+**Última actualización:** 2026-11-08 · **3 especies publicadas** (Atacamita + Copiapite + Fibroferrite)
+**Estado:** PUBLICADO y estable. Capa visual V1/V2/V4 · DEC-013 · DEC-015 · **Ficha 3 en libro y museo.**
+
+---
+
+## 🆕 FICHA 3 — FIBROFERRITE publicada (2026-11-08)
+
+Primera ficha del libro redactada **sin que el dueño tuviera el material a mano**: todas las
+fuentes se descargaron de internet y se leyeron. Es el patrón a repetir para las 141 restantes.
+
+| Dato | Valor | Fuente |
+|---|---|---|
+| IMA | Fibroferrite · G · 1833 · Chile | IMA Master List **2026-11** (oficial CNMNC), **p. 73** |
+| Fórmula | Fe³⁺(SO₄)(OH)(H₂O)₂·3H₂O | idem (Handbook escribe `·5H₂O`) |
+| **Autor del nombre** | **Heinrich Rose (1795-1864), 1833** | **Chester (1896)**: «H. Rose, 1833, Pogg. Ann., xxvii, 309» |
+| Cristalografía y físicas | hexagonal · P3 · R3 · a 24,176 Å · c 7,656 Å · Z 18 | Handbook, ficha Fibroferrite |
+| Raya / fractura | blanca / irregular | Webmineral |
+| Chile | Tierra Amarilla (Copiapó) · Quetena (Calama) · Chuquicamata | Handbook, Distribution |
+
+**36 campos · 33 verificados · 3 pendientes** (tenacidad, material tipo, fluorescencia).
+Los 3 están **comprobados por búsqueda literal** en Handbook y Webmineral: no los declara
+ninguna fuente y no se deducen. **No son deuda, son la verdad del documento.**
+
+### 🔴 El relato NO se escribió — es voz del dueño
+
+Fibroferrite entra **sin relato**. `data/museo.js` lleva `"relato": null` y el render muestra
+una sección **«Relato en preparación»** en vez de dejarla vacía o rellenarla con texto inventado.
+Cuando el dueño dicte el relato, basta llenar el campo: **no hay que tocar HTML ni CSS**.
+
+### Cómo se consiguieron las fuentes (reproducible)
+
+```bash
+# Handbook: PDF directo por especie (funciona con User-Agent de navegador)
+curl -A "Mozilla/5.0 ... Chrome/120" https://www.handbookofmineralogy.org/pdfs/fibroferrite.pdf
+# IMA Master List OFICIAL (el libro usó 2026-09; ya existe 2026-11)
+curl -L "https://cnmnc.units.it/files/editor/IMA_Master_List_(2026-11).pdf"   # 244 págs
+# Chester 1896: texto completo desde Internet Archive
+curl -L "https://archive.org/download/cu31924004039008/cu31924004039008_djvu.txt"
+# Webmineral
+curl -A "Mozilla/5.0 ..." https://webmineral.com/data/Fibroferrite.shtml
+```
+
+⚠️ **Mindat da 403** y **rruff.info da 403**: no son viables como fuente automatizable.
+⚠️ **La 7.ª edición de Dana (1951) está restringida (401)** en Archive.org: la referencia
+estructural se tomó del Handbook y del Master List, no de Dana.
+
+### Libro: ficha 3 insertada en el `.docx`
+
+Precedida de respaldo `/tmp/BACKUP-libro-antes-fibroferrite-20261108-235851.docx`.
+Resultado medido: **354 párrafos, 3 tablas de 37×5** (36/36 · 36/36 · **33/3**), las 6 zonas
+del template, y **REFERENCIAS sigue siendo la última**. Índice: las 3 especies con ficha van en
+negrita, con leyenda.
+
+⚠️ La tabla de la ficha 3 se arma con `doc.add_table` y **luego se mueve** con
+`addnext`/`addprevious`; `python-docx` no permite insertar tablas en posición arbitraria.
 
 ---
 
@@ -118,12 +171,12 @@ bibliográfico de la obra y un tratado alemán de nomenclatura dan **1802**. Pro
 ## Estado numérico actual (medido, no de memoria)
 
 ```
-especies         2  → Atacamita + Copiapite
+especies         3  → Atacamita + Copiapite + Fibroferrite
 campos           36 por especie  ·  12 básicos  ·  24 en el archivo
-verificados      36/36 en las dos
-pendientes        0
+verificados      36/36 · 36/36 · 33/36
+pendientes        0 · 0 · 3  (fibroferrite: tenacidad, material tipo, fluorescencia)
 
-paginas: index.html (sala, 2 cards) · atacamita.html · copiapite.html
+paginas: index.html (sala, 3 cards) · atacamita.html · copiapite.html · fibroferrite.html
 ```
 
 ## 🔴 DEC-009 — orden fijo: el índice del libro
@@ -243,7 +296,7 @@ node -e "global.window={};eval(require('fs').readFileSync('data/museo.js','utf8'
 console.log('especies:',window.MUSEO.especies.length,
             'campos:',window.MUSEO.especies[0].ficha.length,
             'verificados:',window.MUSEO.especies[0].ficha.filter(f=>f.estado==='verificado').length)"
-# esperado: especies: 1 campos: 36 verificados: 36
+# esperado: especies: 3 · campos: 36 · verificados: 36 (atacamita)
 
 # 3. en vivo
 curl -s -o /dev/null -w "%{http_code}\n" https://matiasbenavides-bot.github.io/museo-minerales-chile/
