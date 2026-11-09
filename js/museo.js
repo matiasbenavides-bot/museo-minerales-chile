@@ -30,6 +30,21 @@
       .replace(/"/g, '&quot;');
   }
 
+  /* Luminancia relativa de un #rrggbb (fórmula WCAG). Sirve para decidir si
+     el texto va en oscuro o en claro SOBRE el color de acento de la especie.
+     Un acento muy claro —el blanco amarillento de la Fibroferrite— necesita
+     tinta oscura, o el botón queda ilegible. */
+  function luminancia(hex) {
+    var m = /^#?([0-9a-f]{6})$/i.exec(String(hex || ''));
+    if (!m) return 0;
+    var n = parseInt(m[1], 16);
+    var canales = [(n >> 16) & 255, (n >> 8) & 255, n & 255].map(function (v) {
+      v = v / 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * canales[0] + 0.7152 * canales[1] + 0.0722 * canales[2];
+  }
+
   var VISTA = document.body.getAttribute('data-vista') || 'portada';
 
   /* ---------------------------------------------------------------- pieza
@@ -46,6 +61,18 @@
 
   if (pieza.acento) {
     document.documentElement.style.setProperty('--acento', pieza.acento);
+    /* DEC-016 (2026-11-08): los colores secundarios se DERIVAN del acento.
+       Antes `--acento-2` estaba fijo en verde (#6ee7a8), así que una especie
+       naranja —Copiapite y Fibroferrite— mostraba sus rótulos en verde.
+       Ahora cada especie arrastra su propia gama. */
+    document.documentElement.style.setProperty('--acento-2',
+      'color-mix(in srgb, ' + pieza.acento + ' 62%, white)');
+    document.documentElement.style.setProperty('--acento-deep',
+      'color-mix(in srgb, ' + pieza.acento + ' 18%, black)');
+    /* El texto que va ENCIMA del acento (botón lleno) necesita contraste:
+       con un acento claro, blanco sobre blanco sería ilegible. */
+    document.documentElement.style.setProperty('--acento-tinta',
+      luminancia(pieza.acento) > 0.55 ? '#12100a' : '#04140b');
   }
 
   /* ------------------------------------------------------------- conteos */

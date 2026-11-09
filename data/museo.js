@@ -738,7 +738,7 @@ const MUSEO = {
       "nombre_ima": "Fibroferrite",
       "formula": "Fe³⁺(SO₄)(OH)(H₂O)₂·3H₂O",
       "linea": "Hábito fibroso, hierro férrico",
-      "acento": "#e0913c",
+      "acento": "#f2e6c8",
       "encabezado": {
         "estatus": "Grandfathered (G) — vigente",
         "descripcion": "Descrita en 1833 (IMA Master List 2026-11)  ·  Nombrada en 1833 por Heinrich Rose  ·  Grandfathered",

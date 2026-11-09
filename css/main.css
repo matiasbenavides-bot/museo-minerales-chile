@@ -20,8 +20,15 @@
 
   /* acento de la pieza (lo escribe el render desde data) */
   --acento:      #2fbf71;
-  --acento-2:    #6ee7a8;
-  --acento-deep: #0d3d24;
+  /* --acento-2 y --acento-deep NO se tocan por especie a mano: se DERIVAN del
+     acento (ver js/museo.js). Antes estaban fijos en verde, así que una especie
+     naranja mostraba sus rótulos en verde. Estos valores quedan sólo como
+     respaldo si el JS no corre. */
+  --acento-2:    color-mix(in srgb, var(--acento) 62%, white);
+  --acento-deep: color-mix(in srgb, var(--acento) 18%, black);
+  /* --acento-tinta: texto SOBRE el acento. Se calcula por luminancia para que
+     un acento claro (blanco amarillento) no deje texto blanco sobre blanco. */
+  --acento-tinta: #04140b;
 
   /* estado */
   --alerta:      #e2954b;
@@ -212,10 +219,13 @@ html.foco-vivo body::after{ opacity:1; }
   transition:transform .18s, box-shadow .18s, background .18s, border-color .18s;
 }
 .btn--lleno{
-  background:var(--acento); color:#04140b;
-  box-shadow:0 10px 30px -12px rgba(47,191,113,.9);
+  /* color:var(--acento-tinta) — lo calcula el render por luminancia. Con un
+     acento claro (Fibroferrite, blanco amarillento) el texto fijo oscuro
+     quedaría bien, pero con un acento oscuro necesitaría tinta clara. */
+  background:var(--acento); color:var(--acento-tinta);
+  box-shadow:0 10px 30px -12px color-mix(in srgb, var(--acento) 90%, transparent);
 }
-.btn--lleno:hover{ box-shadow:0 14px 40px -10px rgba(47,191,113,1); }
+.btn--lleno:hover{ box-shadow:0 14px 40px -10px color-mix(in srgb, var(--acento) 100%, transparent); }
 .btn--linea{ border-color:var(--borde-2); color:var(--t1); background:rgba(255,255,255,.03); }
 .btn--linea:hover{ border-color:var(--acento); background:rgba(47,191,113,.08); }
 .btn:hover{ transform:translateY(-1px); }
