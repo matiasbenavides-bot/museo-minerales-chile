@@ -126,10 +126,16 @@
       console.error('[museo] CONTRATO C2 roto en el campo "' + f.campo + '": falta fuente o estado');
     }
 
+    /* DEC-013 (2026-11-08) — el distintivo «verificado» estorba.
+       El dueño: «ese icono de verificado estorba, si ya sale la fuente oficial».
+       Tiene razón: el sello aparece pegado a su propia fuente, así que repite lo
+       que el dato ya dice, 48 veces por página.
+       Se retira SOLO el de los verificados. Lo PENDIENTE conserva su marca ámbar
+       (contrato C3): esconder lo que no tiene respaldo sería mentir, y hoy no hay
+       ningún pendiente, así que la marca sólo aparecerá cuando signifique algo. */
     var marca = faltaContrato
       ? '<span class="marca-estado marca-estado--pend">sin fuente</span>'
-      : '<span class="marca-estado ' + (pend ? 'marca-estado--pend' : 'marca-estado--ok') + '">' +
-        esc(f.estado) + '</span>';
+      : (pend ? '<span class="marca-estado marca-estado--pend">' + esc(f.estado) + '</span>' : '');
 
     return '' +
       '<div class="' + clase + '" data-estado="' + esc(f.estado) + '">' +
