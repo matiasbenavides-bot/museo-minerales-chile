@@ -532,6 +532,26 @@ html.foco-vivo body::after{ opacity:1; }
   max-width:640px; border-top:1px solid var(--borde); padding-top:1.4rem;
 }
 
+/* DEC-014 — crédito de autoría del sitio.
+   Discreto pero legible: no compite con el contenido, y queda separado de la nota
+   de contenido para que se entienda que el © cubre la PÁGINA, no los datos de
+   las fuentes (que se citan). */
+.pie__credito{
+  grid-column:1 / -1;
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:.35rem 1.1rem;
+  font-size:.78rem; color:var(--t3);
+  padding-top:.9rem;
+}
+.pie__copyright{ color:var(--t2); }
+.pie__copyright strong{ color:var(--t1); font-weight:650; }
+.pie__creacion{
+  color:var(--t3);
+  padding-left:1.1rem; border-left:1px solid var(--borde-2);
+}
+@media (max-width:560px){
+  .pie__creacion{ padding-left:0; border-left:0; }
+}
+
 
 /* ================================================== FICHA BÁSICA (portada) */
 /* la portada NO usa tabla de 3 columnas: son 12 campos en tarjetas legibles */
