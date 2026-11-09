@@ -184,14 +184,29 @@
 
   /* --------------------------------------------------------------- relato */
   var relatoCaja = $('#relatoCaja');
-  if (relatoCaja && pieza.relato) {
-    relatoCaja.innerHTML = '' +
-      '<h3 class="relato__titulo">' + esc(pieza.relato.titulo) + '</h3>' +
-      '<div class="relato__versos">' +
-        pieza.relato.versos.map(function (v) {
-          return '<p data-rev="verso">' + esc(v) + '</p>';
-        }).join('') +
-      '</div>';
+  if (relatoCaja) {
+    if (pieza.relato && pieza.relato.versos && pieza.relato.versos.length) {
+      /* CONTRATO C4: literal, verso por verso. No se toca ni se corrige. */
+      relatoCaja.innerHTML = '' +
+        '<h3 class="relato__titulo">' + esc(pieza.relato.titulo) + '</h3>' +
+        '<div class="relato__versos">' +
+          pieza.relato.versos.map(function (v) {
+            return '<p data-rev="verso">' + esc(v) + '</p>';
+          }).join('') +
+        '</div>';
+    } else {
+      /* Sin relato aprobado todavía (Fibroferrite, ficha 3).
+         El relato es la voz del autor del libro: NO se escribe uno para tapar el
+         hueco. Se declara en pantalla, que es más honesto que una sección vacía
+         o que un texto inventado. Cuando el dueño lo dicte, basta con llenar
+         `relato` en data/museo.js y esta rama deja de ejecutarse. */
+      relatoCaja.innerHTML = '' +
+        '<h3 class="relato__titulo relato__titulo--pendiente">Relato en preparación</h3>' +
+        '<div class="relato__versos">' +
+          '<p data-rev="verso">Esta especie todavía no tiene su relato escrito por el autor del libro.</p>' +
+          '<p data-rev="verso">La ficha de abajo sí está completa y documentada: cada dato declara su fuente.</p>' +
+        '</div>';
+    }
   }
 
   /* ------------------------------------------------------ versión directa */

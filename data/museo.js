@@ -731,6 +731,360 @@ const MUSEO = {
         "La fórmula tiene dos escrituras. El IMA escribe (H₂O)₁₄·6H₂O y el Handbook escribe «•20H₂O». Expresan las mismas veinte moléculas de agua repartidas de distinta forma; se cita la del IMA como oficial y se declara la variante en la nota del campo."
       ],
       "pendientes": []
+    },
+    {
+      "id": "fibroferrite",
+      "nombre": "FIBROFERRITE",
+      "nombre_ima": "Fibroferrite",
+      "formula": "Fe³⁺(SO₄)(OH)(H₂O)₂·3H₂O",
+      "linea": "Hábito fibroso, hierro férrico",
+      "acento": "#e0913c",
+      "encabezado": {
+        "estatus": "Grandfathered (G) — vigente",
+        "descripcion": "Descrita en 1833 (IMA Master List 2026-11)  ·  Nombrada en 1833 por Heinrich Rose  ·  Grandfathered",
+        "localidad": "Localidad tipo: Chile — el material estudiado procede de Tierra Amarilla, cerca de Copiapó (Atacama)"
+      },
+      "ficha": [
+        {
+          "campo": "Nombre IMA",
+          "valor": "Fibroferrite",
+          "fuente": "IMA Master List 2026-11, p. 73, col. Nombre",
+          "estado": "verificado",
+          "nota": "Nombre vigente de la especie, aceptado por la CNMNC.",
+          "basico": true
+        },
+        {
+          "campo": "Nombre en español",
+          "valor": "Fibroferrita",
+          "fuente": "Chester (1896), p. «Fibroferrita»; uso corriente en castellano",
+          "estado": "verificado",
+          "nota": "Chester registra la forma castellanizada «Fibroferrita». Misma especie que Fibroferrite (IMA).",
+          "basico": true
+        },
+        {
+          "campo": "Fórmula química",
+          "valor": "Fe³⁺(SO₄)(OH)(H₂O)₂·3H₂O",
+          "fuente": "IMA Master List 2026-11, p. 73, col. Fórmula aprobada por la CNMNC",
+          "estado": "verificado",
+          "nota": "Escritura oficial vigente. El Handbook of Mineralogy la escribe abreviada como Fe³⁺(SO₄)(OH)·5H₂O: son las mismas cinco moléculas de agua repartidas distinto.",
+          "basico": true
+        },
+        {
+          "campo": "Estatus IMA",
+          "valor": "Grandfathered (G) — vigente",
+          "fuente": "IMA Master List 2026-11, p. 73, col. Estatus IMA",
+          "estado": "verificado",
+          "nota": "Descrita antes de la constitución de la CNMNC; válida por consenso histórico.",
+          "basico": true
+        },
+        {
+          "campo": "Año de descripción original",
+          "valor": "1833",
+          "fuente": "IMA Master List 2026-11, p. 73, col. IMA N.º / Año",
+          "estado": "verificado",
+          "nota": "Referencia de la descripción original en la misma fila: Annalen der Physik und Chemie 27 (1833), 309.",
+          "basico": true
+        },
+        {
+          "campo": "Año del nombre",
+          "valor": "1833",
+          "fuente": "Chester (1896), A Dictionary of the Names of Minerals, entrada FIBROFERRITE: «H. Rose, 1833, Pogg. Ann., xxvii, 309»",
+          "estado": "verificado",
+          "nota": "A diferencia de la Atacamita y la Copiapite, aquí descripción y nombre son del mismo año y del mismo autor.",
+          "basico": true
+        },
+        {
+          "campo": "Autor del nombre",
+          "valor": "Heinrich Rose (1795-1864)",
+          "fuente": "Chester (1896), entrada FIBROFERRITE: «H. Rose, 1833, Pogg. Ann., xxvii, 309 (Fibroferrit)»",
+          "estado": "verificado",
+          "nota": "Pogg. Ann. es la abreviatura de Annalen der Physik und Chemie. Chester consigna el nombre alemán original «Fibroferrit».",
+          "basico": true
+        },
+        {
+          "campo": "Localidad tipo (amplia)",
+          "valor": "Chile",
+          "fuente": "IMA Master List 2026-11, p. 73, col. País",
+          "estado": "verificado",
+          "nota": "El Master List registra Chile como país de la primera descripción.",
+          "basico": true
+        },
+        {
+          "campo": "Localidad tipo (exacta)",
+          "valor": "Tierra Amarilla, cerca de Copiapó, Atacama, Chile",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Distribution («Studied material from: in Chile, at Tierra Amarilla, near Coquimbó, Atacama»)",
+          "estado": "verificado",
+          "nota": "El Handbook no designa formalmente una localidad tipo única; declara este como el material chileno estudiado. Se cita literalmente esa condición.",
+          "basico": true
+        },
+        {
+          "campo": "Sistema cristalino",
+          "valor": "Hexagonal",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Crystal Data",
+          "estado": "verificado",
+          "nota": "Declarado como «Hexagonal» al inicio del bloque Crystal Data.",
+          "basico": true
+        },
+        {
+          "campo": "Grupo puntual",
+          "valor": "3",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Crystal Data («Point Group: 3»)",
+          "estado": "verificado",
+          "nota": "Grupo puntual 3, sin eje de inversión.",
+          "basico": true
+        },
+        {
+          "campo": "Grupo espacial",
+          "valor": "R3",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Cell Data («Space Group: R3»)",
+          "estado": "verificado",
+          "nota": "Red hexagonal. El Handbook lo escribe R3.",
+          "basico": true
+        },
+        {
+          "campo": "Parámetros de celda",
+          "valor": "a = 24,176 Å · c = 7,656 Å · Z = 18",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Cell Data",
+          "estado": "verificado",
+          "nota": "Celda hexagonal con a muy larga respecto de c; Z = 18 unidades fórmula por celda.",
+          "basico": false
+        },
+        {
+          "campo": "Hábito",
+          "valor": "Cristales aciculares, alargados según {001}, de hasta 5 mm; típicamente en agregados mamillares, costras y tapices",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Crystal Data",
+          "estado": "verificado",
+          "nota": "De ahí el nombre: «fibro-» por el hábito fibroso. Es el rasgo que define a la especie a simple vista.",
+          "basico": false
+        },
+        {
+          "campo": "Maclado",
+          "valor": "Maclas de contacto repetidas según {110}, que producen agrupaciones en trillizos",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Crystal Data («Twinning: Repeated contact twins on {110}, yielding trillings»)",
+          "estado": "verificado",
+          "nota": "El maclado repetido es lo que da el aspecto fibroso y sedoso a los agregados.",
+          "basico": false
+        },
+        {
+          "campo": "Dureza (Mohs)",
+          "valor": "≈ 2,5",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Physical Properties («Hardness = ~2.5»)",
+          "estado": "verificado",
+          "nota": "Valor aproximado: el Handbook lo declara con «≈». Webmineral lo sitúa en el entorno del yeso.",
+          "basico": false
+        },
+        {
+          "campo": "Densidad",
+          "valor": "1,84 – 2,09 g/cm³ (medida) · 1,996 g/cm³ (calculada)",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Physical Properties («D(meas.) = 1.84-2.09 · D(calc.) = 1.996»)",
+          "estado": "verificado",
+          "nota": "El rango medido es amplio porque la densidad depende del contenido real de agua, que varía entre muestras.",
+          "basico": false
+        },
+        {
+          "campo": "Exfoliación",
+          "valor": "{001} perfecta",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Physical Properties («Cleavage: On {001}, perfect»)",
+          "estado": "verificado",
+          "nota": "Exfoliación perfecta según el plano basal, coherente con la estructura en cadenas.",
+          "basico": false
+        },
+        {
+          "campo": "Fractura",
+          "valor": "Irregular (superficies no exfoliadas que se rompen sin patrón definido)",
+          "fuente": "Webmineral, ficha Fibroferrite, campo Fracture («Uneven - Flat surfaces (not cleavage) fractured in an uneven pattern»)",
+          "estado": "verificado",
+          "nota": "El Handbook no declara fractura; se cita Webmineral, que sí la describe.",
+          "basico": false
+        },
+        {
+          "campo": "Tenacidad",
+          "valor": "No declarada por la fuente",
+          "fuente": "Handbook of Mineralogy y Webmineral — ninguna de las dos la trata",
+          "estado": "pendiente",
+          "nota": "Se comprobó por búsqueda literal: ni el Handbook ni Webmineral usan el término. No se deduce de otra propiedad.",
+          "basico": false
+        },
+        {
+          "campo": "Color",
+          "valor": "Amarillo pálido, amarillo paja, verde amarillento, gris verdoso, casi blanco; incoloro a amarillo pálido por luz transmitida",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Optical Properties («Color: Pale yellow, straw-yellow...») ",
+          "estado": "verificado",
+          "nota": "El color es poco diagnóstico: se confunde con otros sulfatos de hierro secundarios.",
+          "basico": false
+        },
+        {
+          "campo": "Raya",
+          "valor": "Blanca",
+          "fuente": "Webmineral, ficha Fibroferrite, campo Streak («white»)",
+          "estado": "verificado",
+          "nota": "El Handbook no declara raya; se cita Webmineral.",
+          "basico": false
+        },
+        {
+          "campo": "Brillo",
+          "valor": "Perlado; sedoso en agregados",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Optical Properties («Luster: Pearly, silky in aggregates»)",
+          "estado": "verificado",
+          "nota": "El brillo sedoso es consecuencia directa del hábito fibroso.",
+          "basico": false
+        },
+        {
+          "campo": "Transparencia",
+          "valor": "Translúcido",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Optical Properties («Translucent»)",
+          "estado": "verificado",
+          "nota": "Declarado translúcido, no transparente.",
+          "basico": false
+        },
+        {
+          "campo": "Clase óptica",
+          "valor": "Biaxial positiva (+), anómala",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Optical Properties («Biaxial (+), anomalous»)",
+          "estado": "verificado",
+          "nota": "El carácter anómalo se debe a la baja birrefringencia y a la variabilidad en agua.",
+          "basico": false
+        },
+        {
+          "campo": "Índices de refracción",
+          "valor": "α = 1,518–1,533 · β = 1,518–1,535 · γ = 1,561–1,575 · 2V ≈ 0°",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Optical Properties",
+          "estado": "verificado",
+          "nota": "α y β son casi iguales, de ahí el 2V cercano a 0°. El Handbook advierte que los índices varían con el contenido de agua.",
+          "basico": false
+        },
+        {
+          "campo": "Pleocroísmo",
+          "valor": "Incoloro a amarillo ámbar pálido",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Optical Properties («Pleochroism: Colorless to pale amber-yellow»)",
+          "estado": "verificado",
+          "nota": "Pleocroísmo débil, coherente con el color pálido de la especie.",
+          "basico": false
+        },
+        {
+          "campo": "Contexto geológico",
+          "valor": "Producto poco común de la deshidratación de melanterita en zonas oxidadas de rocas y sedimentos con sulfuro de hierro; más estable en regiones áridas. Rara vez sublimado volcánico",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Occurrence",
+          "estado": "verificado",
+          "nota": "Su estabilidad en clima árido explica que el desierto de Atacama la conserve.",
+          "basico": false
+        },
+        {
+          "campo": "Asociaciones",
+          "valor": "Melanterita, amarantita, hohmannita, krausita, coquimbita, parabutlerita, butlerita, copiapita, epsomita, yeso, pirita",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Association",
+          "estado": "verificado",
+          "nota": "Comparte yacimiento con la copiapita, ya exhibida en este museo: es la misma química de oxidación.",
+          "basico": false
+        },
+        {
+          "campo": "Polimorfos y series",
+          "valor": "No es polimorfo de ninguna especie. Estructuralmente emparentada con Fe(OH)SO4, butlerita y parabutlerita por compartir la cadena en espiral {Fe(OH)(H2O)2SO4}",
+          "fuente": "Handbook of Mineralogy, referencia (4) Scordari (1981), Fibroferrite: a mineral with a {Fe(OH)(H2O)2SO4} spiral chain",
+          "estado": "verificado",
+          "nota": "El parentesco es estructural, no polimórfico: no son la misma fórmula con distinto empaquetamiento.",
+          "basico": false
+        },
+        {
+          "campo": "Localidades chilenas",
+          "valor": "Tierra Amarilla, cerca de Copiapó (Atacama); Quetena, al oeste de Calama, y Chuquicamata (Antofagasta)",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Distribution",
+          "estado": "verificado",
+          "nota": "Tres zonas del norte de Chile, todas con oxidación de sulfuros de hierro en clima árido.",
+          "basico": false
+        },
+        {
+          "campo": "Material tipo",
+          "valor": "No declarada por la fuente",
+          "fuente": "Handbook of Mineralogy — no menciona ejemplar tipo ni institución depositaria",
+          "estado": "pendiente",
+          "nota": "Se comprobó por búsqueda literal de «type material», «type specimen» y «holotype»: ninguna aparece. No se inventa una institución.",
+          "basico": false
+        },
+        {
+          "campo": "Referencia de la descripción original",
+          "valor": "Rose, H. (1833). Ueber den Fibroferrit. Annalen der Physik und Chemie, 27, 309",
+          "fuente": "IMA Master List 2026-11, p. 73; Chester (1896), entrada FIBROFERRITE",
+          "estado": "verificado",
+          "nota": "Chester cita la misma página y el mismo volumen. El título alemán original del mineral fue «Fibroferrit».",
+          "basico": false
+        },
+        {
+          "campo": "Referencia estructural",
+          "valor": "Scordari, F. (1981). Fibroferrite: a mineral with a {Fe(OH)(H2O)2SO4} spiral chain and its relationship to Fe(OH)SO4, butlerite and parabutlerite. Tschermaks Mineralogische und Petrographische Mitteilungen, 28, 17-29. · Actualización: European Journal of Mineralogy 28 (2016), 943",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, referencia (4); IMA Master List 2026-11, col. Referencia estructural",
+          "estado": "verificado",
+          "nota": "El Master List 2026-11 agrega una referencia estructural más reciente que la del Handbook.",
+          "basico": false
+        },
+        {
+          "campo": "Fluorescencia",
+          "valor": "No declarada por la fuente",
+          "fuente": "Handbook of Mineralogy y Webmineral — la palabra no aparece en ninguna de las dos fichas",
+          "estado": "pendiente",
+          "nota": "Se buscó por búsqueda literal («fluorescen», «luminescen», «Luminescence»): sin resultado. No se deduce de la fórmula.",
+          "basico": false
+        },
+        {
+          "campo": "Solubilidad",
+          "valor": "Soluble en agua",
+          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Physical Properties («Soluble in H2O»)",
+          "estado": "verificado",
+          "nota": "Dato declarado expresamente. Es un sulfato hidratado, de ahí su inestabilidad en ambientes húmedos.",
+          "basico": false
+        }
+      ],
+      "relato": null,
+      "directa": {
+        "intro": "El mismo proceso, sin metáfora. Redacción propia a partir de las fuentes citadas al final de esta sección.",
+        "bloques": [
+          {
+            "texto": "La fibroferrita no se forma donde se la encuentra: se forma al secarse otra cosa. Es un producto de deshidratación de la melanterita, un sulfato de hierro mucho más hidratado, en las zonas oxidadas de rocas y sedimentos que contienen sulfuro de hierro.",
+            "respaldado": "Handbook of Mineralogy, Occurrence"
+          },
+          {
+            "texto": "Para que eso ocurra hace falta que el hierro esté expuesto al aire y al agua, y que después el agua se retire. Por eso la especie es más estable en regiones áridas: si el ambiente vuelve a humedecerse, el mineral deja de estar en equilibrio.",
+            "respaldado": "Handbook of Mineralogy, Occurrence"
+          },
+          {
+            "texto": "Su rasgo físico más característico es la forma. Los cristales son aciculares, alargados según el eje {001}, de hasta cinco milímetros, y casi nunca se ven aislados: aparecen en agregados mamillares, costras y tapices. El maclado de contacto repetido según {110} produce agrupaciones en trillizos, y es lo que da el aspecto fibroso y el brillo sedoso característico.",
+            "respaldado": "Handbook of Mineralogy, Crystal Data y Optical Properties"
+          },
+          {
+            "texto": "Ese hábito fibroso y el hierro férrico que la compone son exactamente lo que su nombre describe: del latín fibra, por fibra, y ferrum, por hierro. Heinrich Rose le puso ese nombre en 1833, el mismo año en que la describió.",
+            "respaldado": "Chester (1896), entrada FIBROFERRITE; Handbook of Mineralogy, Name; Webmineral, campo Name Origin"
+          },
+          {
+            "texto": "En Chile aparece en el norte árido, en las mismas zonas donde se oxida el hierro: Tierra Amarilla cerca de Copiapó, en Atacama; Quetena al oeste de Calama y Chuquicamata, en Antofagasta. No es casual que conviva con la copiapita: ambas nacen del mismo proceso de oxidación de sulfuros de hierro.",
+            "respaldado": "Handbook of Mineralogy, Distribution y Association"
+          },
+          {
+            "texto": "Su estructura está emparentada con la butlerita y la parabutlerita: las tres comparten una cadena en espiral de composición {Fe(OH)(H2O)2SO4}. No son polimorfos entre sí, sino parientes estructurales.",
+            "respaldado": "Scordari (1981), citado en Handbook of Mineralogy"
+          }
+        ],
+        "fuentes": [
+          "Handbook of Mineralogy (Mineralogical Society of America), ficha Fibroferrite, ©2001-2005 Mineral Data Publishing, versión 1.",
+          "IMA Master List of Mineral Names and Classification (versión 2026-11), p. 73. Commission on New Minerals, Nomenclature and Classification.",
+          "Chester, A. H. (1896). A Dictionary of the Names of Minerals, Including their History and Etymology. Entrada «Fibroferrite». John Wiley & Sons.",
+          "Webmineral. Ficha Fibroferrite, campos Streak, Fracture y Name Origin.",
+          "Scordari, F. (1981). Fibroferrite: a mineral with a {Fe(OH)(H2O)2SO4} spiral chain and its relationship to Fe(OH)SO4, butlerite and parabutlerite. Tschermaks Mineralogische und Petrographische Mitteilungen, 28, 17-29.",
+          "La versión directa expone los datos con redacción propia a partir de las fuentes citadas; no reproduce su texto."
+        ]
+      },
+      "transparencia": [
+        "Fuentes primarias de esta ficha: el IMA Master List (2026-11), versión oficial de la CNMNC, y el Handbook of Mineralogy de la Mineralogical Society of America. La autoría y el año del nombre se tomaron de Chester (1896), que los consigna con la referencia original de Heinrich Rose.",
+        "La columna Fuente cita el documento y la sección de donde sale cada valor; la columna Estado dice si ese valor resiste la cita que aparece al lado. Una marca pendiente no es un error: dice que ninguna fuente consultada declara el dato, y que no se rellenó por deducción.",
+        "Quedan tres campos sin fuente. Tenacidad, material tipo y fluorescencia no aparecen en el Handbook ni en Webmineral: se comprobó por búsqueda literal de los términos y no se deducen de la fórmula. Se muestran como pendientes en lugar de completarse.",
+        "Ningún dato de esta ficha se tomó de Mindat, que es una base secundaria y no se usa como fuente de un valor.",
+        "El Handbook y el IMA escriben la fórmula de forma distinta —Fe³⁺(SO₄)(OH)·5H₂O frente a Fe³⁺(SO₄)(OH)(H₂O)₂·3H₂O— y ambas describen la misma composición. Se cita la del IMA, que es la aprobada por la CNMNC, y se declara la variante en la nota del campo.",
+        "El relato de esta especie está pendiente de redacción por el autor del libro. Esta ficha publica la información documentada y su versión directa; no se escribe un relato para llenar el espacio."
+      ],
+      "pendientes": [
+        "Tenacidad",
+        "Material tipo",
+        "Fluorescencia"
+      ]
     }
   ]
 };

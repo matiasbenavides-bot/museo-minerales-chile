@@ -343,6 +343,11 @@ html.foco-vivo body::after{ opacity:1; }
   display:inline-flex; align-items:center; gap:.35rem; margin-top:1rem;
 }
 
+/* Relato aún sin escribir (Fibroferrite, ficha 3).
+   Se declara en pantalla en vez de dejar la sección vacía. Tono de aviso, no de
+   error: no falta un dato por verificar, falta un texto del autor. */
+.relato__titulo--pendiente{ color:var(--t3); }
+
 .aviso{
   background:var(--panel); border:1px solid var(--borde);
   border-left:3px solid var(--alerta); border-radius:var(--r-s);
