@@ -51,6 +51,38 @@ El libro vivo es `Downloads/Minerales-descubiertos-en-Chile.docx` (54.485 b).
 
 ---
 
+## 🔴 DEC-020 — Fibroferrite es TRIGONAL, no hexagonal (2026-11-09)
+
+**El dato confuso que detectó el dueño era real.** La ficha decía `Sistema cristalino: Hexagonal`
+porque el Handbook abre `Crystal Data:` con esa palabra — pero **el Handbook mismo dice
+`Point Group: 3`**, que es **trigonal**. El Handbook nombraba la **red** (red hexagonal), no el
+sistema.
+
+**Arbitraje:** Webmineral declara literal *«Trigonal - Rhombohedral, H-M Symbol (3), Space Group:
+R 3»*. Se cita Webmineral y se conserva el `R3` del Handbook.
+
+Corregido en **`data/museo.js` Y en el `.docx`** (tabla 3, fila 10) para no desincronizarlos.
+Respaldo previo: `museo-respaldos/BACKUP-antes-trigonal-20261109-033706.docx`.
+
+⚠️ Al reemplazar el campo se perdió `"basico": true` → los básicos cayeron a **11**. Detectado y
+restaurado a 12. **Después de tocar el JSON, contar campos/basicos/verif/pend siempre.**
+
+**Revisadas también:** Atacamita (ortorrómbico/mmm/Pnam) y Copiapite (triclínico/1/P1) → coherentes,
+sin cambios.
+
+## 📇 DEC-019 — la card dice qué ES el mineral (2026-11-09)
+
+Se fueron el rótulo («Localidad tipo Chile»), el **acta de procedencia** (99 px: «Descrita en 1797
+(IMA Master List…) · Nombrada en 1802 por…») y los contadores internos. Queda: **nombre · fórmula ·
+Color · Dureza · Cristal**, todos desde la propia ficha.
+
+## 🖼️ DEC-017/018 — logo del museo (2026-11-09)
+
+Logo de IA con fondo quitado por **matting** (el primer intento dejó 50 % de borde blanco).
+En barra (34 px), intro (128 px) y favicons. El SVG del hexágono queda detrás como respaldo.
+Verificación de halo que sí sirve: componer sobre negro y comparar luminancia anillo vs interior
+→ **2,4 puntos = limpio**.
+
 ## 🎨 DEC-016 — colores por especie (2026-11-08)
 
 Fibroferrite pasó a **blanco amarillento `#f2e6c8`** (pedido del dueño). Elegido midiendo:
