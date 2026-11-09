@@ -819,10 +819,10 @@ const MUSEO = {
         },
         {
           "campo": "Sistema cristalino",
-          "valor": "Hexagonal",
-          "fuente": "Handbook of Mineralogy, ficha Fibroferrite, Crystal Data",
+          "valor": "Trigonal (romboédrico)",
+          "fuente": "Webmineral, ficha Fibroferrite, campo Crystal System: «Trigonal - Rhombohedral H-M Symbol (3) Space Group: R 3»; grupo espacial R3 confirmado en Handbook of Mineralogy, Cell Data",
           "estado": "verificado",
-          "nota": "Declarado como «Hexagonal» al inicio del bloque Crystal Data.",
+          "nota": "El Handbook of Mineralogy escribe «Hexagonal» al abrir Crystal Data, y la ficha anterior copió esa palabra. Es impreciso: el Handbook nombra la RED (red hexagonal, familia a la que pertenece el sistema trigonal romboédrico), no el sistema cristalino. Lo que define el sistema es el grupo puntual 3, que es trigonal, y el grupo espacial R3. Webmineral lo declara sin ambigüedad como Trigonal-Romboédrico. Corregido el 2026-11-09.",
           "basico": true
         },
         {
