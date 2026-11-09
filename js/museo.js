@@ -73,9 +73,30 @@
               '<span><b>' + esc(e.ficha.length) + '</b> campos documentados</span>' +
               '<span><b>' + esc((e.directa && e.directa.fuentes ? e.directa.fuentes.length : 0)) + '</b> fuentes citadas</span>' +
             '</div>' +
-            '<a class="pieza-card__ir" href="' + esc(e.id) + '.html">Abrir el archivo →</a>' +
+            /* La card entera es el camino a la pieza (DEC-008), pero el enlace
+               real sigue siendo este: sin JS y con teclado funciona igual.
+               V4: el nombre va DENTRO del texto del enlace (no en un span
+               aparte) para que el lector de pantalla diga «Abrir el archivo
+               de Atacamita» y no una frase partida. */
+            '<a class="pieza-card__ir" href="' + esc(e.id) + '.html">Abrir el archivo de ' +
+              esc(titulo(e.nombre)) + ' →</a>' +
           '</div>' +
         '</li>';
+    }).join('');
+  }
+
+  /* ------------------------------------------- V4 (2026-11-08): nav de sala
+     La barra superior ofrecía SOLO «La Atacamita» aunque hubiera varias
+     especies: se recorría el museo por una sola puerta. Ahora la lista de
+     piezas se construye desde data/museo.js, así que la 3.ª especie entra
+     sin tocar el HTML. Se marca `aria-current` en la pieza de esta página. */
+  var navPiezas = $('#navPiezas') || $('#navPiezasPie');
+  if (navPiezas) {
+    navPiezas.innerHTML = DATA.especies.map(function (e) {
+      var attrs = 'href="' + esc(e.id) + '.html" data-pieza="' + esc(e.id) + '"' +
+        (e.acento ? ' style="--acento:' + esc(e.acento) + '"' : '') +
+        (e.id === pieza.id && VISTA === 'archivo' ? ' aria-current="page"' : '');
+      return '<li><a ' + attrs + '>' + esc(titulo(e.nombre)) + '</a></li>';
     }).join('');
   }
 

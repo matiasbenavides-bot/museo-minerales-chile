@@ -110,12 +110,42 @@ b{ font-weight:650; }
 }
 .nav a:hover{ color:var(--t1); background:var(--panel-2); }
 
+/* V4 (2026-11-08) — lista de piezas dentro de la barra.
+   Se genera desde data/museo.js; cada entrada toma el acento de su especie. */
+.nav__piezas{ display:flex; gap:.25rem; margin:0; padding:0; min-width:0; overflow:hidden; }
+.nav__piezas a{ display:inline-flex; align-items:center; gap:.42rem; white-space:nowrap; }
+.nav__piezas a::before{
+  content:""; width:5px; height:5px; border-radius:50%; flex:0 0 auto;
+  background:var(--acento, var(--t3)); box-shadow:0 0 8px var(--acento, transparent);
+}
+.nav__piezas a[aria-current="page"]{
+  color:var(--t1); background:var(--panel-2);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--acento) 40%, transparent);
+}
+
 .navbtn{
   display:none; background:none; border:1px solid var(--borde-2); border-radius:var(--r-s);
   width:42px; height:38px; flex-direction:column; gap:4px; align-items:center;
   justify-content:center; cursor:pointer; color:var(--t1); padding:0;
 }
 .navbtn span:not(.oculto){ display:block; width:18px; height:2px; background:currentColor; }
+
+/* V1 (2026-11-08) — FOCO DE LA SALA.
+   Un halo de luz sigue al cursor sobre la página entera. Es lo que separa
+   «fondo negro» de «sala en penumbra»: el negro deja de ser plano.
+   Se mueve por CSS custom properties (--foco-x / --foco-y) que escribe
+   js/foco.js. Solo se enciende si el puntero es fino (mouse), para no
+   dejar un halo congelado en pantallas táctiles. */
+body::after{
+  content:"";
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(
+    460px circle at var(--foco-x, 50%) var(--foco-y, 30%),
+    rgba(150, 190, 175, .085),
+    transparent 62%);
+  opacity:0; transition:opacity .6s ease;
+}
+html.foco-vivo body::after{ opacity:1; }
 
 .barra__prog{ height:2px; background:transparent; }
 .barra__prog i{
@@ -222,33 +252,78 @@ b{ font-weight:650; }
 .bloque__intro{ color:var(--t2); max-width:720px; margin-bottom:2.6rem; }
 
 /* =============================================================== SALA */
-.sala{ display:grid; gap:1rem; margin-bottom:2.4rem; }
+/* V2 (2026-11-08): la sala es una GRILLA de vitrinas. Antes cada pieza era
+   una barra de 1180 px apilada verticalmente, que se leía como lista y no
+   como sala. Mínimo 320 px por vitrina, máximo 2 columnas a 1180 px. */
+.sala{
+  display:grid; gap:1.15rem; margin-bottom:2.4rem;
+  grid-template-columns:repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  align-items:stretch;
+}
 
 .pieza-card{
-  display:grid; grid-template-columns:minmax(0,240px) minmax(0,1fr);
-  gap:1.6rem; align-items:center;
-  background:linear-gradient(150deg, var(--panel), var(--negro-2));
+  display:grid; grid-template-rows:auto 1fr;
+  gap:1.15rem; align-items:start;
+  background:linear-gradient(160deg, var(--panel), var(--negro-2) 70%);
   border:1px solid var(--borde); border-radius:var(--r);
-  padding:1.6rem; position:relative; overflow:hidden;
-  transition:border-color .25s, transform .25s, box-shadow .25s;
+  padding:1.15rem 1.15rem 1.35rem; position:relative; overflow:hidden;
+  transition:border-color .3s, box-shadow .35s, background .35s;
+  isolation:isolate;
 }
+/* filo de acento a la izquierda (se conserva del diseño anterior) */
 .pieza-card::before{
-  content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
-  background:linear-gradient(180deg, var(--acento), transparent);
+  content:""; position:absolute; left:0; top:0; bottom:0; width:3px; z-index:2;
+  background:linear-gradient(180deg, var(--acento), transparent 85%);
 }
-.pieza-card:hover{
-  border-color:color-mix(in srgb, var(--acento) 45%, var(--borde));
-  transform:translateY(-2px); box-shadow:var(--sombra);
+/* V1: foco de luz que despierta la vitrina al acercarse. Es el efecto de
+   museo: el dato no cambia, la LUZ sí. Sin transform ni scale (regla del dueño). */
+.pieza-card::after{
+  content:""; position:absolute; inset:-1px; z-index:0; pointer-events:none;
+  border-radius:inherit; opacity:0; transition:opacity .45s ease;
+  background:radial-gradient(ellipse 120% 90% at 50% 0%,
+    color-mix(in srgb, var(--acento) 17%, transparent), transparent 62%);
 }
+.pieza-card:hover::after,
+.pieza-card:focus-within::after{ opacity:1; }
+.pieza-card:hover,
+.pieza-card:focus-within{
+  border-color:color-mix(in srgb, var(--acento) 48%, var(--borde));
+  box-shadow:
+    0 1px 0 0 color-mix(in srgb, var(--acento) 22%, transparent) inset,
+    var(--sombra);
+}
+.pieza-card > *{ position:relative; z-index:1; }
+
 .pieza-card__vitrina{
-  aspect-ratio:4/3; border-radius:var(--r-s); position:relative; overflow:hidden;
+  aspect-ratio:16/10; border-radius:var(--r-s); position:relative; overflow:hidden;
   background:
-    radial-gradient(ellipse at 50% 40%, color-mix(in srgb, var(--acento) 26%, transparent), transparent 68%),
+    radial-gradient(ellipse 70% 65% at 50% 32%, color-mix(in srgb, var(--acento) 34%, transparent), transparent 70%),
+    radial-gradient(ellipse 120% 60% at 50% 110%, color-mix(in srgb, var(--acento-deep) 90%, transparent), transparent 70%),
     var(--negro);
   border:1px solid var(--borde);
   display:grid; place-items:center;
+  transition:border-color .35s, filter .45s;
 }
-.pieza-card__vitrina svg{ width:66%; height:66%; filter:drop-shadow(0 0 18px color-mix(in srgb, var(--acento) 60%, transparent)); }
+.pieza-card:hover .pieza-card__vitrina{
+  border-color:color-mix(in srgb, var(--acento) 40%, var(--borde));
+}
+/* retícula de fondo de la vitrina: da profundidad sin imágenes */
+.pieza-card__vitrina::before{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size:34px 34px;
+  mask-image:radial-gradient(ellipse 75% 75% at 50% 50%, #000 20%, transparent 78%);
+}
+.pieza-card__vitrina svg{
+  width:56%; height:56%; position:relative; z-index:1;
+  filter:drop-shadow(0 0 22px color-mix(in srgb, var(--acento) 62%, transparent));
+  transition:filter .45s;
+}
+.pieza-card:hover .pieza-card__vitrina svg{
+  filter:drop-shadow(0 0 34px color-mix(in srgb, var(--acento) 85%, transparent));
+}
 .pieza-card__tipo{
   font-size:.68rem; letter-spacing:.18em; text-transform:uppercase;
   color:var(--acento-2); font-weight:700; margin-bottom:.5rem; display:block;
@@ -533,8 +608,8 @@ b{ font-weight:650; }
 
 /* ========================================================== RESPONSIVE */
 @media (max-width:900px){
-  .pieza-card{ grid-template-columns:1fr; }
-  .pieza-card__vitrina{ max-width:280px; }
+  /* V2: la card ya no es de 2 columnas; en móvil apila la vitrina arriba */
+  .pieza-card__vitrina{ max-width:none; }
   .fila{ grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:.4rem 1rem; padding:1rem 1.2rem; }
   .fila__fuente{ grid-column:2; }
   .fila__nota{ grid-column:2; }

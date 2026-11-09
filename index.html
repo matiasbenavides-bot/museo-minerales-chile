@@ -59,8 +59,8 @@
 
     <nav class="nav" id="nav" aria-label="Secciones del museo">
       <a href="#sala">La sala</a>
-      <a href="atacamita.html">La Atacamita</a>
-      <a href="atacamita.html">Archivo completo</a>
+      <!-- V4: las piezas se listan solas desde data/museo.js -->
+      <ul class="nav__piezas" id="navPiezas"><!-- js --></ul>
     </nav>
 
     <button class="navbtn" id="navbtn" aria-expanded="false" aria-controls="nav">
@@ -137,7 +137,8 @@
     </div>
     <nav class="pie__nav" aria-label="Pie">
       <a href="#sala">La sala</a>
-      <a href="atacamita.html">La Atacamita</a>
+      <!-- V4: las piezas se listan solas desde data/museo.js -->
+      <ul class="nav__piezas" id="navPiezasPie"><!-- js --></ul>
     </nav>
     <p class="pie__nota">
       Museo virtual. No es un catálogo de venta. Ningún dato de este sitio se publica sin
@@ -156,5 +157,6 @@
 <script src="js/museo.js"></script>
 <script src="js/futuro.js"></script>
 <script src="js/revelar.js"></script>
+<script src="js/foco.js"></script>
 </body>
 </html>
