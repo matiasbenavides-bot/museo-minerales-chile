@@ -3,6 +3,54 @@
 **Última actualización:** 2026-11-08 · **3 especies publicadas** (Atacamita + Copiapite + Fibroferrite)
 **Estado:** PUBLICADO y estable. Capa visual V1/V2/V4 · DEC-013 · DEC-015 · **DEC-016 (colores)** · Ficha 3 en libro y museo.
 
+---
+
+## 📌 CIERRE DE SESIÓN 2026-11-08 — leer esto primero
+
+**URL:** https://matiasbenavides-bot.github.io/museo-minerales-chile/
+**Repo:** `matiasbenavides-bot/museo-minerales-chile` · rama `main` · Pages desde `/` · árbol **limpio**
+**Último commit:** `dc0010f`
+
+### Qué se hizo en esta sesión (todo medido, no heredado)
+
+| # | Decisión | Qué cambió | Estado |
+|---|---|---|---|
+| **V2** | Sala en **grilla de vitrinas** | De barras de 1180 px apiladas a `auto-fit minmax(320px)`: 3 col a 1440 · 2 a 768 · 1 a 360 | ✅ publicado |
+| **V1** | **Foco de luz** sigue al cursor | `js/foco.js` (88 líneas, sin librerías) + `body::after` | ✅ publicado |
+| **V4** | **Navegación de las 3 piezas** | `#navPiezas` generado desde `data/museo.js` + `aria-current` | ✅ publicado |
+| **DEC-013** | Fuera el sello «verificado» | 48 distintivos menos por página; **se mantiene** la marca ámbar de pendiente | ✅ publicado |
+| **DEC-014** | **Crédito de autoría** | `© 2026 Matías Benavides · Creación de la página` en las 4 páginas | ✅ publicado |
+| **DEC-015** | Fuera «No es un catálogo de venta» | Se conserva la declaración de fuentes | ✅ publicado |
+| **FICHA 3** | **Fibroferrite publicada** | 36 campos · 33 verificados · 3 pendientes · libro + museo | ✅ publicado |
+| **DEC-016** | **Colores por especie** | Fibroferrite blanco amarillento `#f2e6c8`; gama derivada del acento | ✅ publicado |
+
+### Pendientes declarados (ninguno es deuda técnica)
+
+| Pendiente | Detalle | Quién |
+|---|---|---|
+| **Relato de Fibroferrite** | `"relato": null`. La página dice «Relato en preparación». **Es la voz del dueño: no se inventa.** Basta llenar el campo en `data/museo.js` | **el dueño** |
+| **V3** | Cada mineral con su **cristal propio** (hoy los 3 dibujan el mismo SVG) | Hermes |
+| **V5** | **Paralaje del cristal** con el ratón en la página de la pieza | Hermes |
+| Año del `©` | Hoy dice sólo `2026`; si el sitio crece, evaluar `2026–2027` | el dueño |
+| **141 especies** | El libro tiene **3 fichas de 144** | libro + museo |
+
+### Próximo paso real
+
+1. **Relato de Fibroferrite** (dueño) → llenar `relato` en `data/museo.js`.
+2. **Ficha 4: Pickeringite (1844)** — la receta de fuentes ya está probada (§FICHA 3).
+3. **V3** si se quiere más impacto visual antes de seguir con el libro.
+
+### Respaldos (fuera de `/tmp`, que se borra)
+
+```
+/mnt/c/Users/logic/Downloads/museo-respaldos/
+  BACKUP-libro-antes-fibroferrite-20261108-235851.docx   48.187 b  (libro con 2 fichas)
+  Minerales-descubiertos-en-Chile-FICHA3-20261109.docx   54.485 b  (libro con 3 fichas)
+```
+El libro vivo es `Downloads/Minerales-descubiertos-en-Chile.docx` (54.485 b).
+
+---
+
 ## 🎨 DEC-016 — colores por especie (2026-11-08)
 
 Fibroferrite pasó a **blanco amarillento `#f2e6c8`** (pedido del dueño). Elegido midiendo:
