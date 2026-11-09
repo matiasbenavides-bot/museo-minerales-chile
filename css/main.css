@@ -104,8 +104,24 @@ b{ font-weight:650; }
 .marca{ display:flex; align-items:center; gap:.7rem; min-width:0; }
 .marca__txt{ min-width:0; }
 .marca__txt strong, .marca__txt em{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.marca__sigilo{ color:var(--acento); display:flex; filter:drop-shadow(0 0 10px rgba(47,191,113,.45)); }
-.marca__sigilo svg{ display:block; }
+/* DEC-017 — LOGO en la barra.
+   El museo usa su logo (imagen generada con IA, fondo quitado por matting).
+   El SVG del hexágono queda DETRÁS como respaldo: si el PNG tarda o falla, se ve
+   el hexágono en vez de un hueco. El logo, al cargar, lo tapa. Sin JS propio. */
+.marca__sigilo{
+  color:var(--acento); display:flex; position:relative;
+  align-items:center; justify-content:center;
+  width:34px; height:34px; flex:0 0 auto;
+}
+.marca__sigilo svg{
+  display:block; position:absolute; inset:0; margin:auto; z-index:0;
+}
+.marca__logo{
+  display:block; width:34px; height:34px; object-fit:contain;
+  position:relative; z-index:1;
+  /* el PNG ya trae su transparencia; sólo un halo tenue del color de la pieza */
+  filter:drop-shadow(0 0 8px color-mix(in srgb, var(--acento) 45%, transparent));
+}
 .marca__txt{ display:flex; flex-direction:column; line-height:1.15; }
 .marca__txt strong{ font-size:.9rem; letter-spacing:.02em; }
 .marca__txt em{ font-style:normal; font-size:.72rem; color:var(--t3); letter-spacing:.14em; text-transform:uppercase; }
@@ -715,11 +731,22 @@ html.intro-activa, html.intro-activa body{ overflow:hidden; }
 .intro__in{ text-align:center; padding:2rem; max-width:90vw; }
 
 .intro__sigilo{
-  width:64px; height:64px; margin:0 auto 1.6rem; color:var(--acento);
-  filter:drop-shadow(0 0 22px rgba(47,191,113,.65));
+  width:128px; height:128px; margin:0 auto 1.6rem; color:var(--acento);
+  position:relative; display:flex; align-items:center; justify-content:center;
+  filter:drop-shadow(0 0 26px color-mix(in srgb, var(--acento) 65%, transparent));
   animation:introPulso 2.4s ease-in-out infinite;
 }
-.intro__sigilo svg{ display:block; width:100%; height:100%; }
+/* DEC-018: el logo del museo. Mismo tratamiento que el hexágono anterior:
+   late, pero NO gira ni se deforma (el pulso es de opacidad y escala mínima). */
+.intro__logo{
+  display:block; width:128px; height:128px; object-fit:contain;
+  position:relative; z-index:1;
+}
+/* respaldo: queda detrás del logo y sólo se ve si la imagen no carga */
+.intro__sigilo svg{
+  display:block; width:100%; height:100%;
+  position:absolute; inset:0; z-index:0;
+}
 
 @keyframes introPulso{
   0%,100%{ transform:scale(1); opacity:.85; }

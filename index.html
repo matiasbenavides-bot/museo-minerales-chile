@@ -21,7 +21,11 @@
      igual porque lleva un <noscript> que la oculta. -->
 <div id="intro" role="status" aria-label="Cargando el museo">
   <div class="intro__in">
+    <!-- DEC-018: la intro muestra el LOGO del museo, no el hexágono dibujado.
+         El SVG queda detrás como respaldo (si el PNG falla, se ve el hexágono). -->
     <div class="intro__sigilo" aria-hidden="true">
+      <img class="intro__logo" src="assets/img/logo-256.png" alt=""
+           width="128" height="128" decoding="async">
       <svg viewBox="0 0 100 100">
         <polygon points="50,4 88,26 88,74 50,96 12,74 12,26"
                  fill="none" stroke="currentColor" stroke-width="3.5"/>
@@ -43,8 +47,13 @@
 <header class="barra">
   <div class="barra__in">
     <a class="marca" href="index.html">
+      <!-- DEC-017: el sigilo es el LOGO del museo (imagen IA, fondo quitado).
+           El SVG queda como respaldo: si el PNG no carga, se ve el hexágono de
+           siempre en vez de un hueco. onerror lo cambia en caliente. -->
       <span class="marca__sigilo" aria-hidden="true">
-        <svg viewBox="0 0 100 100" width="30" height="30">
+        <img class="marca__logo" src="assets/img/logo-128.png"
+             alt="" width="34" height="34" decoding="async">
+        <svg viewBox="0 0 100 100" width="30" height="30" aria-hidden="true">
           <polygon points="50,4 88,26 88,74 50,96 12,74 12,26"
                    fill="none" stroke="currentColor" stroke-width="4"/>
           <polygon points="50,22 74,36 74,64 50,78 26,64 26,36"
