@@ -1,7 +1,63 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
-**Última actualización:** 2026-11-08 · **3 especies publicadas** (Atacamita + Copiapite + Fibroferrite)
-**Estado:** PUBLICADO y estable. Capa visual V1/V2/V4 · DEC-013 · DEC-015 · **DEC-016 (colores)** · Ficha 3 en libro y museo.
+**Última actualización:** **2026-11-14** · **3 especies publicadas** (Atacamita + Copiapite + Fibroferrite)
+**Estado:** PUBLICADO y estable. Capa visual V1/V2/V4 · DEC-013 · DEC-015 · DEC-016 (colores) · DEC-017/018 (logo) · DEC-019 (cards) · DEC-020 (trigonal) · **DEC-021 (marca de pendiente)**.
+**Último commit:** `d612e05`
+
+> ⚠️ **Este encabezado quedó desfasado 4 commits** (decía 2026-11-08 y `dc0010f` mientras el repo iba en
+> `322f8a2` con DEC-017 a DEC-020 cerradas). Al cerrar un bloque, actualizarlo también, no sólo el cuerpo.
+
+---
+
+## 🆕 DEC-021 — la marca de pendiente dice POR QUÉ (2026-11-14)
+
+**Pedido del dueño:** *«cuando se dice pendiente, no debería decir que se buscó por búsqueda literal y
+no se encontró»*. **Tenía razón:** `pendiente` a secas se lee como «falta buscarlo», cuando la verdad
+es que ya se buscó y ninguna fuente lo declara. El método sí estaba escrito —pero en el párrafo de
+**transparencia**, al pie de la pieza, no en la etiqueta de la fila, que es donde mira el lector.
+
+| | Antes | Ahora |
+|---|---|---|
+| `js/museo.js` `filaHTML()` | `pendiente` | **`pendiente · buscado sin resultado`** |
+| Caso `faltaContrato` (C2) | `sin fuente` | **`sin fuente`** — *no se unifica*: ahí el dato no está buscado, está sin fuente declarada |
+
+**Se DERIVA en el render, no se escribe en las 36 filas del JSON.** Si se escribiera a mano, la próxima
+ficha lo repetiría mal. Misma lógica que `--acento-2` en DEC-016. Se conserva la palabra `pendiente`
+porque `data-estado` y las mediciones cuentan por ella.
+
+### 🔴 El defecto que se atrapó antes de publicar
+
+La marca vive dentro de la columna `fuente` de `.fila`, que mide **180 px** en escritorio
+(grilla `190px | 718px | 180px`). El texto nuevo mide **285,8 px** con `white-space:nowrap` →
+**se salía 105 px de la fila a 1440 px**. A 360 y 768 no se veía porque la fila se apila:
+el defecto existía **sólo en escritorio**.
+
+Corregido en `css/main.css`: `white-space:normal` + `text-wrap:balance` + `max-width:100%` +
+`flex:none` en el punto. A 1440 la marca mide **180 px exactos en 2 líneas**.
+
+⚠️ Al medir esto hay que comparar `marca.right` contra **`fila.right`**, no contra `window.innerWidth`:
+la marca se salía de su fila y aun así cabía en la pantalla. Un medidor que sólo mira desborde de
+viewport habría dado **OK**.
+
+### Verificación en vivo (post-deploy, md5 servido == commit)
+
+```
+4 páginas × 3 anchos (360/768/1440)    0 fallas
+fibroferrite  marcas=3 · MUSEO_RENDER.pendientes=3 · 12 básicos · 36 ficha
+atacamita/copiapite/index              marcas=0
+0 desborde horizontal · 0 errores de consola · 0 sellos «verificado»
+md5 js/museo.js y css/main.css servidos == HEAD
+```
+
+### ⚠️ Riesgo de redundancia — decisión pendiente del dueño
+
+La fila de «Tenacidad» ya dice en su nota: *«No declarada por la fuente — Handbook of Mineralogy y
+Webmineral, ninguna de las dos lo declara»*. Con la etiqueta nueva, la marca y la nota **dicen lo
+mismo en distinto largo**: es el defecto que el dueño corrigió en DEC-013 (un sello que repite lo que
+ya está pegado a su lado). Si lo señala, la salida limpia es que la **nota** deje de justificar el
+método (ya lo dice la marca) y en su lugar diga **en qué fuentes se buscó**.
+Es opción **B**; hoy está aplicada sólo la **A** (la etiqueta).
+
 
 ---
 
