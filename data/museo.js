@@ -902,7 +902,7 @@ const MUSEO = {
           "valor": "No declarada por la fuente",
           "fuente": "Handbook of Mineralogy y Webmineral — ninguna de las dos la trata",
           "estado": "pendiente",
-          "nota": "Se comprobó por búsqueda literal: ni el Handbook ni Webmineral usan el término. No se deduce de otra propiedad.",
+          "nota": "No aparece en el Handbook ni en Webmineral. No se deduce de otra propiedad.",
           "basico": false
         },
         {
@@ -998,7 +998,7 @@ const MUSEO = {
           "valor": "No declarada por la fuente",
           "fuente": "Handbook of Mineralogy — no menciona ejemplar tipo ni institución depositaria",
           "estado": "pendiente",
-          "nota": "Se comprobó por búsqueda literal de «type material», «type specimen» y «holotype»: ninguna aparece. No se inventa una institución.",
+          "nota": "No aparece en ninguna de las fuentes consultadas. No se inventa una institución.",
           "basico": false
         },
         {
@@ -1022,7 +1022,7 @@ const MUSEO = {
           "valor": "No declarada por la fuente",
           "fuente": "Handbook of Mineralogy y Webmineral — la palabra no aparece en ninguna de las dos fichas",
           "estado": "pendiente",
-          "nota": "Se buscó por búsqueda literal («fluorescen», «luminescen», «Luminescence»): sin resultado. No se deduce de la fórmula.",
+          "nota": "Ninguna de las fuentes consultadas lo declara. No se deduce de la fórmula.",
           "basico": false
         },
         {
@@ -1075,7 +1075,7 @@ const MUSEO = {
       "transparencia": [
         "Fuentes primarias de esta ficha: el IMA Master List (2026-11), versión oficial de la CNMNC, y el Handbook of Mineralogy de la Mineralogical Society of America. La autoría y el año del nombre se tomaron de Chester (1896), que los consigna con la referencia original de Heinrich Rose.",
         "La columna Fuente cita el documento y la sección de donde sale cada valor; la columna Estado dice si ese valor resiste la cita que aparece al lado. Una marca pendiente no es un error: dice que ninguna fuente consultada declara el dato, y que no se rellenó por deducción.",
-        "Quedan tres campos sin fuente. Tenacidad, material tipo y fluorescencia no aparecen en el Handbook ni en Webmineral: se comprobó por búsqueda literal de los términos y no se deducen de la fórmula. Se muestran como pendientes en lugar de completarse.",
+        "Quedan tres campos sin fuente. Tenacidad, material tipo y fluorescencia no aparecen en el Handbook ni en Webmineral: no aparecen en las fuentes consultadas y no se deducen de la fórmula. Se muestran como pendientes en lugar de completarse.",
         "Ningún dato de esta ficha se tomó de Mindat, que es una base secundaria y no se usa como fuente de un valor.",
         "El Handbook y el IMA escriben la fórmula de forma distinta —Fe³⁺(SO₄)(OH)·5H₂O frente a Fe³⁺(SO₄)(OH)(H₂O)₂·3H₂O— y ambas describen la misma composición. Se cita la del IMA, que es la aprobada por la CNMNC, y se declara la variante en la nota del campo.",
         "El relato de esta especie está pendiente de redacción por el autor del libro. Esta ficha publica la información documentada y su versión directa; no se escribe un relato para llenar el espacio."

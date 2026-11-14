@@ -174,12 +174,17 @@
     }
 
     /* DEC-021 (2026-11-14) — la marca ámbar dice POR QUÉ, no sólo que falta.
-       El dueño: «cuando se dice pendiente, no debería decir que se buscó por
-       búsqueda literal y no se encontró». Tenía razón: «pendiente» a secas se lee
-       como «falta buscarlo», cuando la verdad es que ya se buscó y ninguna fuente
-       lo declara. El método está declarado en la transparencia de la pieza (párrafo
-       «se comprobó por búsqueda literal de los términos»), pero la etiqueta de la
-       fila —que es donde mira el lector— no lo traía. Dos textos, uno solo honesto.
+       El dueño: «cuando se dice pendiente, no debería decir que se buscó y no se
+       encontró». Tenía razón: «pendiente» a secas se lee como «falta buscarlo»,
+       cuando la verdad es que ya se buscó y ninguna fuente lo declara. El método
+       estaba declarado en la transparencia de la pieza, pero la etiqueta de la
+       fila —que es donde mira el lector— no lo traía.
+
+       DEC-022 (misma sesión) — el método NO se explica con vocabulario interno.
+       El dueño: «es completamente innecesario decir se comprobó por búsqueda
+       literal con jergas técnicas de programación». El museo habla para un
+       visitante, no para un programador: las notas y la transparencia dicen qué
+       NO declara la fuente, sin describir cómo se buscó.
 
        El texto se DERIVA aquí y no se escribe en las 36 filas del JSON: si se
        escribiera a mano, la próxima ficha lo repetiría mal. Misma lógica que
