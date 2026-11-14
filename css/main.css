@@ -479,12 +479,21 @@ html.foco-vivo body::after{ opacity:1; }
   display:inline-flex; align-items:center; gap:.35rem;
   font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
   font-weight:700; padding:.2rem .5rem; border-radius:5px;
-  white-space:nowrap;
+  /* DEC-021: la marca de pendiente dejó de ser una palabra («pendiente») y ahora
+     explica el método («pendiente · buscado sin resultado»): 285,8 px medidos con
+     nowrap dentro de una columna de 180 px → se salía 105 px de la fila a 1440.
+     Se permite el salto sólo cuando no cabe. El caso corto («sin fuente») sigue
+     en una línea porque le sobra sitio. */
+  white-space:normal;
+  text-wrap:balance;
+  max-width:100%;
+  line-height:1.35;
 }
 .marca-estado--ok{ background:rgba(47,191,113,.13); color:var(--acento-2); }
 .marca-estado--pend{ background:rgba(226,149,75,.15); color:var(--alerta); }
 .marca-estado::before{
   content:""; width:5px; height:5px; border-radius:50%; background:currentColor;
+  flex:none;
 }
 
 /* ============================================================= RELATO */
