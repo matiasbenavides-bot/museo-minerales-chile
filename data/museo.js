@@ -136,7 +136,7 @@ const MUSEO = {
         },
         {
           "campo": "Hábito",
-          "valor": "Cristales delgados hasta 10 cm, prismáticos [001], estriados paralelos a [001]; tabulares perpendiculares a {010} o pseudo-octaedricos con {110} y {011}. Fibroso, granular, compacto, masivo.",
+          "valor": "Cristales delgados hasta 10 cm, prismáticos [001], estriados paralelos a [001]; tabulares perpendiculares a {010} o pseudo-octaédricos con {110} y {011}. Fibroso, granular, compacto, masivo.",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Crystal Data",
           "estado": "verificado",
           "nota": "Descripción completa de la fuente, no resumida a una palabra.",
@@ -144,7 +144,7 @@ const MUSEO = {
         },
         {
           "campo": "Maclado",
-          "valor": "Plano {110}, plano de composicion {110}, raro; alrededor de [544] más común. Contacto y penetracion.",
+          "valor": "Plano {110}, plano de composición {110}, raro; alrededor de [544] más común. Contacto y penetración.",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Crystal Data, Twinning",
           "estado": "verificado",
           "nota": "Produce dobletes, tripletes y grupos complejos.",
@@ -224,7 +224,7 @@ const MUSEO = {
         },
         {
           "campo": "Clase óptica",
-          "valor": "Biaxica negativa (–)",
+          "valor": "Biaxial negativa (–)",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Optical Properties",
           "estado": "verificado",
           "nota": "—",
@@ -248,7 +248,7 @@ const MUSEO = {
         },
         {
           "campo": "Contexto geológico",
-          "valor": "Producto de oxidacion de otros minerales de cobre, especialmente en condiciones aridas y salinas; en depositos fumarolicos; producto de meteorizacion de sulfuros en depositos submarinos de fumadores negros; alteracion de objetos de bronce y cobre de la antiguedad.",
+          "valor": "Producto de oxidación de otros minerales de cobre, especialmente en condiciones áridas y salinas; en depósitos fumarólicos; producto de meteorización de sulfuros en depósitos submarinos de fumadores negros; alteración de objetos de bronce y cobre de la antigüedad.",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Occurrence",
           "estado": "verificado",
           "nota": "Texto completo de la fuente.",
@@ -272,7 +272,7 @@ const MUSEO = {
         },
         {
           "campo": "Localidades chilenas",
-          "valor": "Copiapo, Carrizal, Tierra Amarilla y Remolinos (Atacama); Collahurasi (Tarapaca); mineral de mena en Chuquicamata (Antofagasta).",
+          "valor": "Copiapo, Carrizal, Tierra Amarilla y Remolinos (Atacama); Collahuasi (Tarapacá); mineral de mena en Chuquicamata (Antofagasta).",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Distribution",
           "estado": "verificado",
           "nota": "Grafía de los topónimos tal como la da la fuente.",
@@ -283,7 +283,7 @@ const MUSEO = {
           "valor": "Harvard University, Cambridge, Massachusetts, USA, 110816",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Type Material",
           "estado": "verificado",
-          "nota": "Numero de catálogo del ejemplar tipo.",
+          "nota": "Número de catálogo del ejemplar tipo.",
           "basico": false
         },
         {
@@ -314,7 +314,7 @@ const MUSEO = {
           "valor": "Soluble en amoníaco fuerte; escasa o nula efervescencia con HCl",
           "fuente": "Collins (1871), A Handbook to the Mineralogy of Cornwall and Devon, capítulo descriptivo",
           "estado": "verificado",
-          "nota": "Texto de la fuente: «little or no effervescence with HCl… ready solubility in strong ammonia». Es el criterio que la separa de la malquita. El Handbook of Mineralogy no la declara.",
+          "nota": "Texto de la fuente: «little or no effervescence with HCl… ready solubility in strong ammonia». Es el criterio que la separa de la malaquita. El Handbook of Mineralogy no la declara.",
           "campo": "Solubilidad",
           "basico": false
         }
