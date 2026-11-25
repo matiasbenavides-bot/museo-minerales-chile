@@ -384,11 +384,12 @@ const MUSEO = {
         ]
       },
       "transparencia": [
-        "Fuentes primarias de esta ficha: el IMA Master List (2026-09), versión oficial de la CNMNC, y el Handbook of Mineralogy de la Mineralogical Society of America. Ambas fueron consultadas directamente para este documento.",
-        "La columna Fuente cita el documento y la sección de donde sale cada valor; la columna Estado dice si ese valor resiste la cita. Un dato puede tener fuente secundaria y seguir marcado pendiente.",
-        "Quedan dos frentes abiertos, que suman cuatro datos: el año y el autor del nombre, que sólo constan en Mindat y Mindat es fuente secundaria; y la fluorescencia y la solubilidad, que el Handbook no declara y no se deducen de la fórmula.",
-        "La localidad tipo exacta no es un dato que falte: la fuente declara que la especie fue descrita a partir de una ocurrencia no definida en el desierto de Atacama. Eso es lo que dice, y asi se cita.",
-        "Donde el relato usa imágenes —las entrañas, el ataque, las lágrimas—, esas imágenes son la voz del libro. La afirmación técnica es la de la ficha, y su fuente esta al lado."
+        "Fuentes primarias de esta ficha: el IMA Master List (2026-09), versión oficial de la CNMNC, y el Handbook of Mineralogy de la Mineralogical Society of America. La autoría y el año del nombre se resolvieron además con la obra original de Blumenbach (1802) y el Recueil de Gallitzin (1802), contrastados con Chester (1896). Todas fueron consultadas directamente para este documento.",
+        "La columna Fuente cita el documento y la sección de donde sale cada valor; la columna Estado dice si ese valor resiste la cita que aparece al lado. «Verificado» no es una fuente.",
+        "Esta especie no tiene ningún campo pendiente: los 36 tienen fuente declarada y estado verificado. La fluorescencia y la solubilidad, que la ficha declaró abiertas durante un tiempo, se cerraron con fuentes que sí las declaran: Webmineral, para la fluorescencia, y el manual de determinación de Collins (1871), para la solubilidad y su nula efervescencia con ácido clorhídrico.",
+        "El año y el autor del nombre se apoyan en dos testimonios que se contradicen, y no se eligió uno en silencio: Blumenbach afirma en su propio Handbuch (1802, p. 653) haber acuñado el nombre, mientras Chester (1896, p. 24) lo atribuye al príncipe Dmitri Alekséievich Golitsyn, que lo recogió ese mismo año en su Recueil. Se declaran ambas atribuciones porque las dos fuentes son primarias y ninguna es una cita de segunda mano. Hay además una discrepancia de fecha: Chester data la obra en 1801 y el registro bibliográfico y un tratado de nomenclatura de la época la datan en 1802.",
+        "La localidad tipo exacta no es un dato que falte: la fuente declara que la especie fue descrita a partir de una ocurrencia no definida en el desierto de Atacama. Eso es lo que dice, y así se cita.",
+        "Donde el relato usa imágenes —las entrañas, el ataque, las lágrimas—, esas imágenes son la voz del libro. La afirmación técnica es la de la ficha, y su fuente está al lado."
       ],
       "pendientes": []
     },
@@ -1097,6 +1098,371 @@ const MUSEO = {
         "Material tipo",
         "Fluorescencia"
       ]
+    }
+,
+    {
+      "id": "pickeringite",
+      "nombre": "PICKERINGITE",
+      "nombre_ima": "Pickeringite",
+      "formula": "MgAl2(SO4)4(H2O)17·5H2O",
+      "linea": "Localidad tipo Chile",
+      "acento": "#8fc6e8",
+      "encabezado": {
+        "estatus": "Grandfathered — anterior a la CNMNC, vigente",
+        "descripcion": "Descrita en 1844 (IMA Master List 2026-11)  ·  Nombrada en 1844 por Alonzo Austin Hayes, en honor de John Pickering  ·  Grandfathered",
+        "localidad": "Chile — la fuente no define una localidad tipo puntual; el material químico publicado procede de Quetena, al oeste de Calama (Antofagasta)"
+      },
+      "ficha": [
+        {
+          "campo": "Nombre IMA",
+          "valor": "Pickeringite",
+          "fuente": "IMA Master List 2026-11, p. 172, col. Name",
+          "estado": "verificado",
+          "nota": "Nombre vigente de la especie, aceptado por la CNMNC.",
+          "basico": true
+        },
+        {
+          "campo": "Nombre en español",
+          "valor": "Pickeringita",
+          "fuente": "Chester (1896), entrada PICKERINGITE; uso corriente en castellano",
+          "estado": "verificado",
+          "nota": "Misma especie que Pickeringite (IMA). No es nombre comercial ni varietal: es la forma castellanizada del mismo nombre.",
+          "basico": true
+        },
+        {
+          "campo": "Fórmula química",
+          "valor": "MgAl₂(SO₄)₄(H₂O)₁₇·5H₂O",
+          "fuente": "IMA Master List 2026-11, p. 172, col. Formula",
+          "estado": "verificado",
+          "nota": "Escritura oficial vigente. El Handbook of Mineralogy escribe «MgAl₂(SO₄)₄•22H₂O»: son las MISMAS 22 moléculas de agua repartidas de otra forma (17 de hidratación + 5 sueltas), no una composición distinta.",
+          "basico": true
+        },
+        {
+          "campo": "Estatus IMA",
+          "valor": "Grandfathered (G) — vigente",
+          "fuente": "IMA Master List 2026-11, p. 172, col. Status",
+          "estado": "verificado",
+          "nota": "G = grandfathered: especie anterior a la CNMNC, válida sin nueva votación.",
+          "basico": true
+        },
+        {
+          "campo": "Año de descripción original",
+          "valor": "1844",
+          "fuente": "IMA Master List 2026-11, p. 172, col. IMA No./Year",
+          "estado": "verificado",
+          "nota": "Misma fila que declara la referencia de la descripción original: American Journal of Science and Arts, 46 (1844), 360.",
+          "basico": true
+        },
+        {
+          "campo": "Año del nombre",
+          "valor": "1844",
+          "fuente": "Chester (1896), entrada PICKERINGITE: «A. A. Hayes, 1844, A.J.S., xlvi, 360»",
+          "estado": "verificado",
+          "nota": "En esta especie el año del nombre y el de la descripción COINCIDEN: Hayes la describió y la nombró en el mismo trabajo. No es el caso de la Atacamita (1797/1802) ni de la Copiapite (1833/1845).",
+          "basico": false
+        },
+        {
+          "campo": "Autor del nombre",
+          "valor": "Alonzo Austin Hayes (1818-1894), 1844",
+          "fuente": "Chester (1896), entrada PICKERINGITE; Handbook of Mineralogy, ficha Pickeringite, Name",
+          "estado": "verificado",
+          "nota": "Chester: «A. A. Hayes, 1844, A.J.S., xlvi, 360, in honor of John Pickering, President of the American Academy». El Handbook lo confirma: «To honor John Pickering (1777-1846), American lawyer and philologist of Boston, Massachusetts, USA». El homenajeado NO es el autor del nombre.",
+          "basico": false
+        },
+        {
+          "campo": "Localidad tipo (amplia)",
+          "valor": "Chile",
+          "fuente": "IMA Master List 2026-11, p. 172, col. Country",
+          "estado": "verificado",
+          "nota": "El IMA asigna Country = Chile. La descripción de Hayes (1844) se hizo sobre material chileno.",
+          "basico": true
+        },
+        {
+          "campo": "Localidad tipo (exacta)",
+          "valor": "No definida por la fuente",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Distribution",
+          "estado": "verificado",
+          "nota": "Ni el IMA ni el Handbook ni Chester fijan una localidad tipo puntual. El Handbook lista Chile dentro de una distribución amplia («Widespread, so only a few localities are listed») y no declara cuál fue el material tipo. Que la fuente no lo defina ES el dato: no se deduce.",
+          "basico": false
+        },
+        {
+          "campo": "Sistema cristalino",
+          "valor": "Monoclínico",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Crystal Data",
+          "estado": "verificado",
+          "nota": "Clase esfenoidal. Coherente con su grupo puntual 2 y su grupo espacial P2₁/c. Ver la nota de «Grupo puntual»: aquí hay una discrepancia entre fuentes que se declara y no se resuelve en silencio.",
+          "basico": true
+        },
+        {
+          "campo": "Grupo puntual",
+          "valor": "2 (esfenoidal)",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Crystal Data, Point Group",
+          "estado": "verificado",
+          "nota": "El Handbook declara «Point Group: 2». Webmineral declara «Monoclinic - Sphenoidal, H-M Symbol (2), Space Group: P 2». El símbolo 2 coincide en las dos, que es lo que fija el grupo puntual; lo que difiere es el grupo espacial (ver ese campo).",
+          "basico": false
+        },
+        {
+          "campo": "Grupo espacial",
+          "valor": "P2₁/c (Handbook) · P2 (Webmineral)",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Cell Data, Space Group; Webmineral, ficha Pickeringite, campo Space Group",
+          "estado": "verificado",
+          "nota": "DISCREPANCIA DECLARADA, no resuelta por criterio. Las dos fuentes no concuerdan y se citan ambas. Se toma P2₁/c como valor principal porque es el que trae la referencia estructural dedicada: Quartieri, Triscari y Viani (2000) determinaron la estructura por difracción de polvo con Rietveld y escriben literalmente «The space group has been confirmed to be P2₁/c». La celda que publica el Handbook es esa misma determinación.",
+          "basico": false
+        },
+        {
+          "campo": "Parámetros de celda",
+          "valor": "a 6,1844(2) Å · b 24,2715(9) Å · c 21,2265(7) Å · β 100,326(4)° · Z = 4",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Cell Data",
+          "estado": "verificado",
+          "nota": "Incertidumbres entre paréntesis, tal como las declara la fuente. ⚠️ Webmineral publica otra celda (a 20,8 · b 24,2 · c 6,18 · β 95°): es la tarjeta PDF 12-299 antigua, y el propio trabajo de 2000 señala que esas diferencias obligan a redefinirla. Se usa la del refinamiento estructural.",
+          "basico": false
+        },
+        {
+          "campo": "Hábito",
+          "valor": "Cristales aciculares a capilares, con muchas formas medidas aunque los cristales terminados son muy raros; en agregados radiales o afieltrados; típicamente como incrustaciones y eflorescencias.",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Crystal Data",
+          "estado": "verificado",
+          "nota": "Descripción completa de la fuente, no resumida. Webmineral lo describe con las mismas palabras clave: «Encrustations», «Fibrous», «Reniform» (arriñonado).",
+          "basico": true
+        },
+        {
+          "campo": "Maclado",
+          "valor": "No declarada por la fuente",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Crystal Data",
+          "estado": "verificado",
+          "nota": "El Handbook no declara maclado en esta especie, y Webmineral tampoco lo menciona. No se deduce de la estructura.",
+          "basico": false
+        },
+        {
+          "campo": "Dureza (Mohs)",
+          "valor": "1,5 – 2",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Physical Properties (Hardness = 1,5); Webmineral, campo Hardness",
+          "estado": "verificado",
+          "nota": "El Handbook da 1,5; Webmineral da el rango 1,5-2 («Talc-Gypsum»). Se declaran los dos. En la mano: se raya con la uña sin esfuerzo, y más fácil que el yeso, que está en 2.",
+          "basico": true
+        },
+        {
+          "campo": "Densidad",
+          "valor": "1,73 – 1,79 g/cm³ (medida) · 1,84 (calculada)",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Physical Properties (D(meas.) = 1,73-1,79; D(calc.) = 1,84)",
+          "estado": "verificado",
+          "nota": "Es una de las densidades más bajas entre los minerales: pesa menos que el cuarzo y casi como el yeso. Webmineral da 1,8-1,85 con promedio 1,82, dentro del mismo orden.",
+          "basico": true
+        },
+        {
+          "campo": "Exfoliación",
+          "valor": "Pobre en {010}",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Physical Properties (Cleavage: Poor on {010}); Webmineral, campo Cleavage («{010} Indistinct»)",
+          "estado": "verificado",
+          "nota": "Las dos fuentes coinciden en el plano {010} y en que es pobre/indistinta: no hay planos en los que la pieza se parta limpia.",
+          "basico": false
+        },
+        {
+          "campo": "Fractura",
+          "valor": "Concoidea",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Physical Properties (Fracture: Conchoidal)",
+          "estado": "verificado",
+          "nota": "Superficies curvas de rotura, como el vidrio. ⚠️ Webmineral declara «Uneven» (irregular): se conserva la del Handbook y se declara la otra. En una fibra capilar las dos cosas ocurren según cómo se rompa.",
+          "basico": false
+        },
+        {
+          "campo": "Tenacidad",
+          "valor": "Frágil",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Physical Properties (Tenacity: Brittle)",
+          "estado": "verificado",
+          "nota": "Se quiebra o pulveriza antes que deformarse. Coherente con un sulfato hidratado de fibras capilares, que además se deshidrata al aire.",
+          "basico": false
+        },
+        {
+          "campo": "Color",
+          "valor": "Incoloro, blanco; puede tomar tonos pálidos de amarillo, verde o rojo por impurezas metálicas; incoloro a la luz transmitida.",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Optical Properties",
+          "estado": "verificado",
+          "nota": "El color propio de la especie es el blanco: los matices vienen de lo que trae mezclado, no de lo que la define. Webmineral lista «Colorless, Yellowish white, Reddish white, Greenish white» — el mismo abanico.",
+          "basico": false
+        },
+        {
+          "campo": "Raya",
+          "valor": "Blanca",
+          "fuente": "Webmineral, ficha Pickeringite, campo Streak; Handbook of Mineralogy, Physical Properties (Soluble in H2O, astringent taste)",
+          "estado": "verificado",
+          "nota": "El Handbook no declara la raya; Webmineral sí: «white». Coherente con un mineral incoloro.",
+          "basico": false
+        },
+        {
+          "campo": "Brillo",
+          "valor": "Vítreo",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Optical Properties (Luster: Vitreous); Webmineral, campo Luster («Silky»)",
+          "estado": "verificado",
+          "nota": "Las dos fuentes coinciden en la familia, con un matiz: el Handbook dice vítreo y Webmineral «sedoso», que es cómo brilla un agregado de fibras. Ambos se declaran; en masa afieltrada el brillo se lee sedoso.",
+          "basico": true
+        },
+        {
+          "campo": "Transparencia",
+          "valor": "Semitransparente",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Optical Properties",
+          "estado": "verificado",
+          "nota": "Webmineral lo describe como «Transparent to translucent». Deja pasar la luz sin dejar ver una imagen nítida a través.",
+          "basico": false
+        },
+        {
+          "campo": "Clase óptica",
+          "valor": "Biaxial negativa (–)",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Optical Properties (Biaxial (–)); Webmineral, campo Optical Data (Biaxial (-))",
+          "estado": "verificado",
+          "nota": "Las dos fuentes coinciden.",
+          "basico": false
+        },
+        {
+          "campo": "Índices de refracción",
+          "valor": "α 1,475 · β 1,480 · γ 1,483",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Optical Properties",
+          "estado": "verificado",
+          "nota": "Índices muy bajos y muy próximos entre sí: la birrefringencia es de sólo 0,008, casi indetectable en un grano suelto. Webmineral publica 1,476 / 1,480 / 1,483, dentro del redondeo de la fuente.",
+          "basico": false
+        },
+        {
+          "campo": "Pleocroísmo",
+          "valor": "No declarado por la fuente",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Optical Properties",
+          "estado": "verificado",
+          "nota": "Ni el Handbook ni Webmineral declaran pleocroísmo, y con índices tan próximos no sería observable. No se deduce: se declara que no está.",
+          "basico": false
+        },
+        {
+          "campo": "Contexto geológico",
+          "valor": "Mineral secundario común formado por la alteración de pirita en rocas aluminosas o en capas de carbón; en la zona oxidada de depósitos hidrotermales piríticos, típicamente en regiones áridas y típicamente después de la minería; producto fumarólico; se forma también en cuevas.",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Occurrence",
+          "estado": "verificado",
+          "nota": "Texto completo de la fuente, no resumido. La mención a «típicamente después de la minería» explica por qué abunda en los distritos del norte de Chile: es un mineral que la actividad minera favorece.",
+          "basico": true
+        },
+        {
+          "campo": "Asociaciones",
+          "valor": "Kalinita, alunógeno, epsomita, melanterita, copiapite, yeso",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Association",
+          "estado": "verificado",
+          "nota": "Lista en forma IMA castellanizada, con el mismo criterio en todos los ítems. La copiapite de la lista es la misma especie de la ficha 2 de este libro: conviven en las mismas eflorescencias.",
+          "basico": false
+        },
+        {
+          "campo": "Polimorfos y series",
+          "valor": "Forma una serie con halotrichita. Pertenece al grupo de la halotrichita.",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Polymorphism & Series y Mineral Group",
+          "estado": "verificado",
+          "nota": "La halotrichita es el término con hierro de la misma serie: donde la pickeringita lleva magnesio, aquélla lleva hierro ferroso.",
+          "basico": false
+        },
+        {
+          "campo": "Localidades chilenas",
+          "valor": "Cerros Pintados, 80 km al sureste de Iquique (Tarapacá), abundante; Quetena, al oeste de Calama, y Chuquicamata (Antofagasta).",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Distribution; y los datos químicos de la misma ficha (análisis n.º 1 = Quetena, Chile)",
+          "estado": "verificado",
+          "nota": "Grafía de los topónimos tal como la da la fuente. El Handbook es explícito: «In Chile, abundant from Cerros Pintados». El análisis químico n.º 1 de la ficha se hizo sobre material de Quetena, en Chile: la fuente no sólo la menciona, la midió.",
+          "basico": false
+        },
+        {
+          "campo": "Material tipo",
+          "valor": "No declarada por la fuente",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite (no incluye campo Type Material)",
+          "estado": "verificado",
+          "nota": "El Handbook no publica tipo material para esta especie y Chester (1896), que es de 1844, no lo registra. No se deduce ni se supone una institución.",
+          "basico": false
+        },
+        {
+          "campo": "Referencia de la descripción original",
+          "valor": "Hayes, A. A. (1844). American Journal of Science and Arts, 46, 360.",
+          "fuente": "IMA Master List 2026-11, p. 172, col. Reference",
+          "estado": "verificado",
+          "nota": "Es el mismo trabajo que Chester (1896) cita para el nombre, con la misma página: descripción y nombre en una sola publicación.",
+          "basico": false
+        },
+        {
+          "campo": "Referencia estructural",
+          "valor": "Quartieri, S., Triscari, M. y Viani, A. (2000). Crystal structure of the hydrated sulphate pickeringite MgAl2(SO4)4·22H2O: X-ray powder diffraction study. European Journal of Mineralogy, 12, 1131-1138. DOI 10.1127/ejm/12/6/1131",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, References (2)",
+          "estado": "verificado",
+          "nota": "Determinación por difracción de polvo con método de Rietveld sobre material de Roccalumera (Mesina, Italia). Es la que confirma P2₁/c.",
+          "basico": false
+        },
+        {
+          "campo": "Fluorescencia",
+          "valor": "No fluorescente",
+          "fuente": "Webmineral, ficha Pickeringite, campo Luminescence",
+          "estado": "verificado",
+          "nota": "Webmineral declara literalmente «Non-fluorescent». Un dato negativo con fuente es un dato, no un hueco.",
+          "basico": false
+        },
+        {
+          "campo": "Solubilidad",
+          "valor": "Soluble en agua; sabor astringente.",
+          "fuente": "Handbook of Mineralogy, ficha Pickeringite, Physical Properties («Soluble in H2O, astringent taste»)",
+          "estado": "verificado",
+          "nota": "Declarado por el Handbook, que rara vez da solubilidad: aquí la incluye porque es un sulfato hidratado muy soluble, de los que aparecen justamente al secarse una solución. Es también lo que la vuelve inestable al aire.",
+          "basico": false
+        }
+      ],
+      "relato": null,
+      "directa": {
+        "intro": "El mismo proceso, sin metáfora. Redacción propia a partir de las fuentes citadas al final de esta sección.",
+        "bloques": [
+          {
+            "texto": "La pickeringita no se extrae: se recoge. Aparece donde el sulfuro se deshace, y suele hacerlo donde ya había trabajo humano. El Handbook la describe como mineral secundario común por alteración de pirita en rocas aluminosas o en capas de carbón, en regiones áridas y típicamente después de la minería: donde hubo laboreo quedó pirita expuesta al aire.",
+            "respaldo": "Handbook of Mineralogy, Occurrence"
+          },
+          {
+            "texto": "Es un sulfato hidratado de magnesio y aluminio: MgAl₂(SO₄)₄(H₂O)₁₇·5H₂O. El IMA cuenta veintidós moléculas de agua —diecisiete de hidratación y cinco sueltas—; el Handbook escribe la misma composición de un tirón, «•22H₂O». Esa carga de agua la vuelve muy soluble y la deja inestable cuando el aire es seco.",
+            "respaldo": "IMA Master List 2026-11, p. 172, col. Formula; Handbook, Physical Properties"
+          },
+          {
+            "texto": "En la mano se reconoce por lo contrario de una piedra: no pesa y no raya. Densidad de 1,73 a 1,79 g/cm³, bajo el cuarzo; dureza 1,5, de modo que la uña la marca. Son fibras sedosas, blancas o incoloras, con matices cuando hay impurezas metálicas. El Handbook añade un dato que rara vez da: soluble en agua y de sabor astringente.",
+            "respaldo": "Handbook, Physical Properties y Optical Properties; Webmineral, Luster"
+          },
+          {
+            "texto": "Su estructura se determinó por difracción de polvo con método de Rietveld sobre material de Roccalumera (Mesina). Quartieri, Triscari y Viani (2000) confirmaron el grupo espacial P2₁/c, y advirtieron que la celda no coincide con la tarjeta PDF 12-299 que circulaba entonces: por eso aquí se cita el refinamiento y no la tarjeta.",
+            "respaldo": "Quartieri, Triscari y Viani (2000), Eur. J. Mineral., 12, 1131-1138"
+          },
+          {
+            "texto": "En Chile el Handbook no la trata como rareza: la dice abundante en Cerros Pintados, ochenta kilómetros al sureste de Iquique, y la registra en Quetena y Chuquicamata. Más aún: el análisis químico que publica la ficha se hizo sobre material de Quetena. La fuente midió una muestra chilena para describir la especie.",
+            "respaldo": "Handbook, Distribution y Chemistry"
+          },
+          {
+            "texto": "Su nombre tiene fecha y destinatario: Alonzo Austin Hayes la describió y la nombró en el mismo trabajo de 1844, en el American Journal of Science and Arts, en honor de John Pickering, abogado y filólogo de Boston que presidía la American Academy. Aquí, a diferencia de la atacamita y la copiapite, descripción y nombre son el mismo año.",
+            "respaldo": "Chester (1896), entrada PICKERINGITE; Handbook, Name; IMA, col. Reference"
+          }
+        ],
+        "cita": {
+          "en": "«A common secondary mineral formed by alteration of pyrite in aluminous rocks or in coal seams; in the oxidized zone of pyritic hydrothermal mineral deposits, typically in arid regions, typically post-mining; a fumarolic product; formed in caves.»",
+          "es": "«Mineral secundario común formado por la alteración de pirita en rocas aluminosas o en capas de carbón; en la zona oxidada de depósitos hidrotermales piríticos, típicamente en regiones áridas, típicamente después de la minería; un producto fumarólico; se forma en cuevas.»"
+        },
+        "fuentes": [
+          "Handbook of Mineralogy (Mineralogical Society of America), ficha Pickeringite, ©2001-2005 Mineral Data Publishing, versión 1. Campos citados: Crystal Data, Physical Properties, Optical Properties, Cell Data, Occurrence, Association, Polymorphism & Series, Distribution, Name y References.",
+          "IMA Master List of Mineral Names and Classification (versión 2026-11), p. 172. Commission on New Mineral Nomenclature and Classification (CNMNC), International Mineralogical Association.",
+          "Chester, A. H. (1896). A Dictionary of the Names of Minerals, Including their History and Etymology. Wiley. Entrada PICKERINGITE.",
+          "Quartieri, S., Triscari, M. y Viani, A. (2000). Crystal structure of the hydrated sulphate pickeringite MgAl2(SO4)4·22H2O: X-ray powder diffraction study. European Journal of Mineralogy, 12, 1131-1138. DOI: 10.1127/ejm/12/6/1131",
+          "Webmineral. Ficha Pickeringite. Campos citados: Streak, Fracture, Hardness, Luster, Luminescence, Space Group y Name Origin.",
+          "La versión directa expone los datos con redacción propia a partir de las fuentes citadas; no reproduce el texto de ninguna de ellas salvo en la cita textual, que va entre comillas y con su traducción."
+        ],
+        "transparencia": [
+          "Fuentes primarias de esta ficha: el IMA Master List (2026-11), versión oficial de la CNMNC, y el Handbook of Mineralogy. Chester (1896) se usó para el autor y el año del nombre; Webmineral, para raya, fractura, dureza, brillo y fluorescencia; y el trabajo de Quartieri, Triscari y Viani (2000), para la estructura.",
+          "La columna Fuente cita el documento y la sección de donde sale cada valor; la columna Estado dice si ese valor resiste la cita que aparece al lado. «Verificado» no es una fuente.",
+          "Hay dos discrepancias entre fuentes y ninguna se resolvió en silencio. El grupo espacial: el Handbook da P2₁/c y Webmineral da P2. Se toma P2₁/c porque la determinación estructural dedicada —Quartieri et al., 2000— lo confirma por refinamiento de Rietveld, y Webmineral arrastra la celda antigua. La fractura: el Handbook dice concoidea y Webmineral dice irregular. Se conserva la del Handbook y la otra queda declarada.",
+          "La celda del Handbook y la de Webmineral no coinciden, y eso no es un error de esta ficha: el propio trabajo de 2000 señala que la tarjeta PDF 12-299 usada hasta entonces tiene parámetros y posiciones de reflexión muy distintos, y propone redefinirla. Se cita la celda del refinamiento.",
+          "Tres campos declaran explícitamente que la fuente no los trae: maclado, material tipo y pleocroísmo. No es deuda pendiente de buscar: se comprobó que ni el Handbook ni Webmineral los declaran, y no se deducen de la estructura ni de la química.",
+          "Ningún dato de esta ficha se tomó de Mindat, que es una base secundaria y en este proyecto no se usa como fuente primaria.",
+          "El relato de esta especie está pendiente de redacción por el autor del libro. Esta ficha publica la ficha técnica y la versión directa, que no dependen de su voz."
+        ]
+      },
+      "transparencia": [
+        "Fuentes primarias de esta ficha: el IMA Master List (2026-11), versión oficial de la CNMNC, y el Handbook of Mineralogy. Chester (1896) se usó para el autor y el año del nombre; Webmineral, para raya, fractura, dureza, brillo y fluorescencia; y el trabajo de Quartieri, Triscari y Viani (2000), para la estructura.",
+        "La columna Fuente cita el documento y la sección de donde sale cada valor; la columna Estado dice si ese valor resiste la cita que aparece al lado. «Verificado» no es una fuente.",
+        "Hay dos discrepancias entre fuentes y ninguna se resolvió en silencio. El grupo espacial: el Handbook da P2₁/c y Webmineral da P2. Se toma P2₁/c porque la determinación estructural dedicada —Quartieri et al., 2000— lo confirma por refinamiento de Rietveld, y Webmineral arrastra la celda antigua. La fractura: el Handbook dice concoidea y Webmineral dice irregular. Se conserva la del Handbook y la otra queda declarada.",
+        "La celda del Handbook y la de Webmineral no coinciden, y eso no es un error de esta ficha: el propio trabajo de 2000 señala que la tarjeta PDF 12-299 usada hasta entonces tiene parámetros y posiciones de reflexión muy distintos, y propone redefinirla. Se cita la celda del refinamiento.",
+        "Tres campos declaran explícitamente que la fuente no los trae: maclado, material tipo y pleocroísmo. No es deuda pendiente de buscar: se comprobó que ni el Handbook ni Webmineral los declaran, y no se deducen de la estructura ni de la química.",
+        "Ningún dato de esta ficha se tomó de Mindat, que es una base secundaria y en este proyecto no se usa como fuente primaria.",
+        "El relato de esta especie está pendiente de redacción por el autor del libro. Esta ficha publica la ficha técnica y la versión directa, que no dependen de su voz."
+      ],
+      "pendientes": []
     }
   ]
 };

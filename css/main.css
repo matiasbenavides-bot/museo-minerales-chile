@@ -485,11 +485,14 @@ html.foco-vivo body::after{ opacity:1; }
 }
 .fila.is-pendiente .fila__valor{ color:var(--alerta); }
 
-/* llamada a la nota al pie: número pequeño pegado al rótulo */
+/* llamada a la nota al pie: número pequeño pegado al rótulo.
+   DEC-029: el número es el MISMO del margen (el del campo), así que se lee como
+   «ver la nota del campo 27», no como una segunda numeración paralela. */
 .fila__ref{ font-size:.62rem; margin-left:.3rem; vertical-align:super; }
 .fila__ref a{
   font-family:var(--mono); color:var(--acento-2);
   border-bottom:1px dotted currentColor; padding:0 .12rem;
+  text-decoration:none;
 }
 
 /* La marca de estado va DEBAJO de la fuente, como leyenda de la columna: el

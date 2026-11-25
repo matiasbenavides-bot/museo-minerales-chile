@@ -348,18 +348,33 @@
 
   /* La nota larga sale de la fila y se va al PIE de la pieza como nota numerada.
      Antes vivía como 4.ª columna de la fila y rompía la regla en 6 de las 36, con
-     hasta 346 caracteres metidos entre el dato y el siguiente dato. Ahora cada
-     llamada devuelve el número que le toca, y el texto se pinta abajo, donde el
-     visitante que quiere el detalle lo encuentra y el que no, sigue leyendo. */
+     hasta 346 caracteres metidos entre el dato y el siguiente dato.
+
+     DEC-029 (2026-11-25) — el número de la nota ES el número del campo.
+     Antes se numeraban 1…31 por orden de aparición, pero sólo 31 de los 36
+     campos tienen nota, así que el superíndice dejaba de coincidir con el número
+     del margen: la nota «27» hablaba de un campo rotulado 32. El lector veía dos
+     numeraciones distintas para la misma fila. Ahora la nota del campo 32 se
+     llama 32, y las cinco filas sin nota simplemente no tienen superíndice. */
   var notas = [];                    /* {n, campo, texto} — se llena al pintar */
-  var notasPorTexto = {};            /* evita numerar dos veces la misma nota */
-  function notaRef(f) {
+  var notasPorNumero = {};           /* evita repetir la misma nota en un campo */
+  function notaRef(f, nCampo) {
     if (!f.nota || f.nota === '—') return 0;
-    if (notasPorTexto[f.nota]) return notasPorTexto[f.nota];
-    var n = notas.length + 1;
-    notas.push({ n: n, campo: f.campo, texto: f.nota });
-    notasPorTexto[f.nota] = n;
-    return n;
+    /* En la sala (sin numeración de campos) la nota no se referencia: la card no
+       lleva notas. Se devuelve 0 para no inventar un número que no existe. */
+    if (!nCampo) return 0;
+    if (notasPorNumero[nCampo]) return notasPorNumero[nCampo];
+    notas.push({ n: nCampo, campo: f.campo, texto: f.nota });
+    notasPorNumero[nCampo] = nCampo;
+    return nCampo;
+  }
+
+  /* El número de campo SIEMPRE con dos dígitos («01»…«36»). Vive en una sola
+     función porque se pinta en TRES sitios —el margen de la fila, el superíndice
+     de la nota y la cabecera de la nota al pie— y si uno se olvida del relleno,
+     el mismo campo aparece como «01» arriba y «1» abajo. Medido: pasaba. */
+  function num2(n) {
+    return String(n).padStart(2, '0');
   }
 
   function filaHTML(f, nCampo) {
@@ -395,13 +410,13 @@
       ? '<span class="marca-estado marca-estado--pend">sin fuente</span>'
       : (pend ? '<span class="marca-estado marca-estado--pend">' + esc(f.estado) + ' · buscado sin resultado</span>' : '');
 
-    var ref = notaRef(f);
+    var ref = notaRef(f, nCampo);
 
     return '' +
       '<div class="' + clase + '" data-estado="' + esc(f.estado) + '">' +
-        '<div class="fila__n" aria-hidden="true">' + (nCampo ? String(nCampo).padStart(2, '0') : '') + '</div>' +
+        '<div class="fila__n" aria-hidden="true">' + (nCampo ? num2(nCampo) : '') + '</div>' +
         '<div class="fila__campo">' + esc(f.campo) +
-          (ref ? '<sup class="fila__ref"><a href="#notas">' + ref + '</a></sup>' : '') + '</div>' +
+          (ref ? '<sup class="fila__ref"><a href="#nota-' + num2(ref) + '">' + num2(ref) + '</a></sup>' : '') + '</div>' +
         '<div class="fila__valor">' + esc(f.valor) + '</div>' +
         '<div class="fila__fuente">' + esc(f.fuente || 'SIN FUENTE') + marca + '</div>' +
       '</div>';
@@ -444,7 +459,7 @@
   if (notasCaja) {
     if (notas.length) {
       notasCaja.innerHTML = notas.map(function (o) {
-        return '<li id="nota-' + o.n + '"><span class="nota__n">' + o.n + '</span>' +
+        return '<li id="nota-' + num2(o.n) + '"><span class="nota__n">' + num2(o.n) + '</span>' +
                '<span class="nota__txt"><strong>' + esc(o.campo) + '.</strong> ' + esc(o.texto) + '</span></li>';
       }).join('');
     } else {

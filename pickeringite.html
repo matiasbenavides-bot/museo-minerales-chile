@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pickeringite — Museo de Minerales Descubiertos en Chile</title>
+<meta name="description" content="La pickeringite: ficha completa. 36 campos con fuente y estado por dato, versión directa del proceso, cita textual, fuentes y nota de transparencia.">
+<meta name="theme-color" content="#07080a">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body class="pagina-archivo" data-vista="archivo">
+
+<!-- ============================================================= INTRO -->
+<!-- Pantalla negra con el nombre del museo, ~2,5 s. Saltable con clic, tecla o
+     rueda. No se repite en la misma sesión. Si el JS falla, se retira sola
+     igual porque lleva un <noscript> que la oculta. -->
+<div id="intro" role="status" aria-label="Cargando el museo">
+  <div class="intro__in">
+    <div class="intro__sigilo" aria-hidden="true">
+      <svg viewBox="0 0 100 100">
+        <polygon points="50,4 88,26 88,74 50,96 12,74 12,26"
+                 fill="none" stroke="currentColor" stroke-width="3.5"/>
+        <polygon points="50,22 74,36 74,64 50,78 26,64 26,36"
+                 fill="currentColor" opacity=".28"/>
+      </svg>
+    </div>
+    <p class="intro__nombre">Museo de Minerales<br>Descubiertos en Chile</p>
+    <p class="intro__sub">Serie Patrimonio Mineral</p>
+    <div class="intro__barra"><i></i></div>
+    <p class="intro__pista">Toca para entrar</p>
+  </div>
+</div>
+<noscript><style>#intro{display:none !important}</style></noscript>
+
+<a class="saltar" href="#ficha">Ir a la ficha</a>
+
+<!-- ============================================================ NAV -->
+<header class="barra">
+  <div class="barra__in">
+    <a class="marca" href="index.html">
+      <!-- DEC-017: el sigilo es el LOGO del museo (imagen IA, fondo quitado).
+           El SVG queda como respaldo: si el PNG no carga, se ve el hexágono de
+           siempre en vez de un hueco. onerror lo cambia en caliente. -->
+      <span class="marca__sigilo" aria-hidden="true">
+        <img class="marca__logo" src="assets/img/logo-128.png"
+             alt="" width="34" height="34" decoding="async">
+        <svg viewBox="0 0 100 100" width="30" height="30" aria-hidden="true">
+          <polygon points="50,4 88,26 88,74 50,96 12,74 12,26"
+                   fill="none" stroke="currentColor" stroke-width="4"/>
+          <polygon points="50,22 74,36 74,64 50,78 26,64 26,36"
+                   fill="currentColor" opacity=".22"/>
+        </svg>
+      </span>
+      <span class="marca__txt">
+        <strong>Museo de Minerales</strong>
+        <em>Descubiertos en Chile</em>
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Secciones del archivo">
+      <a href="index.html">← Volver a la sala</a>
+      <!-- DEC-026: la lista de piezas salió de la barra. Los minerales se
+           buscan en la sala (index.html), no en el menú. -->
+      <a href="#ficha">Ficha técnica</a>
+      <a href="#directa">Versión directa</a>
+      <a href="#fuentes">Fuentes</a>
+      <a href="#transparencia">Transparencia</a>
+    </nav>
+
+    <button class="navbtn" id="navbtn" aria-expanded="false" aria-controls="nav">
+      <span></span><span></span><span></span>
+      <span class="oculto">Menú</span>
+    </button>
+  </div>
+  <div class="barra__prog"><i id="prog"></i></div>
+</header>
+
+<main>
+
+  <!-- ====================================================== ENCABEZADO -->
+  <section class="archivo-cab">
+    <div class="archivo-cab__in">
+      <a class="volver" href="index.html" data-rev="suave">← Volver a la sala</a>
+      <p class="eyebrow" data-rev="suave"><span class="punto"></span> Pickeringite · ficha</p>
+
+      <header class="pieza" id="piezaCabecera" data-rev><!-- js --></header>
+
+      <p class="archivo-cab__aviso" data-rev="suave">
+        Esta página es <strong>la pieza completa</strong>: lo esencial arriba, el relato del
+        libro y después el archivo de los 36 campos, con la fuente y el estado de cada dato.
+        <a href="index.html">Volver a la sala</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================================================== ETAPA 01 -->
+  <!-- DEC-023 (2026-11-25): aquí vivía «Lo esencial de la pieza», una segunda
+       tabla con 12 de los 36 campos que se leen cien píxeles más abajo. Se
+       retiró por duplicado, no por falta de espacio: el mismo dato en dos
+       sitios hace que el visitante no sepa cuál es la ficha de verdad.
+       Los 12 campos siguen marcados `basico:true` en data/museo.js (contrato
+       C6) y los sigue pintando la sala; la pieza ya no los repite. -->
+  <section class="bloque bloque--relato" id="relato" data-orden data-etapa="El relato">
+    <div class="bloque__in bloque__in--angosto" data-rev>
+      <div class="relato" id="relatoCaja"><!-- js --></div>
+    </div>
+  </section>
+
+  <!-- ======================================================== ETAPA 02 -->
+  <section class="bloque" id="ficha" data-orden data-etapa="Ficha técnica">
+    <div class="bloque__in">
+      <div class="vitrina" id="vitrinaFicha" data-rev>
+        <div class="vitrina__barra">
+          <h3 class="vitrina__h3">Ficha técnica de la especie — los 36 campos</h3>
+          <p class="vitrina__nota">
+            Cada dato declara su fuente y su estado por separado.
+            <strong>«Verificado» no es una fuente</strong>: dice si el dato resiste la cita que
+            aparece al lado.
+          </p>
+          <div class="filtro" id="filtro">
+            <button class="chip is-activo" data-f="todos">Todos los campos <b>0</b></button>
+          </div>
+        </div>
+
+        <div class="tabla" id="tablaFicha" role="table" aria-label="Ficha técnica completa de la especie">
+          <!-- js: 36 campos en 4 familias -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================== NOTAS -->
+  <!-- DEC-023: la nota larga de cada campo ya no va dentro de la fila (rompía la
+       regla y metía hasta 346 caracteres entre un dato y el siguiente). Baja
+       aquí, numerada, y cada fila que la tiene muestra su número al lado del
+       rótulo. Si una ficha no tiene notas, la sección se oculta sola. -->
+  <section class="bloque bloque--notas" id="notas" data-orden data-etapa="Notas">
+    <div class="bloque__in bloque__in--angosto" data-rev>
+      <h2 class="bloque__h2">Notas de la ficha</h2>
+      <p class="bloque__intro">Los datos que necesitan una explicación la tienen aquí, para que la ficha se lea de corrido. <strong>El número de cada nota es el número de su campo</strong> en la ficha de arriba.</p>
+      <ol class="notas" id="notasCaja"><!-- js --></ol>
+    </div>
+  </section>
+
+  <!-- ======================================================== ETAPA 03 -->
+  <section class="bloque" id="directa" data-orden data-etapa="Versión directa">
+    <div class="bloque__in bloque__in--angosto" data-rev>
+      <h2 class="bloque__h2" id="directaIntro"><!-- js --></h2>
+      <div class="directa" id="directaCaja"><!-- js --></div>
+
+      <figure class="cita" id="citaCaja"><!-- js --></figure>
+    </div>
+  </section>
+
+  <!-- ======================================================== ETAPA 04 -->
+  <section class="bloque" id="fuentes" data-orden data-etapa="Fuentes">
+    <div class="bloque__in bloque__in--angosto" data-rev>
+      <h2 class="bloque__h2">Fuentes de esta sección</h2>
+      <ol class="fuentes" id="fuentesCaja"><!-- js --></ol>
+    </div>
+  </section>
+
+  <!-- ======================================================== ETAPA 05 -->
+  <section class="bloque" id="transparencia" data-orden data-etapa="Transparencia">
+    <div class="bloque__in bloque__in--angosto" data-rev>
+      <h2 class="bloque__h2">Nota de transparencia</h2>
+      <div class="transp" id="transpCaja"><!-- js --></div>
+    </div>
+  </section>
+
+
+  <!-- ================================================ SIGUIENTE MINERAL -->
+  <!-- DEC-026 — al terminar de leer una pieza aparece la siguiente. La card la
+       arma js/museo.js con los MISMOS datos que la sala (nombre, fórmula,
+       color, dureza, cristal), así que no hay texto que mantener en dos sitios.
+       El orden es el del índice del libro (DEC-009). -->
+  <section class="bloque bloque--siguiente" id="siguiente">
+    <div class="bloque__in" data-rev>
+      <p class="eyebrow"><span class="punto"></span> Sigue en la sala</p>
+      <h2 class="bloque__h2 bloque__h2--siguiente">Siguiente mineral</h2>
+      <ul class="sala sala--una" id="siguienteCaja"><!-- js --></ul>
+      <p class="siguiente__fin">
+        Con esta son <strong>3</strong> las piezas expuestas. El museo crece al ritmo del libro:
+        <a href="index.html#sala">volver a la sala</a>.
+      </p>
+    </div>
+  </section>
+
+
+
+</main>
+
+<footer class="pie">
+  <div class="pie__in">
+    <div class="pie__marca">
+      <strong>Museo de Minerales Descubiertos en Chile</strong>
+      <span>Serie Patrimonio Mineral de Chile · Volumen I</span>
+    </div>
+    <nav class="pie__nav" aria-label="Pie">
+      <a href="index.html">La sala</a>
+      <a href="#ficha">Ficha técnica</a>
+      <a href="#fuentes">Fuentes</a>
+      <a href="#transparencia">Transparencia</a>
+    </nav>
+    <!-- DEC-015 (2026-11-08): nota del pie sin la aclaración de que no se vende.
+         El sitio no tiene precio ni carrito y la portada ya lo dice arriba, así que
+         aquí sólo queda lo que informa: fuente declarada y estado pendiente. -->
+    <p class="pie__nota">
+      Museo virtual. Ningún dato de este sitio se publica sin declarar de dónde sale,
+      y lo que no se ha podido confirmar se muestra como pendiente.
+    </p>
+
+    <!-- Crédito de autoría del SITIO (DEC-014). Va separado de la nota de contenido a
+         propósito: el © cubre la creación de la página, no los datos de las fuentes
+         (Handbook, IMA, Dana), que se citan y no se reclaman como propios. -->
+    <p class="pie__credito">
+      <span class="pie__copyright">© 2026 <strong>Matías Benavides</strong> · Todos los derechos reservados.</span>
+      <span class="pie__creacion">Creación de la página: Matías Benavides.</span>
+    </p>
+  </div>
+</footer>
+
+<noscript>
+  <p style="padding:2rem;color:#e8eaed;background:#07080a;text-align:center">
+    Este museo necesita JavaScript para mostrar las fichas.
+  </p>
+</noscript>
+
+<script src="data/museo.js"></script>
+<script src="js/museo.js"></script>
+<script src="js/revelar.js"></script>
+<script src="js/foco.js"></script>
+</body>
+</html>
