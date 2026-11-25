@@ -1,63 +1,124 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
-**Última actualización:** **2026-11-14** · **3 especies publicadas** (Atacamita + Copiapite + Fibroferrite)
-**Estado:** PUBLICADO y estable. Capa visual V1/V2/V4 · DEC-013 · DEC-015 · DEC-016 (colores) · DEC-017/018 (logo) · DEC-019 (cards) · DEC-020 (trigonal) · **DEC-021 (marca de pendiente)**.
-**Último commit:** `d612e05`
-
-> ⚠️ **Este encabezado quedó desfasado 4 commits** (decía 2026-11-08 y `dc0010f` mientras el repo iba en
-> `322f8a2` con DEC-017 a DEC-020 cerradas). Al cerrar un bloque, actualizarlo también, no sólo el cuerpo.
+**Última actualización:** **2026-11-25** · **3 especies publicadas** (Atacamita + Copiapite + Fibroferrite)
+**Estado:** PUBLICADO y estable. DEC-013 · 015 · 016 · 017/018 · 019 · 020 · 021 · 022 ·
+**DEC-023 (formato de ficha)** · **DEC-024 (relatos guardados)** · **DEC-025 (etapas)** ·
+**DEC-026 (buscador + siguiente mineral)**.
+**Último commit:** `8ad6c51` — medido en vivo, `md5` servido == HEAD en js, css y data.
 
 ---
 
-## 🆕 DEC-021 — la marca de pendiente dice POR QUÉ (2026-11-14)
+## 🆕 SESIÓN 2026-11-25 — formato de las fichas + buscador + siguiente mineral
 
-**Pedido del dueño:** *«cuando se dice pendiente, no debería decir que se buscó por búsqueda literal y
-no se encontró»*. **Tenía razón:** `pendiente` a secas se lee como «falta buscarlo», cuando la verdad
-es que ya se buscó y ninguna fuente lo declara. El método sí estaba escrito —pero en el párrafo de
-**transparencia**, al pie de la pieza, no en la etiqueta de la fila, que es donde mira el lector.
+El dueño: *«descartemos los cuentos pero no los borres, los haremos al final despues de tener
+todos los minerales. mejora el formato de las fichas»*, y después *«no use el nav para poner los
+minerales, haz un cosito de busqueda… PARA NO CONFUNDIR SOLO EN EL HOME ESO. Y CUANDO UNO TERMINE
+DE LEER AL FINAL ABAJO SALES UNA CARD DE SIGUIENTE MINERAL»*.
 
-| | Antes | Ahora |
-|---|---|---|
-| `js/museo.js` `filaHTML()` | `pendiente` | **`pendiente · buscado sin resultado`** |
-| Caso `faltaContrato` (C2) | `sin fuente` | **`sin fuente`** — *no se unifica*: ahí el dato no está buscado, está sin fuente declarada |
+Eligió la opción **D** para el formato: **etapas numeradas + grupos + tipografía de archivo**.
 
-**Se DERIVA en el render, no se escribe en las 36 filas del JSON.** Si se escribiera a mano, la próxima
-ficha lo repetiría mal. Misma lógica que `--acento-2` en DEC-016. Se conserva la palabra `pendiente`
-porque `data-estado` y las mediciones cuentan por ella.
+### 🔴 DEC-024 — los cuentos están GUARDADOS, no borrados
 
-### 🔴 El defecto que se atrapó antes de publicar
+`data/museo.js` conserva **íntegros** los 14 versos de Atacamita («HERIDA EN EL DESIERTO») y los
+2 de Copiapite («EL CORAZÓN EXPUESTO»). Lo único que cambió es que se **dejan de pintar**:
 
-La marca vive dentro de la columna `fuente` de `.fila`, que mide **180 px** en escritorio
-(grilla `190px | 718px | 180px`). El texto nuevo mide **285,8 px** con `white-space:nowrap` →
-**se salía 105 px de la fila a 1440 px**. A 360 y 768 no se veía porque la fila se apila:
-el defecto existía **sólo en escritorio**.
+```js
+"MUSEO.relatosOcultos": ["atacamita", "copiapite"]
+```
 
-Corregido en `css/main.css`: `white-space:normal` + `text-wrap:balance` + `max-width:100%` +
-`flex:none` en el punto. A 1440 la marca mide **180 px exactos en 2 líneas**.
+- **Devolver uno** → quitar su id de la lista.
+- **Devolverlos todos** → dejar la lista vacía.
+- No hay que tocar HTML, CSS ni ninguna otra línea de datos.
 
-⚠️ Al medir esto hay que comparar `marca.right` contra **`fila.right`**, no contra `window.innerWidth`:
-la marca se salía de su fila y aun así cabía en la pantalla. Un medidor que sólo mira desborde de
-viewport habría dado **OK**.
+Mientras están en pausa, la sección del relato dice **«Relato en preparación»** con un texto
+NEUTRO (marcado `data-pausa="1"`, **no** `data-rev="verso"`): con el cuento guardado no hay nada
+que anunciar, y anunciarlo sería prometer un texto que hoy no se va a publicar.
+
+### DEC-023 — el formato de la ficha
+
+| Antes | Ahora |
+|---|---|
+| Una pila de 36 filas idénticas, ~9.000 px, sin jerarquía | **4 grupos**: Identidad (7) · Cristal (6) · Propiedades (14) · Yacimiento (9) |
+| La nota larga era una 4.ª franja dentro de la fila (hasta **346 caracteres**) y rompía la regla en 6 de 36 | Baja a **«Notas de la ficha»** como nota al pie numerada; la fila muestra sólo su número |
+| Sin numeración | **01…36** al margen, en el acento de la pieza, `tabular-nums` |
+| `#tablaBasica` duplicaba 12 de los 36 campos cien píxeles más arriba | **Se retiró de la pieza.** `basico:true` **se conserva** (C6 intacto: 36 = 12 + 24); la sala sigue pintando los 12 |
+
+Los grupos son una **lista cerrada** en `js/museo.js` (`GRUPOS`), por prefijo de `campo`, con
+`Otros datos` como red de seguridad: un campo de una ficha futura que no caiga en ninguno **no se
+pierde**, nunca.
+
+⚠️ **«Autor del nombre» no caía en ningún grupo** y dejaba un grupo de UN solo dato. Medido con un
+script que recorre las 3 fichas: era el único huérfano. Va en **Identidad** (quién puso el nombre
+es identidad, no yacimiento).
+
+### DEC-025 — etapas 01…06 derivadas, no escritas
+
+Cada `<section data-orden data-etapa="Ficha técnica">` recibe su número del **orden real en el
+DOM**, y el nav y el pie toman el número de ahí. Si una etapa desaparece, las demás se renumeran
+solas: no queda un «04» donde ahora hay «03». Etapas actuales: **01 El relato · 02 Ficha técnica ·
+03 Notas · 04 Versión directa · 05 Fuentes · 06 Transparencia**.
+
+### DEC-026 — buscador en la sala + card de siguiente mineral
+
+**El nav ya no lista piezas** (ni en la barra ni en el pie). La barra vuelve a ser un índice de
+secciones.
+
+**Buscador, sólo en `index.html`** (`#buscarPieza`): filtra las cards en vivo, con **una sola
+letra** ya. Busca por nombre en español y por nombre IMA.
+
+⚠️ **Tres defectos medidos que hubo que corregir, y que se repetirían:**
+
+1. **La fórmula NO entra al texto de búsqueda largo.** «Cu2Cl(OH)3» y «Fe₂(SO₄)₃·9H₂O» contienen
+   `c`, `o` y `h`: escribir **una letra** hacía coincidir piezas cuyo nombre no la tiene («c»
+   traía Copiapite y dejaba fuera Fibroferrite). La fórmula se compara **aparte**, sólo cuando lo
+   escrito trae un dígito o un paréntesis.
+2. **`NFD` no basta con las fórmulas:** los subíndices (`₄`) son compatibles pero **no
+   descomponen**. Hay que usar **`NFKD`**, o «Fe2(SO4)6» nunca encuentra «Fe²⁺Fe³⁺₄(SO₄)₆…».
+3. **Las cargas iónicas van pegadas al átomo** (`fe2+fe3+4`): hay que quitar `+`/`−` **después**
+   de normalizar, o el «+» parte la cadena justo donde el visitante no lo escribe.
+
+**Card de «Siguiente mineral»** al final de cada pieza (`#siguienteCaja`), en el **orden del
+libro** y **circular** (después de la última vuelve la primera). Se arma con la misma función
+`cardPieza()` que la sala: **un solo HTML de card** para las dos vistas. La sección «Volver a la
+sala» **se retiró** (la card la reemplaza y el enlace sigue en el texto del cierre).
+
+### 🔴 Bug atrapado al medir (mismo patrón que DEC-011)
+
+`relatoEnPausa` se calculaba con `pieza`, que en la **sala** es `especies[0]`: la portada reportaba
+`true` heredando el estado de la Atacamita. No era visible, pero era exactamente el error de fondo
+de DEC-011 (`especies[0]` fijo). Corregido: en la portada la pausa es `false`.
 
 ### Verificación en vivo (post-deploy, md5 servido == commit)
 
 ```
-4 páginas × 3 anchos (360/768/1440)    0 fallas
-fibroferrite  marcas=3 · MUSEO_RENDER.pendientes=3 · 12 básicos · 36 ficha
-atacamita/copiapite/index              marcas=0
-0 desborde horizontal · 0 errores de consola · 0 sellos «verificado»
-md5 js/museo.js y css/main.css servidos == HEAD
+4 páginas × 3 anchos (360/768/1440)   0 fallas en los DOS medidores
+atacamita/copiapite/fibroferrite      36 campos · 4 grupos · 6 etapas · 0 desbordes
+atacamita 31 notas · copiapite 35 · fibroferrite 36
+buscador: 15 casos (letra, prefijo, mayúsculas, tildes, fórmula, vacío, X, Escape)
+siguiente: atacamita→copiapite→fibroferrite→atacamita, en los 3 anchos
+nav: 1 enlace («La sala») en la portada · 0 listas de piezas en todo el sitio
+0 errores de consola · 0 desborde horizontal · 0 desborde contra contenedor
 ```
 
-### ⚠️ Riesgo de redundancia — decisión pendiente del dueño
+Los dos medidores están en `/tmp` (se pierden al reiniciar WSL): `medir-formato.mjs` y
+`medir-buscador.mjs`. Si se pierden, la receta es la de siempre: Chromium de Playwright +
+`puppeteer-core` de `/mnt/c/dev/lfxcore/tmp/verify-responsive/node_modules`, y **exigir números
+esperados**, no sólo «sin desborde».
 
-La fila de «Tenacidad» ya dice en su nota: *«No declarada por la fuente — Handbook of Mineralogy y
-Webmineral, ninguna de las dos lo declara»*. Con la etiqueta nueva, la marca y la nota **dicen lo
-mismo en distinto largo**: es el defecto que el dueño corrigió en DEC-013 (un sello que repite lo que
-ya está pegado a su lado). Si lo señala, la salida limpia es que la **nota** deje de justificar el
-método (ya lo dice la marca) y en su lugar diga **en qué fuentes se buscó**.
-Es opción **B**; hoy está aplicada sólo la **A** (la etiqueta).
+### Respaldos de esta sesión (fuera de `/tmp`)
 
+```
+/mnt/c/Users/logic/Downloads/museo-respaldos/formato-20261125-155334/
+  data/museo.js  js/museo.js  css/main.css  *.html      (estado previo a todo el cambio)
+/mnt/c/Users/logic/Downloads/museo-respaldos/capturas-formato/
+  zoom-grupo · zoom-sig · zoom-buscador · zoom-notas · cap-sala-m · cap-ficha-m
+```
+
+### Próximo paso real
+
+1. **Ficha 4: Pickeringite** — la receta de fuentes ya está probada (§FICHA 3).
+2. **Los cuentos**, cuando el museo tenga todas las especies: vaciar `relatosOcultos`.
+3. **V3** (cristal propio por especie) y **V5** (paralaje) siguen pendientes y aprobadas.
 
 ---
 
