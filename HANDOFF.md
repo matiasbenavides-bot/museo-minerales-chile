@@ -1,10 +1,98 @@
 # RELEVO — Museo de Minerales Descubiertos en Chile
 
-**Última actualización:** **2026-11-25** · **3 especies publicadas** (Atacamita + Copiapite + Fibroferrite)
-**Estado:** PUBLICADO y estable. DEC-013 · 015 · 016 · 017/018 · 019 · 020 · 021 · 022 ·
-**DEC-023 (formato de ficha)** · **DEC-024 (relatos guardados)** · **DEC-025 (etapas)** ·
-**DEC-026 (buscador + siguiente mineral)**.
-**Último commit:** `8ad6c51` — medido en vivo, `md5` servido == HEAD en js, css y data.
+**Última actualización:** **2026-11-25** · **4 especies publicadas** (Atacamita + Copiapite + Fibroferrite + Pickeringite)
+**Estado:** PUBLICADO y estable. DEC-023 a **DEC-029**.
+**Último commit:** `d5c7f34` — medido en vivo: `md5` servido == HEAD, 3 medidores en verde.
+
+---
+
+## 🔴 DEC-027 — EL LIBRO (.docx) ESTÁ FUERA DEL ALCANCE
+
+El dueño: *«EL DOCX NO ES NECESARIO AVANZAR, YA QUE NO LANZARE EL LIBRO. ENFOQUEMOSNOS EN LA PAGINA»*.
+
+**No se toca `Minerales-descubiertos-en-Chile.docx`.** Consecuencias que hay que respetar:
+
+- La ficha 4 (Pickeringite) **sí** se insertó en el `.docx` antes de esta decisión, y quedó bien
+  (34 páginas, 0 hojas en blanco, 4 tablas 37×5, REFERENCIAS al final). No se deshace, pero
+  **tampoco se sigue**: el próximo trabajo va sólo al sitio.
+- Las **tildes que faltan en el `.docx`** (`composicion`, `Tarapaca`, `Biaxica`, `una` por «uña»)
+  **dejan de ser deuda**. El museo las restaura al extraer, así que el sitio ya está bien.
+- El respaldo del libro anterior a la ficha 4 vive en
+  `Downloads/museo-respaldos/BACKUP-libro-antes-pickeringite-20261125-162459.docx`.
+
+## 🆕 FICHA 4 — PICKERINGITE (1844, Chile) · publicada
+
+**36 campos · 36 verificados · 0 pendientes.** Acento **azul hielo `#8fc6e8`** (10,89:1 contra el
+negro; 1,48:1 contra el blanco amarillento de Fibroferrite, así que las dos especies claras no se
+confunden).
+
+| Dato | Valor | Fuente |
+|---|---|---|
+| IMA | Pickeringite · **G** · 1844 · Chile | IMA Master List **2026-11**, **p. 172** |
+| Fórmula | `MgAl₂(SO₄)₄(H₂O)₁₇·5H₂O` | idem (el Handbook escribe `•22H₂O`: las mismas 22 aguas) |
+| **Autor del nombre** | **Alonzo Austin Hayes (1818-1894), 1844** | **Chester (1896)**: «A. A. Hayes, 1844, A.J.S., xlvi, 360» |
+| Homenajeado | **John Pickering (1777-1846)**, abogado y filólogo de Boston | Handbook, campo `Name` |
+| Estructura | P2₁/c · a 6,1844 · b 24,2715 · c 21,2265 · β 100,326° · Z 4 | Quartieri, Triscari y Viani (2000), DOI 10.1127/ejm/12/6/1131 |
+| Chile | Cerros Pintados (abundante) · Quetena · Chuquicamata | Handbook, `Distribution` |
+
+### 🔴 Contradicciones entre fuentes, DECLARADAS (no resueltas en silencio)
+
+| Campo | Handbook | Webmineral | Qué se hizo |
+|---|---|---|---|
+| **Grupo espacial** | `P2₁/c` | `P2` | Se toma **P2₁/c**: la determinación dedicada (Quartieri et al. 2000) lo confirma por Rietveld. Webmineral arrastra la tarjeta PDF 12-299 vieja — y **el propio paper dice que esa tarjeta hay que redefinirla** |
+| **Fractura** | concoidea | irregular | Se conserva la del Handbook y la otra queda declarada en la nota |
+| **Celda** | a 6,1844 · b 24,2715 · c 21,2265 | a 20,8 · b 24,2 · c 6,18 · β 95° | Se cita la del refinamiento, con la razón escrita en la nota |
+
+### 🔴 Verificación literal — 43 checks + 6 negativos
+
+`/tmp/verificar_pickeringite.py` compara cada valor contra el texto extraído de su fuente y
+**falla con exit 1**. Dos trampas nuevas que costaron dos vueltas:
+
+1. **`U+00B7` MIDDLE DOT** es el punto de las fórmulas (`·5H2O`). `NFKD` **no** lo convierte:
+   sin `.replace("\u00b7",".")` la fórmula del IMA nunca coincide. Es la misma familia que los
+   subíndices de la Copiapite.
+2. El abstract de **OpenAlex** trae `confmned` (OCR del editor) donde el artículo dice
+   `confirmed`. Se verifica el fragmento estable (`p21/c with unit cell parameters`), no la frase.
+
+**Regla que queda:** antes de declarar mal un dato, sospechar del normalizador.
+
+## 🔴 DEC-028 — la transparencia de Atacamita estaba desfasada (P0, corregido)
+
+La revisión del dueño detectó que la *Nota de transparencia* de Atacamita seguía diciendo
+*«Quedan dos frentes abiertos… el año y el autor del nombre, que sólo constan en Mindat… y la
+fluorescencia y la solubilidad»*, **mientras su propia tabla daba los 36 campos por verificados**.
+Era el texto de octubre, nunca actualizado tras cerrar los cuatro datos el 2-nov.
+
+Reescrita (6 párrafos) con la verdad de hoy:
+- los 36 campos verificados, y **cómo** se cerraron fluorescencia (Webmineral) y solubilidad (Collins 1871);
+- la **disputa Blumenbach/Golitsyn declarada con las dos atribuciones** y la discrepancia 1801/1802;
+- la localidad tipo exacta como dato verificado (la fuente dice que no se definió).
+
+⚠️ **Lección:** sincronizar la tabla no sincroniza la transparencia. Son **dos** sitios, y el
+segundo es el que se olvida. Al cerrar un campo, revisar el párrafo de transparencia que lo nombra.
+
+## 🔴 DEC-029 — el número de la nota ES el número del campo
+
+El dueño: *«algunos campos no muestran el número de nota en su etiqueta… mientras que las notas
+saltan directamente a esos números»*. **Tenía razón, y no era un desajuste de datos** (medido: 0
+desajustes; la nota *n* siempre apuntaba al campo correcto) **sino dos numeraciones paralelas**:
+las notas iban 1…31 por orden de aparición, y sólo 31 de los 36 campos tienen nota, así que la
+nota «27» hablaba de un campo rotulado **32**.
+
+| Antes | Ahora |
+|---|---|
+| nota `1…31` por orden · margen `01…36` por campo | **el mismo número en los tres sitios** |
+| `String(n).padStart(2,'0')` repetido en 3 lugares → el campo 1 salía `01` arriba y `1` abajo | una sola función `num2()` |
+
+Y el encabezado de la sección lo dice: *«El número de cada nota es el número de su campo»*.
+
+### Lo que se revisó y NO se cambió (con la fuente en la mano)
+
+- **«Polimorfos»**: el Handbook declara literalmente `Polymorphous with botallackite,
+  clinoatacamite and paratacamite`. El término lo usa la fuente citada; no es vocabulario propio.
+- **Fórmulas sin subíndices en el campo, con subíndices en la cabecera**: es una **decisión
+  pendiente**, no un olvido. Unificar toca el render de las 4 especies **y** la búsqueda NFKD
+  (que se apoya en que `Cu2Cl` sea ASCII). Hacerlo sin medir la búsqueda rompería lo de DEC-026.
 
 ---
 
