@@ -442,17 +442,30 @@ html.foco-vivo body::after{ opacity:1; }
 .chip.is-activo b{ opacity:.75; }
 .chip--alerta.is-activo{ background:var(--alerta); border-color:var(--alerta); color:#180d02; }
 
-/* fila de la ficha: acordeón por campo */
+/* fila de la ficha: acordeón por campo.
+   DEC-023 (2026-11-25) — la fila pasó de 3 columnas a 4: entra el número de
+   campo al margen y SALE el texto de la nota, que baja al pie de la pieza.
+   Antes la nota era una 4.ª franja (`grid-column:2 / -1`) y rompía la regla en
+   6 de las 36 filas, con hasta 346 caracteres entre un dato y el siguiente. */
 .tabla{ display:block; }
 .fila{
   display:grid;
-  grid-template-columns:minmax(0,190px) minmax(0,1fr) minmax(0,180px);
+  grid-template-columns:2.2rem minmax(0,190px) minmax(0,1fr) minmax(0,180px);
   gap:1.2rem; padding:1.05rem 1.6rem; border-bottom:1px solid var(--borde);
   align-items:start; transition:background .18s; min-width:0;
 }
 .fila > *{ min-width:0; overflow-wrap:anywhere; }
 .fila:last-child{ border-bottom:0; }
 .fila:hover{ background:rgba(255,255,255,.018); }
+
+/* número de campo: tipografía de archivo, no decoración.
+   Va en el color de la pieza y es lo que hace legible un bloque de 36 filas
+   seguidas: el ojo puede seguir el hilo 01…36 sin contar. */
+.fila__n{
+  font-family:var(--mono); font-size:.68rem; line-height:1.9;
+  color:var(--acento); opacity:.62; letter-spacing:.04em;
+  font-variant-numeric:tabular-nums; user-select:none;
+}
 .fila__campo{
   font-size:.8rem; letter-spacing:.05em; text-transform:uppercase;
   color:var(--t3); font-weight:650; padding-top:.15rem;
@@ -466,15 +479,82 @@ html.foco-vivo body::after{ opacity:1; }
   content:""; display:block; width:14px; height:1px;
   background:var(--borde-2); margin-bottom:.4rem;
 }
-.fila__nota{
-  grid-column:2 / -1; font-size:.82rem; color:var(--t3);
-  padding-left:0; margin-top:-.2rem;
-}
 .fila.is-pendiente{
   background:linear-gradient(90deg, rgba(226,149,75,.07), transparent 55%);
   box-shadow:inset 3px 0 0 var(--alerta);
 }
 .fila.is-pendiente .fila__valor{ color:var(--alerta); }
+
+/* llamada a la nota al pie: número pequeño pegado al rótulo */
+.fila__ref{ font-size:.62rem; margin-left:.3rem; vertical-align:super; }
+.fila__ref a{
+  font-family:var(--mono); color:var(--acento-2);
+  border-bottom:1px dotted currentColor; padding:0 .12rem;
+}
+
+/* La marca de estado va DEBAJO de la fuente, como leyenda de la columna: el
+   texto del dato manda y la fuente acompaña. */
+.fila__fuente .marca-estado{ margin-top:.5rem; display:inline-flex; }
+
+/* ======================================================= GRUPOS (ficha) */
+/* DEC-023 — cuatro familias en vez de 36 filas sueltas. El rótulo del grupo no
+   es un adorno: dice de qué se está hablando antes de empezar a leerlo. */
+.grupo{ border-bottom:1px solid var(--borde-2); }
+.grupo:last-child{ border-bottom:0; }
+.grupo__cab{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:baseline;
+  gap:.4rem 1rem; padding:1.5rem 1.6rem .9rem;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--acento) 7%, transparent), transparent 90%);
+  border-top:1px solid var(--borde-2);
+}
+.grupo:first-child .grupo__cab{ border-top:0; }
+.grupo__h4{
+  font-size:.86rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--acento-2); font-weight:700;
+}
+.grupo__nota{ font-size:.8rem; color:var(--t3); line-height:1.5; }
+.grupo__cuenta{
+  font-family:var(--mono); font-size:.7rem; color:var(--t3);
+  border:1px solid var(--borde-2); border-radius:99px;
+  padding:.1rem .5rem; justify-self:end;
+}
+
+/* ================================================== NOTAS AL PIE (pieza) */
+.notas{ display:grid; gap:.9rem; counter-reset:none; }
+.notas li{
+  display:grid; grid-template-columns:1.8rem 1fr; gap:.7rem;
+  font-size:.88rem; line-height:1.7; color:var(--t2);
+  padding-bottom:.9rem; border-bottom:1px solid var(--borde);
+}
+.notas li:last-child{ border-bottom:0; padding-bottom:0; }
+.nota__n{
+  font-family:var(--mono); font-size:.7rem; color:var(--acento);
+  border:1px solid color-mix(in srgb, var(--acento) 40%, transparent);
+  border-radius:4px; height:1.5rem; display:flex;
+  align-items:center; justify-content:center;
+}
+.nota__txt strong{ color:var(--t1); font-weight:650; }
+.bloque--notas{ background:var(--negro-2); }
+
+/* ================================================== ETAPAS (DEC-025) */
+/* El número sale de `--etapa`, que escribe el render desde el orden real de los
+   bloques. No está escrito en el HTML: si una etapa desaparece, las demás se
+   renumeran solas. */
+section[data-orden] .bloque__in,
+section[data-orden] .archivo-cab__in{ position:relative; }
+section[data-orden]::before{
+  content:attr(data-etapa);
+  position:absolute; top:1.5rem; left:unset; right:max(1.4rem, calc(50% - 590px));
+  font-family:var(--mono); font-size:.68rem; letter-spacing:.28em;
+  text-transform:uppercase; color:var(--t3); opacity:.9;
+  pointer-events:none;
+}
+section[data-orden]::after{
+  content:var(--etapa);
+  position:absolute; top:1.15rem; left:max(1.4rem, calc(50% - 590px));
+  font-family:var(--mono); font-size:.72rem; letter-spacing:.1em;
+  color:var(--acento); opacity:.75; pointer-events:none;
+}
 .marca-estado{
   display:inline-flex; align-items:center; gap:.35rem;
   font-size:.68rem; letter-spacing:.12em; text-transform:uppercase;
@@ -606,8 +686,67 @@ html.foco-vivo body::after{ opacity:1; }
 }
 
 
-/* ================================================== FICHA BÁSICA (portada) */
-/* la portada NO usa tabla de 3 columnas: son 12 campos en tarjetas legibles */
+/* ================================================== BUSCADOR (DEC-026) */
+/* Vive sólo en la sala. Un campo ancho, con foco claro: es el único lugar del
+   sitio donde se busca, y tiene que verse como lo que es. */
+.buscador{ margin:0 0 1.6rem; max-width:560px; }
+.buscador__lbl{
+  display:block; font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--t3); font-weight:700; margin-bottom:.55rem;
+}
+.buscador__caja{
+  display:flex; align-items:center; gap:.6rem;
+  background:var(--panel); border:1px solid var(--borde-2);
+  border-radius:var(--r-s); padding:.55rem .85rem;
+  transition:border-color .18s, box-shadow .18s;
+}
+.buscador__caja:focus-within{
+  border-color:color-mix(in srgb, var(--acento) 55%, var(--borde-2));
+  box-shadow:0 0 0 3px color-mix(in srgb, var(--acento) 14%, transparent);
+}
+.buscador__ico{ width:17px; height:17px; flex:0 0 auto; color:var(--t3); }
+.buscador__in{
+  flex:1; min-width:0; background:none; border:0; outline:none;
+  color:var(--t1); font-family:inherit; font-size:.95rem; padding:.15rem 0;
+}
+.buscador__in::placeholder{ color:var(--t3); }
+/* la X del type=search la quita el navegador; la propia es la única visible */
+.buscador__in::-webkit-search-cancel-button{ display:none; }
+.buscador__x{
+  flex:0 0 auto; width:24px; height:24px; border-radius:50%;
+  border:1px solid var(--borde-2); background:none; color:var(--t3);
+  cursor:pointer; font-size:.95rem; line-height:1; padding:0;
+  display:flex; align-items:center; justify-content:center;
+}
+.buscador__x:hover{ color:var(--t1); border-color:var(--acento); }
+.buscador__cuenta{ font-size:.78rem; color:var(--t3); margin-top:.5rem; min-height:1.1rem; }
+.sala__vacio{
+  margin-top:1.4rem; padding:1.1rem 1.3rem; font-size:.9rem; color:var(--t2);
+  background:var(--negro-2); border:1px solid var(--borde); border-radius:var(--r-s);
+}
+.sala__vacio b{ color:var(--t1); }
+
+/* ============================================ SIGUIENTE MINERAL (DEC-026) */
+/* La card de la próxima pieza, al final del archivo. Una sola, con el ancho de
+   la sala para que se reconozca como «otra vitrina», no como un aviso más. */
+.bloque--siguiente{
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 0%, color-mix(in srgb, var(--acento) 8%, transparent), transparent 70%),
+    var(--negro);
+  border-top:1px solid var(--borde);
+}
+.bloque__h2--siguiente{ margin-bottom:1.6rem; }
+.sala--una{ grid-template-columns:minmax(0,420px); }
+.siguiente__fin{
+  margin-top:1.6rem; font-size:.82rem; color:var(--t3); max-width:520px;
+}
+.siguiente__fin a{ color:var(--acento-2); text-decoration:underline; text-underline-offset:3px; }
+
+/* ================================================== FICHA BÁSICA (sala) */
+/* Los 12 campos básicos sólo los pinta la SALA (contrato C6). Desde DEC-023
+   (2026-11-25) la pieza ya no repite una segunda tabla con estos mismos 12:
+   eran el mismo dato en dos sitios. Por eso esta regla ya no depende de un id
+   que exista en una sola página. */
 #tablaBasica{
   display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
   gap:1px; background:var(--borde);
@@ -675,7 +814,7 @@ html.foco-vivo body::after{ opacity:1; }
 .pieza__datos--ancho{ grid-column:1 / -1; }
 
 @media (max-width:600px){
-  #tablaBasica{ grid-template-columns:1fr; }
+  .pieza__datos{ grid-template-columns:1fr; }
   .archivo-cta{ padding:1.2rem; }
 }
 
@@ -683,16 +822,33 @@ html.foco-vivo body::after{ opacity:1; }
 @media (max-width:900px){
   /* V2: la card ya no es de 2 columnas; en móvil apila la vitrina arriba */
   .pieza-card__vitrina{ max-width:none; }
-  .fila{ grid-template-columns:minmax(0,150px) minmax(0,1fr); gap:.4rem 1rem; padding:1rem 1.2rem; }
-  .fila__fuente{ grid-column:2; }
-  .fila__nota{ grid-column:2; }
+  /* DEC-023: la fila baja a 3 columnas — número, rótulo, valor — y la fuente
+     pasa debajo del valor. El número NO se retira en tableta: es la guía de
+     lectura de un bloque de 36. */
+  .fila{ grid-template-columns:1.8rem minmax(0,150px) minmax(0,1fr); gap:.4rem 1rem; padding:1rem 1.2rem; }
+  .fila__fuente{ grid-column:2 / -1; }
   .fila__fuente::before{ display:none; }
+  .grupo__cab{ grid-template-columns:auto 1fr auto; padding:1.2rem 1.2rem .8rem; }
 }
 
 @media (max-width:600px){
-  .fila{ grid-template-columns:1fr; gap:.35rem; }
-  .fila__fuente, .fila__nota{ grid-column:1; }
+  /* En teléfono el número y el rótulo comparten la primera línea; el valor va
+     debajo, a todo el ancho. Un número de campo en su propia línea gastaría
+     una fila entera por cada dato. */
+  .fila{
+    grid-template-columns:1.6rem 1fr;
+    gap:.3rem .6rem;
+  }
+  .fila__n{ line-height:1.6; }
   .fila__campo{ font-size:.72rem; }
+  .fila__valor{ grid-column:2; }
+  .fila__fuente{ grid-column:2; }
+  .grupo__cab{ grid-template-columns:1fr auto; gap:.25rem .6rem; }
+  .grupo__nota{ grid-column:1 / -1; }
+  /* La etiqueta de etapa en móvil no cabe a la derecha del todo: se queda sólo
+     el número, y el rótulo se oculta para no montarse encima del título. */
+  section[data-orden]::before{ display:none; }
+  section[data-orden]::after{ top:.85rem; left:1.2rem; }
 }
 
 @media (max-width:780px){

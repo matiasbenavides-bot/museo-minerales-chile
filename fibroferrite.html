@@ -64,8 +64,8 @@
 
     <nav class="nav" id="nav" aria-label="Secciones del archivo">
       <a href="index.html">← Volver a la sala</a>
-      <!-- V4: las piezas se listan solas desde data/museo.js -->
-      <ul class="nav__piezas" id="navPiezas"><!-- js --></ul>
+      <!-- DEC-026: la lista de piezas salió de la barra. Los minerales se
+           buscan en la sala (index.html), no en el menú. -->
       <a href="#ficha">Ficha técnica</a>
       <a href="#directa">Versión directa</a>
       <a href="#fuentes">Fuentes</a>
@@ -98,34 +98,21 @@
     </div>
   </section>
 
-  <!-- ======================================================== VITRINA -->
-  <section class="bloque bloque--vitrina" id="vitrina">
-    <div class="bloque__in">
-      <div class="vitrina" id="vitrinaFicha" data-rev>
-        <div class="vitrina__barra">
-          <h3 class="vitrina__h3">Lo esencial de la pieza</h3>
-          <p class="vitrina__nota">
-            Lo que un visitante necesita para saber qué está mirando. Abajo, el
-            <strong>archivo completo</strong> con los 36 campos y la fuente de cada uno.
-          </p>
-        </div>
-
-        <div class="tabla" id="tablaBasica" role="table" aria-label="Ficha básica de la especie">
-          <!-- js: 12 campos -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========================================================= RELATO -->
-  <section class="bloque bloque--relato" id="relato">
+  <!-- ======================================================== ETAPA 01 -->
+  <!-- DEC-023 (2026-11-25): aquí vivía «Lo esencial de la pieza», una segunda
+       tabla con 12 de los 36 campos que se leen cien píxeles más abajo. Se
+       retiró por duplicado, no por falta de espacio: el mismo dato en dos
+       sitios hace que el visitante no sepa cuál es la ficha de verdad.
+       Los 12 campos siguen marcados `basico:true` en data/museo.js (contrato
+       C6) y los sigue pintando la sala; la pieza ya no los repite. -->
+  <section class="bloque bloque--relato" id="relato" data-orden data-etapa="El relato">
     <div class="bloque__in bloque__in--angosto" data-rev>
       <div class="relato" id="relatoCaja"><!-- js --></div>
     </div>
   </section>
 
-  <!-- ========================================================== FICHA -->
-  <section class="bloque" id="ficha">
+  <!-- ======================================================== ETAPA 02 -->
+  <section class="bloque" id="ficha" data-orden data-etapa="Ficha técnica">
     <div class="bloque__in">
       <div class="vitrina" id="vitrinaFicha" data-rev>
         <div class="vitrina__barra">
@@ -141,14 +128,27 @@
         </div>
 
         <div class="tabla" id="tablaFicha" role="table" aria-label="Ficha técnica completa de la especie">
-          <!-- js: 36 campos -->
+          <!-- js: 36 campos en 4 familias -->
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ====================================================== DIRECTA -->
-  <section class="bloque" id="directa">
+  <!-- ======================================================== NOTAS -->
+  <!-- DEC-023: la nota larga de cada campo ya no va dentro de la fila (rompía la
+       regla y metía hasta 346 caracteres entre un dato y el siguiente). Baja
+       aquí, numerada, y cada fila que la tiene muestra su número al lado del
+       rótulo. Si una ficha no tiene notas, la sección se oculta sola. -->
+  <section class="bloque bloque--notas" id="notas" data-orden data-etapa="Notas">
+    <div class="bloque__in bloque__in--angosto" data-rev>
+      <h2 class="bloque__h2">Notas de la ficha</h2>
+      <p class="bloque__intro">Los datos que necesitan una explicación la tienen aquí, para que la ficha se lea de corrido.</p>
+      <ol class="notas" id="notasCaja"><!-- js --></ol>
+    </div>
+  </section>
+
+  <!-- ======================================================== ETAPA 03 -->
+  <section class="bloque" id="directa" data-orden data-etapa="Versión directa">
     <div class="bloque__in bloque__in--angosto" data-rev>
       <h2 class="bloque__h2" id="directaIntro"><!-- js --></h2>
       <div class="directa" id="directaCaja"><!-- js --></div>
@@ -157,34 +157,41 @@
     </div>
   </section>
 
-  <!-- ====================================================== FUENTES -->
-  <section class="bloque" id="fuentes">
+  <!-- ======================================================== ETAPA 04 -->
+  <section class="bloque" id="fuentes" data-orden data-etapa="Fuentes">
     <div class="bloque__in bloque__in--angosto" data-rev>
       <h2 class="bloque__h2">Fuentes de esta sección</h2>
       <ol class="fuentes" id="fuentesCaja"><!-- js --></ol>
     </div>
   </section>
 
-  <!-- ================================================ TRANSPARENCIA -->
-  <section class="bloque" id="transparencia">
+  <!-- ======================================================== ETAPA 05 -->
+  <section class="bloque" id="transparencia" data-orden data-etapa="Transparencia">
     <div class="bloque__in bloque__in--angosto" data-rev>
       <h2 class="bloque__h2">Nota de transparencia</h2>
       <div class="transp" id="transpCaja"><!-- js --></div>
     </div>
   </section>
 
-  <!-- ================================================= VOLVER A LA SALA -->
-  <section class="bloque bloque--volver">
-    <div class="bloque__in">
-      <div class="archivo-cta archivo-cta--volver">
-        <span>
-          <strong>Volver a la sala</strong>
-          <em>La sala con todas las piezas expuestas.</em>
-        </span>
-        <a class="btn btn--lleno" href="index.html#sala">Volver al museo</a>
-      </div>
+
+  <!-- ================================================ SIGUIENTE MINERAL -->
+  <!-- DEC-026 — al terminar de leer una pieza aparece la siguiente. La card la
+       arma js/museo.js con los MISMOS datos que la sala (nombre, fórmula,
+       color, dureza, cristal), así que no hay texto que mantener en dos sitios.
+       El orden es el del índice del libro (DEC-009). -->
+  <section class="bloque bloque--siguiente" id="siguiente">
+    <div class="bloque__in" data-rev>
+      <p class="eyebrow"><span class="punto"></span> Sigue en la sala</p>
+      <h2 class="bloque__h2 bloque__h2--siguiente">Siguiente mineral</h2>
+      <ul class="sala sala--una" id="siguienteCaja"><!-- js --></ul>
+      <p class="siguiente__fin">
+        Con esta son <strong>3</strong> las piezas expuestas. El museo crece al ritmo del libro:
+        <a href="index.html#sala">volver a la sala</a>.
+      </p>
     </div>
   </section>
+
+
 
 </main>
 

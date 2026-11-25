@@ -4,6 +4,18 @@ const MUSEO = {
     "serie": "Patrimonio Mineral de Chile",
     "tagline": "Minerales descubiertos en Chile"
   },
+  /* DEC-024 (2026-11-25) — RELATOS GUARDADOS, NO BORRADOS.
+     El dueño: «descartemos los cuentos pero no los borres, los haremos al final
+     despues de tener todos los minerales».
+
+     Los relatos siguen ÍNTEGROS aquí abajo, en el campo `relato` de cada especie:
+     14 versos de Atacamita y 2 de Copiapite. Lo único que cambia es que la página
+     deja de pintarlos mientras el id esté en esta lista.
+
+     Para devolver uno: se quita su id de acá.
+     Para devolverlos todos: se deja la lista vacía ("relatosOcultos": []).
+     No hay que tocar ni HTML ni CSS ni ninguna otra línea de datos. */
+  "relatosOcultos": ["atacamita", "copiapite"],
   "especies": [
     {
       "id": "atacamita",

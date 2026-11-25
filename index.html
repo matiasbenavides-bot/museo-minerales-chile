@@ -68,8 +68,10 @@
 
     <nav class="nav" id="nav" aria-label="Secciones del museo">
       <a href="#sala">La sala</a>
-      <!-- V4: las piezas se listan solas desde data/museo.js -->
-      <ul class="nav__piezas" id="navPiezas"><!-- js --></ul>
+      <!-- DEC-026 (2026-11-25): las piezas YA NO se listan en la barra.
+           El dueño: «no use el nav para poner los minerales, haz un cosito de
+           busqueda». La barra vuelve a ser lo que era —un índice de secciones— y
+           los minerales se buscan en la sala, que es donde están expuestos. -->
     </nav>
 
     <button class="navbtn" id="navbtn" aria-expanded="false" aria-controls="nav">
@@ -122,7 +124,31 @@
         investigación: <strong>solo se expone lo que tiene texto terminado</strong>.
       </p>
 
+      <!-- DEC-026 — buscador de piezas. Vive SOLO en la sala: en la barra
+           confundía (se leía como si fuera el menú del sitio) y en la página de
+           una pieza no hay nada que buscar todavía. -->
+      <div class="buscador" data-rev>
+        <label class="buscador__lbl" for="buscarPieza">Buscar una pieza</label>
+        <div class="buscador__caja">
+          <svg class="buscador__ico" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M16.5 16.5 L21 21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <input class="buscador__in" id="buscarPieza" type="search"
+                 placeholder="Escribe una letra o el nombre completo…"
+                 autocomplete="off" spellcheck="false"
+                 aria-describedby="buscarCuenta">
+          <button class="buscador__x" id="buscarLimpiar" type="button" aria-label="Borrar la búsqueda" hidden>×</button>
+        </div>
+        <p class="buscador__cuenta" id="buscarCuenta" role="status" aria-live="polite"></p>
+      </div>
+
       <ul class="sala" id="salaLista"><!-- js --></ul>
+
+      <p class="sala__vacio" id="salaVacio" role="status" hidden>
+        No hay ninguna pieza en el museo que se llame así. Las que hay hoy son
+        <b>3</b> y están arriba: borra la búsqueda para verlas todas.
+      </p>
 
       <aside class="aviso" data-rev>
         <h3 class="aviso__h3">Por qué no están las otras</h3>
@@ -146,8 +172,8 @@
     </div>
     <nav class="pie__nav" aria-label="Pie">
       <a href="#sala">La sala</a>
-      <!-- V4: las piezas se listan solas desde data/museo.js -->
-      <ul class="nav__piezas" id="navPiezasPie"><!-- js --></ul>
+      <!-- DEC-026: la lista de piezas salió también del pie, por la misma razón
+           que salió de la barra: el menú no es donde se buscan los minerales. -->
     </nav>
     <!-- DEC-015 (2026-11-08): nota del pie sin la aclaración de que no se vende.
          El sitio no tiene precio ni carrito y la portada ya lo dice arriba, así que
