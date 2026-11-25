@@ -155,7 +155,7 @@ const MUSEO = {
           "valor": "3 – 3,5",
           "fuente": "Handbook of Mineralogy (MSA), ficha Atacamite, Physical Properties",
           "estado": "verificado",
-          "nota": "Se raya con la una y con moneda de cobre; no raya el vidrio.",
+          "nota": "Se raya con la uña y con moneda de cobre; no raya el vidrio.",
           "basico": true
         },
         {
